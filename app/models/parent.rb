@@ -1,11 +1,11 @@
 class Parent < ApplicationRecord
-   belongs_to :student
+   belongs_to :student, optional: true
    has_many :students
 
    has_secure_password
 
    validates :first_name, :last_name, presence: true, length: { minimum: 2 }
-   # validates_format_of :email,with:  /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+   validates_format_of :email,with:  /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
 
    before_save :downcase_fields

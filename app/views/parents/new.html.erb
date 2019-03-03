@@ -2,20 +2,28 @@
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-      <title>Student Portal</title>
+      <title>Parent Portal</title>
    </head>
    <body>
+
       <div class="container-fluid">
-         <h1>Student Portal</h1>
-         <a href="/">Home</a>
+         <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+               <h1>Parent Portal</h1>
+               <a href="/">Home</a>
+            </div>
+            <div class="col-md-3"></div>
+         </div>
+         <br>
          <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-5">
-               <form action="/students" method="post">
+               <form action="/parents" method="post">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                   <div class="form-group">
                      <label for="first_name">First Name</label>
-                     <input type="text" name="student[first_name]" id="first_name" class="form-control">
+                     <input type="text" name="parent[first_name]" id="first_name" class="form-control">
                   </div>
                   <div class="form-group">
                      <label for="last_name">Last Name</label>
@@ -45,7 +53,7 @@
                </form>
             </div>
             <div class="col-md-5">
-               <form action="/student/login" method="post">
+               <form action="/login" method="post">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                   <div class="form-group">
                      <label for="username">Username</label>
@@ -62,5 +70,6 @@
          </div>
 
       </div>
+      <br><br>
    </body>
 </html>
