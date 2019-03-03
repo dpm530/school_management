@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Student Portal</title>
+   </head>
+   <body>
+      <div class="container-fluid">
+         <h1>Student Portal</h1>
+         <a href="/logout" data-method="delete">Logout</a>
+         <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+               <form action="/students" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <div class="form-group">
+                     <label for="first_name">First Name</label>
+                     <input type="text" name="student[first_name]" id="first_name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="last_name">Last Name</label>
+                     <input type="text" name="student[last_name]" id="last_name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="username">Username</label>
+                     <input type="text" name="student[username]" id="username" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="password">Password</label>
+                     <input type="password" name="student[password]" id="password" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="password_confirmation">Password Confirmation</label>
+                     <input type="password" name="student[password_confirmation]" id="password_confirmation" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="grade_level">Grade</label>
+                     <input type="text" name="student[grade_level]" id="grade_level" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="email">Parent Email</label>
+                     <input type="text" name="parent[email]" id="email" class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-outline-info">Create</button>
+               </form>
+            </div>
+            <div class="col-md-5">
+               <form action="" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <div class="form-group">
+                     <label for="username">Username</label>
+                     <input type="text" name="username" value="" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="password">Password</label>
+                     <input type="password" name="password" value="" class="form-control">
+                  </div>
+                  <button type="button" name="button" class="btn btn-outline-success">Login</button>
+               </form>
+            </div>
+            <div class="col-md-1"></div>
+         </div>
+
+      </div>
+   </body>
+</html>
