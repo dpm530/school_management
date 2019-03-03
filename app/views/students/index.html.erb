@@ -6,6 +6,12 @@
    </head>
    <body>
       <h1>Student Index</h1>
+      <a href="/">Home</a><br>
       <a href="/logout" data-method="delete">Logout</a>
+      <div class="container">
+         <% @students.each do |student| %>
+            <%= student.first_name%>
+         <% end %>
+      </div>
    </body>
 </html>

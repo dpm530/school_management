@@ -1,5 +1,9 @@
 class StudentsController < ApplicationController
 
+   def index
+      @students=Student.all
+   end
+
    def create
 
       puts "*"*50
