@@ -9,7 +9,10 @@
       <a href="/">Home</a><br>
       <a href="/logout" data-method="delete">Logout</a>
       <div class="container">
-   
+         <% @parents.each do |parent| %>
+            <%= parent.first_name %>
+         <% end %>
+
       </div>
 
    </body>

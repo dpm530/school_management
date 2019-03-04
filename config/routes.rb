@@ -5,7 +5,8 @@ Rails.application.routes.draw do
    resources :students
    resources :parents
 
-   post 'student/login' => 'sessions#create_student'
+   post 'login/student' => 'sessions#create_student'
+   post 'login/parent' => 'sessions#create_parent'
    delete 'logout' => 'sessions#destroy'
 
 

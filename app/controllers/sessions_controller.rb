@@ -29,6 +29,29 @@ class SessionsController < ApplicationController
 
    def create_parent
 
+      if (params[:email] === "") && (params[:password] === "")
+         flash[:errors]=["Username and Password can't be blank."]
+         return redirect_to new_parent_path
+      elsif (!(params[:password] === "") && (params[:email] === ""))
+         flash[:errors]=["Email can't be blank."]
+         return redirect_to new_parent_path
+      elsif (!(params[:email] === "") && (params[:password] === ""))
+         flash[:errors]=["Password can't be blank."]
+         return redirect_to new_parent_path
+      else
+         @parent=Parent.find_by_email(params[:email])
+
+         if @parent
+            if @parent.try(:authenticate, params[:password])
+               session[:parent_id]=@parent.id
+               return redirect_to parents_path
+            end
+            flash[:errors]=["Password is invalid."]
+         end
+         flash[:errors]=["Email Account is Invalid."]
+         return redirect_to new_parent_path
+      end
+
    end
 
    def destroy
