@@ -5,6 +5,8 @@ Rails.application.routes.draw do
    resources :students
    resources :parents
    resources :teachers
+   resources :students_contact_info
+   resources :teachers_contact_info
 
    post 'login/student' => 'sessions#create_student'
    post 'login/parent' => 'sessions#create_parent'

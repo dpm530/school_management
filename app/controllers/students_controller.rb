@@ -5,8 +5,6 @@ class StudentsController < ApplicationController
    end
 
    def create
-
-      puts "*"*50
       @parent=Parent.exists?(params[:parent][:email])
 
       @student=Student.new(student_params)
@@ -14,7 +12,6 @@ class StudentsController < ApplicationController
 
 
       if @student.save
-         puts "+"*50
          flash[:notice]=["Registered Successfully!"]
          session[:student_id]=@student.id
 

@@ -8,8 +8,9 @@
       <div class="row">
          <div class="col-3"></div>
          <div class="col-6 text-center">
-            <h1>Parent Index</h1>
-            <a href="/" class="btn btn-primary">Home</a>
+            <h1>Student Contact Info</h1>
+            <a href="/students" class="btn btn-primary">Student Dashboard</a>
+            <a href="/students_contact_info/new" class="btn btn-primary">New Contact Info</a>
             <a href="/logout" data-method="delete" class="btn btn-primary">Logout</a>
          </div>
          <div class="col-3"></div>
@@ -17,15 +18,13 @@
       <br>
       <div class="row">
          <div class="col-3"></div>
-         <div class="col-6">
-            <div class="container">
-               <% @parents.each do |parent| %>
-               <%= parent.first_name%>
-               <% end %>
-            </div>
+         <div class="col-6 text-center">
+            <% @student_contact.each do | student |%>
+            <%= student.line_1_address%>
+            <%= student.line_2_address%>
+            <% end %>
          </div>
          <div class="col-3"></div>
       </div>
-
    </body>
 </html>
