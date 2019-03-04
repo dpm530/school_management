@@ -54,6 +54,31 @@ class SessionsController < ApplicationController
 
    end
 
+   def create_teacher
+      if (params[:email] === "") && (params[:password] === "")
+         flash[:errors]=["Username and Password can't be blank."]
+         return redirect_to new_teacher_path
+      elsif (!(params[:password] === "") && (params[:email] === ""))
+         flash[:errors]=["Email can't be blank."]
+         return redirect_to new_teacher_path
+      elsif (!(params[:email] === "") && (params[:password] === ""))
+         flash[:errors]=["Password can't be blank."]
+         return redirect_to new_teacher_path
+      else
+         @teacher=Teacher.find_by_email(params[:email])
+
+         if @teacher
+            if @teacher.try(:authenticate, params[:password])
+               session[:teacher_id]=@teacher.id
+               return redirect_to teachers_path
+            end
+            flash[:errors]=["Password is invalid."]
+         end
+         flash[:errors]=["Email Account is Invalid."]
+         return redirect_to new_teacher_path
+      end
+   end
+
    def destroy
       session.clear
       return redirect_to root_path

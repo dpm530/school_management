@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <h1>Teacher Index</h1>
+      <a href="/">Home</a><br>
+      <a href="/logout" data-method="delete">Logout</a>
+      <div class="container">
+         <% @teachers.each do |teacher| %>
+            <%= teacher.first_name%>
+         <% end %>
+
+      </div>
+   </body>
+</html>

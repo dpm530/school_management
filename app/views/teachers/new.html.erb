@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+               <h1>Teacher Portal</h1>
+               <a href="/">Home</a>
+            </div>
+            <div class="col-md-3"></div>
+         </div>
+         <br>
+         <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+               <form action="/teachers" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <div class="form-group">
+                     <label for="first_name">First Name</label>
+                     <input type="text" name="teacher[first_name]" id="first_name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="last_name">Last Name</label>
+                     <input type="text" name="teacher[last_name]" id="last_name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="email">Email</label>
+                     <input type="text" name="teacher[email]" id="email" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="password">Password</label>
+                     <input type="password" name="teacher[password]" id="password" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="password_confirmation">Password Confirmation</label>
+                     <input type="password" name="teacher[password_confirmation]" id="password_confirmation" class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-outline-success">Create</button>
+               </form>
+            </div>
+            <div class="col-md-5">
+               <form action="/login/teacher" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <div class="form-group">
+                     <label for="email">Email</label>
+                     <input type="text" name="email" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="password">Password</label>
+                     <input type="password" name="password" class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-outline-success">Login</button>
+               </form>
+            </div>
+            <div class="col-md-1"></div>
+         </div>
+
+      </div>
+      <br><br>
+   </body>
+</html>
