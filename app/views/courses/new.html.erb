@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+               <h1>Add Courses</h1>
+               <a href="/teachers" class="btn btn-primary">Teacher Dashboard</a>
+               <a href="/courses" class="btn btn-primary">Courses Index</a>
+               <a href="/logout" data-method="delete" class="btn btn-primary">Logout</a>
+            </div>
+            <div class="col-md-3"></div>
+         </div>
+         <br>
+         <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+               <form action="/courses" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <div class="form-group">
+                     <label for="name">Name</label>
+                     <input type="text" name="course[name]" id="name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="subject">Subject</label>
+                     <input type="text" name="course[subject]" id="subject" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="start_date">Start Date</label>
+                     <input type="date" name="course[start_date]" id="start_date" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="end_date">End Date</label>
+                     <input type="date" name="course[end_date]" id="end_date" class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-outline-success">Create</button>
+               </form>
+            </div>
+            <div class="col-md-2"></div>
+         </div>
+      </div>
+      <br>
+      <br>
+   </body>
+</html>
