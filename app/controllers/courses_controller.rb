@@ -17,6 +17,10 @@ class CoursesController < ApplicationController
       return redirect_to new_course_path
    end
 
+   def show
+      @course=Course.find(params[:id])
+   end
+
    private
       def course_params
          params.require(:course).permit(:name, :subject, :start_date, :end_date)

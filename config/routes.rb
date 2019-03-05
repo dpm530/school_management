@@ -7,7 +7,9 @@ Rails.application.routes.draw do
    resources :teachers
    resources :students_contact_info
    resources :teachers_contact_info
-   resources :courses 
+   resources :courses
+
+   post 'teacher-course/:id' => 'teacher_courses#create'
 
    post 'login/student' => 'sessions#create_student'
    post 'login/parent' => 'sessions#create_parent'
