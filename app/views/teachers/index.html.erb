@@ -21,7 +21,8 @@
          <div class="col-6">
             <div class="container">
                <% @teachers.each do |teacher| %>
-               <%= teacher.first_name%>
+                  <h3><%= teacher.first_name.capitalize %> <%= teacher.last_name.capitalize %></h3>
+                  <hr>
                <% end %>
             </div>
          </div>

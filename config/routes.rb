@@ -10,6 +10,7 @@ Rails.application.routes.draw do
    resources :courses
 
    post 'teacher-course/:id' => 'teacher_courses#create'
+   post 'student-course/:id' => 'student_courses#create'
 
    post 'login/student' => 'sessions#create_student'
    post 'login/parent' => 'sessions#create_parent'

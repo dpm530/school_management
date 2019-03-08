@@ -19,6 +19,9 @@ class CoursesController < ApplicationController
 
    def show
       @course=Course.find(params[:id])
+      @teacher_course=TeacherCourse.find_by(course: @course)
+      @student_course=StudentCourse.find_by(course: @course)
+      @teachers=Teacher.all
    end
 
    private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_164520) do
+ActiveRecord::Schema.define(version: 2019_03_07_225914) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "name"
@@ -20,7 +20,19 @@ ActiveRecord::Schema.define(version: 2019_02_28_164520) do
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "student_course_id"
+    t.index ["student_course_id"], name: "index_assignments_on_student_course_id"
     t.index ["student_id"], name: "index_assignments_on_student_id"
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "student_course_id"
+    t.integer "student_id"
+    t.datetime "date"
+    t.index ["student_course_id"], name: "index_attendances_on_student_course_id"
+    t.index ["student_id"], name: "index_attendances_on_student_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -39,6 +51,8 @@ ActiveRecord::Schema.define(version: 2019_02_28_164520) do
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "student_course_id"
+    t.index ["student_course_id"], name: "index_gradebooks_on_student_course_id"
     t.index ["student_id"], name: "index_gradebooks_on_student_id"
   end
 

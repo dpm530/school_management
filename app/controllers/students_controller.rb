@@ -22,7 +22,6 @@ class StudentsController < ApplicationController
 
       return redirect_to new_student_path
 
-
    end
 
 

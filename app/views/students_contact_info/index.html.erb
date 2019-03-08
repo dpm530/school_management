@@ -20,8 +20,9 @@
          <div class="col-3"></div>
          <div class="col-6 text-center">
             <% @student_contact.each do | student |%>
-            <%= student.line_1_address%>
+            <%= student.line_1_address%><br>
             <%= student.line_2_address%>
+            <hr>
             <% end %>
          </div>
          <div class="col-3"></div>
