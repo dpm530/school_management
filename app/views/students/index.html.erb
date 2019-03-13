@@ -8,7 +8,7 @@
       <div class="row">
          <div class="col-3"></div>
          <div class="col-6 text-center">
-            <h1>Student Index</h1>
+            <h1>Welcome, <%= @student.first_name.capitalize %> <%= @student.last_name.capitalize %></h1>
             <a href="/" class="btn btn-primary">Home</a>
             <a href="/students_contact_info" class="btn btn-primary">Contact Information</a>
             <a href="/logout" data-method="delete" class="btn btn-primary">Logout</a>
@@ -17,12 +17,17 @@
       </div>
       <br>
       <div class="row">
-         <div class="col-3"></div>
+         <div class="col-3 text-center"></div>
          <div class="col-6">
-            <div class="container">
-               <% @students.each do |student| %>
-               <%= student.first_name%>
-               <% end %>
+            <div class="container text-center">
+               <h1>Courses:</h1>
+               <h2>
+                  <% if @student_course %>   
+                     <% @student_course.each do |course| %>
+                        <%= course.name.capitalize %>
+                     <% end %>
+                  <% end %>
+               </h2>
             </div>
          </div>
          <div class="col-3"></div>

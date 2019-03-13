@@ -19,9 +19,8 @@ class CoursesController < ApplicationController
 
    def show
       @course=Course.find(params[:id])
-      @teacher_course=TeacherCourse.find_by(course: @course)
-      @student_course=StudentCourse.find_by(course: @course)
-      @teachers=Teacher.all
+      @student_course=Student.joins(:student_courses).where(student_courses:{ course_id: @course })
+      @teacher_course=Teacher.joins(:teacher_courses).where(teacher_courses:{ course_id: @course })
    end
 
    private

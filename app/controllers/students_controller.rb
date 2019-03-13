@@ -1,15 +1,14 @@
 class StudentsController < ApplicationController
 
    def index
-      @students=Student.all
+      @student=Student.find(current_student.id)
+      @student_course=Course.joins(:student_courses).where(student_courses:{ student_id: @student })
    end
 
    def create
-      @parent=Parent.exists?(params[:parent][:email])
-
+      # @parent=Parent.exists?(params[:parent][:email])
       @student=Student.new(student_params)
-      @student.parent=@parent
-
+      # @student.parent=@parent
 
       if @student.save
          flash[:notice]=["Registered Successfully!"]
@@ -19,7 +18,6 @@ class StudentsController < ApplicationController
       end
 
       flash[:errors]=@student.errors.full_messages
-
       return redirect_to new_student_path
 
    end

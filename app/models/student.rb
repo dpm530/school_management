@@ -1,9 +1,9 @@
 class Student < ApplicationRecord
    has_one :parent
-   belongs_to :parent, optional: true
-   has_one :student_contact_info
-   has_many :student_courses
-   has_many :courses, through: :student_courses
+   belongs_to :parent, optional: true, dependent: :destroy
+   has_one :student_contact_info, dependent: :destroy
+   has_many :student_courses, dependent: :destroy
+   has_many :courses, through: :student_courses, dependent: :destroy
 
    has_secure_password
 

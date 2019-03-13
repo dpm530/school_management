@@ -21,21 +21,14 @@
             <div class="col-6">
                <div class="container">
                   <h1>Add Teacher to this Course:</h1>
-                  <!-- <form action="/teacher-course/<%= @course.id %>" method="post">
+                  <form action="/teacher-course/<%= @course.id %>" method="post">
                      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                      <div class="form-group">
-                        <label for="first_name">First Name</label>
-                        <input type="text" name="teacher[first_name]" class="form-control">
-                     </div>
-                     <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" name="teacher[last_name]" class="form-control">
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" class="form-control">
                      </div>
                      <button type="submit" class="btn btn-outline-success">Add</button>
-                  </form> -->
-                  <% @teachers.each do |teacher| %>
-                     <%= teacher.first_name.capitalize %><br>
-                  <% end %>
+                  </form>
                </div>
                <br>
                <div class="container">
@@ -43,12 +36,8 @@
                   <form action="/student-course/<%= @course.id %>" method="post">
                      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                      <div class="form-group">
-                        <label for="first_name">First Name</label>
-                        <input type="text" name="student[first_name]" class="form-control">
-                     </div>
-                     <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" name="student[last_name]" class="form-control">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" class="form-control">
                      </div>
                      <button type="submit" class="btn btn-outline-success">Add</button>
                   </form>
@@ -56,7 +45,14 @@
             </div>
             <div class="col-6 text-center">
                <div class="container">
-                  <h1>Teacher: <%= @teacher_course.teacher.first_name.capitalize  if @teacher_course%></h1>
+                  <h1>Teacher:</h1>
+                  <h2>
+                     <% if @teacher_course %>
+                        <% @teacher_course.each do |teacher| %>
+                           <%= teacher.first_name.capitalize %> <%= teacher.last_name.capitalize %> <br>
+                        <% end %>
+                     <% end %>
+                  </h2>
                </div>
                <hr>
                <div class="container">
@@ -68,9 +64,13 @@
                <hr>
                <div class="container">
                   <h1>Students in this class:</h1>
-                  <% if @student_course %>
-                     <%= @student_course.student.first_name %>
-                  <% end %>
+                  <h2>
+                     <% if @student_course %>
+                        <% @student_course.each do |student| %>
+                           <%= student.first_name.capitalize %> <%= student.last_name.capitalize %> <br>
+                        <% end %>
+                     <% end %>
+                  </h2>
                </div>
                <br>
             </div>
