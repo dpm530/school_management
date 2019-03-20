@@ -8,6 +8,7 @@ Rails.application.routes.draw do
    resources :students_contact_info
    resources :teachers_contact_info
    resources :courses
+   resources :attendances
 
    post 'teacher-course/:id' => 'teacher_courses#create'
    post 'student-course/:id' => 'student_courses#create'

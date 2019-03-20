@@ -60,14 +60,16 @@
                   <h2>Subject: <%= @course.subject.capitalize %></h2>
                   <h2>Start Date: <%= @course.start_date %></h2>
                   <h2>End Date: <%= @course.end_date %></h2>
+                  <h2>End Date: <%= @course.id %></h2>
                </div>
+               <a href="/attendances/<%= @course.id %>" class="btn btn-primary">Attendance</a>
                <hr>
                <div class="container">
                   <h1>Students in this class:</h1>
                   <h2>
                      <% if @student_course %>
                         <% @student_course.each do |student| %>
-                           <%= student.first_name.capitalize %> <%= student.last_name.capitalize %> <br>
+                           <%= student.first_name.capitalize %> <%= student.last_name.capitalize %> <%= student.id %> <br>
                         <% end %>
                      <% end %>
                   </h2>
