@@ -10,6 +10,9 @@ Rails.application.routes.draw do
    resources :courses
    resources :attendances
 
+   resources :assignments
+   post 'create/:id' => 'assignments#create'
+
    post 'teacher-course/:id' => 'teacher_courses#create'
    post 'student-course/:id' => 'student_courses#create'
 

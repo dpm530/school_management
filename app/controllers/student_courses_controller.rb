@@ -17,10 +17,7 @@ class StudentCoursesController < ApplicationController
 
    end
 
-   private
-      def student_course_params
-         params.require(:student_)
-      end
+
 
 
 end
