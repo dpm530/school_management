@@ -69,7 +69,7 @@
                   <h2>
                      <% if @student_course %>
                         <% @student_course.each do |student| %>
-                           <%= student.first_name.capitalize %> <%= student.last_name.capitalize %> <%= student.id %> <br>
+                           <a href="/<%=student.id%>/<%=@course.id%>"><%= student.first_name.capitalize %> <%= student.last_name.capitalize %> <%= @course.id %></a> <br>
                         <% end %>
                      <% end %>
                   </h2>

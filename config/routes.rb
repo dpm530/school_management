@@ -13,6 +13,9 @@ Rails.application.routes.draw do
    resources :assignments
    post 'create/:id' => 'assignments#create'
 
+   get ':student_id/:course_id' => 'gradebooks#show'
+   post 'student/:id/course/:id' => 'gradebooks#create'
+
    post 'teacher-course/:id' => 'teacher_courses#create'
    post 'student-course/:id' => 'student_courses#create'
 
