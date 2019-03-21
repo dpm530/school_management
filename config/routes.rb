@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
    root 'application#index'
 
+   post 'login/administrator' => 'sessions#create_administrator'
+
+   resources :administrators
    resources :students
    resources :parents
    resources :teachers
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
    post 'create/:id' => 'assignments#create'
 
    get ':student_id/:course_id' => 'gradebooks#show'
-   post 'student/:id/course/:id' => 'gradebooks#create'
+   post ':student_id/:course_id' => 'gradebooks#create'
 
    post 'teacher-course/:id' => 'teacher_courses#create'
    post 'student-course/:id' => 'student_courses#create'

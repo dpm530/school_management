@@ -1,5 +1,20 @@
 class SessionsController < ApplicationController
 
+
+   def create_administrator
+      @admin=Administrator.find_by_login(params[:login])
+
+      if @admin
+         if @admin.try(:authenticate, params[:password])
+            session[:administrator_id]=@admin.id
+            return redirect_to administrators_path
+         end
+         flash[:errors]=["Password is invalid."]
+      end
+      flash[:errors]=["Login entered is invalid."]
+      return redirect_to new_administrator_path
+   end
+
    def create_student
 
       if (params[:username] === "") && (params[:password] === "")

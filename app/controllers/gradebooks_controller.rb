@@ -1,23 +1,17 @@
 class GradebooksController < ApplicationController
 
    def create
-      @course=Course.find_by(params[:id])
-      @student=Student.find_by(params[:id])
+      @course=Course.find(params[:course_id])
+      @student=Student.find(params[:student_id])
       @gradebook=Gradebook.new(gradebook_params)
-
-      puts "="*50
-      puts @course.name
-      puts "="*50
-      puts @student.first_name
-      puts "="*50
 
       if @gradebook.save
          flash[:notice]=["Grades added Successfully!"]
-         return redirect_to "/student/"+(@student.id).to_s+"/course/"+(@course.id).to_s
+         return redirect_to "/"+(@student.id).to_s+"/"+(@course.id).to_s
       end
 
       flash[:errors]=@gradebook.errors.full_messages
-      return redirect_to "/student/"+(@student.id).to_s+"/course/"+(@course.id).to_s
+      return redirect_to "/"+(@student.id).to_s+"/"+(@course.id).to_s
 
    end
 
@@ -25,13 +19,6 @@ class GradebooksController < ApplicationController
       @course=Course.find(params[:course_id])
       @student=Student.find(params[:student_id])
       @grades=Gradebook.where(student: @student).all
-
-      puts "="*50
-      # puts @course.name
-      puts "="*50
-      puts @student.first_name
-      puts "="*50
-
    end
 
    private

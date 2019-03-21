@@ -14,6 +14,9 @@
                <h2>
                   Student: <%= @student.first_name.capitalize %> <%= @student.last_name.capitalize %> <%= @student.id %>
                </h2>
+               <h2>
+                  Course: <%= @course.name.capitalize %>
+               </h2>
 
             </div>
          </div>
@@ -29,7 +32,7 @@
                <% end %>
             </div>
             <div class="col-md-8">
-               <form action="" method="post">
+               <form action="/<%= @student.id %>/<%= @course.id %>" method="post">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                   <div class="form-group">
                      <label for="letter_score">Grade:</label>
