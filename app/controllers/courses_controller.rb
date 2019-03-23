@@ -23,6 +23,17 @@ class CoursesController < ApplicationController
       @teacher_course=Teacher.joins(:teacher_courses).where(teacher_courses:{ course_id: @course })
    end
 
+   def edit
+      @course=Course.find(params[:id])
+   end
+
+   def destroy
+      @course=Course.find(params[:id])
+      @course.delete
+      return redirect_to courses_path
+
+   end
+
    private
       def course_params
          params.require(:course).permit(:name, :subject, :start_date, :end_date)

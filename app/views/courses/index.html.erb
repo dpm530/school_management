@@ -9,7 +9,7 @@
          <div class="col-3"></div>
          <div class="col-6 text-center">
             <h1>Courses Index</h1>
-            <a href="/teachers" class="btn btn-primary">Teacher Dashboard</a>
+            <a href="/administrators" class="btn btn-primary">Admin Home</a>
             <a href="/courses/new" class="btn btn-primary">Add Course</a>
             <a href="/logout" data-method="delete" class="btn btn-primary">Logout</a>
          </div>
@@ -17,19 +17,37 @@
       </div>
       <br>
       <div class="row">
-         <div class="col-3"></div>
-         <div class="col-6 text-center">
+         <div class="col-md-2"></div>
+         <div class="col-md-8 text-center">
             <div class="container">
-               <% @courses.each do |course| %>
-                  <a href=" /courses/<%= course.id %> "> <%= course.name %> </a>
-                  <%= course.subject %>
-                  <%= course.start_date %>
-                  <%= course.end_date %>
-                  <br>
-               <% end %>
+               <table class="table table-bordered">
+                  <thead>
+                     <tr>
+                        <th>Course</th>
+                        <th>Subject</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% @courses.each do |course| %>
+                        <tr>
+                           <td><a href=" /courses/<%= course.id %> "><%= course.name %></a></td>
+                           <td><%= course.subject %></td>
+                           <td><%= course.start_date %></td>
+                           <td><%= course.end_date %></td>
+                           <td>
+                              <a href="/courses/<%= course.id %>/edit" class="btn btn-success">Edit</a>
+                              <a href="/courses/<%= course.id %>" class="btn btn-danger" data-method="delete">Delete</a>
+                           </td>
+                        </tr>
+                     <% end %>
+                  </tbody>
+               </table>
             </div>
          </div>
-         <div class="col-3"></div>
+         <div class="col-md-2"></div>
       </div>
    </body>
 </html>
