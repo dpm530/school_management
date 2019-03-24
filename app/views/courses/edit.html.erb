@@ -16,26 +16,32 @@
          </div>
          <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8 text-center">
+            <div class="col-md-8">
                <form action="/courses/<%= @course.id %>" method="post">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                   <input type="hidden" name="_method" value="patch">
 
                   <div class="form-group">
                      <label for="name">Name:</label>
-                     <input type="text" name="event[name]" id="name" value="<%= @event.name.titleize %>" class="form-control" />
+                     <input type="text" name="course[name]" value="<%= @course.name.titleize %>" class="form-control" />
                   </div>
 
                   <div class="form-group">
-                     <label for="date">Date:</label>
-                     <input type="date" name="event[date]" id="date" value="<%= @event.date %>" class="form-control" />
-                  </div>
-                  <div class="form-group">
-                     <label for="date">Date:</label>
-                     <input type="date" name="event[date]" id="date" value="<%= @event.date %>" class="form-control" />
+                     <label for="subject">Name:</label>
+                     <input type="text" name="course[subject]"  value="<%= @course.subject.titleize %>" class="form-control" />
                   </div>
 
-                  <button type="submit" class="btn btn-primary">Update Event</button>
+                  <div class="form-group">
+                     <label for="start_date">Start Date:</label>
+                     <input type="date" name="course[start_date]" value="<%= @course.start_date %>" class="form-control" />
+                  </div>
+
+                  <div class="form-group">
+                     <label for="end_date">End Date:</label>
+                     <input type="date" name="course[end_date]" value="<%= @course.end_date %>" class="form-control" />
+                  </div>
+
+                  <button type="submit" class="btn btn-success">Update Course</button>
                </form>
             </div>
             <div class="col-md-2"></div>

@@ -27,9 +27,21 @@ class CoursesController < ApplicationController
       @course=Course.find(params[:id])
    end
 
+   def update
+      @course=Course.find(params[:id])
+      if @course.update(course_params)
+         flash[:notice]=["Updated Course"]
+         return redirect_to courses_path
+      end
+
+      errors=@course.errors.full_messages
+      flash[:errors]=errors
+      return redirect_to edit_course_path
+   end
+
    def destroy
       @course=Course.find(params[:id])
-      @course.delete
+      @course.destroy
       return redirect_to courses_path
 
    end

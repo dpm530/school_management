@@ -17,14 +17,35 @@
       </div>
       <br>
       <div class="row">
-         <div class="col-3"></div>
-         <div class="col-6 text-center">
-            <% @teacher_contact.each do |teacher| %>
-            <%= teacher.line_1_address%>
-            <%= teacher.line_2_address%>
-            <% end %>
+         <div class="col-md-2"></div>
+         <div class="col-md-8 text-center">
+            <table class="table table-bordered">
+               <thead>
+                  <tr>
+                     <th>Address</th>
+                     <th>City</th>
+                     <th>State</th>
+                     <th>Zipcode</th>
+                     <th>Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <% @teacher_contact.each do |teacher| %>
+                     <tr>
+                        <td><%= teacher.line_1_address %> <%= teacher.line_2_address%></td>
+                        <td><%= teacher.city %></td>
+                        <td><%= teacher.state %></td>
+                        <td><%= teacher.zipcode %></td>
+                        <td>
+                           <a href="/teachers_contact_info/<%= teacher.id %>/edit" class="btn btn-success">Edit</a>
+                           <a href="/teachers_contact_info/<%= teacher.id %>" class="btn btn-danger" data-method="delete">Delete</a>
+                        </td>
+                     </tr>
+                  <% end %>
+               </tbody>
+            </table>
          </div>
-         <div class="col-3"></div>
+         <div class="col-md-2"></div>
       </div>
    </body>
 </html>

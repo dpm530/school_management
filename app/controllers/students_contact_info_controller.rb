@@ -9,9 +9,6 @@ class StudentsContactInfoController < ApplicationController
 
       if @student_contact.save
          flash[:notice]=["Contact Info Created"]
-         puts "="*30
-         puts @student_contact
-         puts "="*30
          return redirect_to students_contact_info_index_path
       end
 

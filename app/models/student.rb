@@ -3,7 +3,7 @@ class Student < ApplicationRecord
    belongs_to :parent, optional: true
    has_one :student_contact_info, dependent: :destroy
    has_many :student_courses, dependent: :destroy
-   has_many :courses, through: :student_courses
+   has_many :courses, through: :student_courses, source: :course
    has_many :attendances, dependent: :destroy
    has_many :gradebooks, dependent: :destroy
 

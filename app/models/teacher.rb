@@ -1,6 +1,6 @@
 class Teacher < ApplicationRecord
    has_many :teacher_courses, dependent: :destroy
-   has_many :courses, through: :teacher_courses, dependent: :destroy
+   has_many :courses, through: :teacher_courses, source: :course
    has_one :teacher_contact_info, dependent: :destroy
 
    has_secure_password

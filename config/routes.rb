@@ -3,6 +3,9 @@ Rails.application.routes.draw do
    root 'application#index'
 
    post 'login/administrator' => 'sessions#create_administrator'
+   post 'login/student' => 'sessions#create_student'
+   post 'login/parent' => 'sessions#create_parent'
+   post 'login/teacher' => 'sessions#create_teacher'
 
    resources :administrators
    resources :students
@@ -21,10 +24,7 @@ Rails.application.routes.draw do
 
    post 'teacher-course/:id' => 'teacher_courses#create'
    post 'student-course/:id' => 'student_courses#create'
-
-   post 'login/student' => 'sessions#create_student'
-   post 'login/parent' => 'sessions#create_parent'
-   post 'login/teacher' => 'sessions#create_teacher'
+   
    delete 'logout' => 'sessions#destroy'
 
 
