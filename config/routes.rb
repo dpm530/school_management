@@ -7,6 +7,9 @@ Rails.application.routes.draw do
    post 'login/parent' => 'sessions#create_parent'
    post 'login/teacher' => 'sessions#create_teacher'
 
+   post 'teacher-course/:id' => 'teacher_courses#create'
+   post 'student-course/:id' => 'student_courses#create'
+
    resources :administrators
    resources :students
    resources :parents
@@ -22,9 +25,6 @@ Rails.application.routes.draw do
    get ':student_id/:course_id' => 'gradebooks#show'
    post ':student_id/:course_id' => 'gradebooks#create'
 
-   post 'teacher-course/:id' => 'teacher_courses#create'
-   post 'student-course/:id' => 'student_courses#create'
-   
    delete 'logout' => 'sessions#destroy'
 
 

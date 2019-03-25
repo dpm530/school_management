@@ -14,9 +14,29 @@ class StudentsContactInfoController < ApplicationController
 
       errors=@student_contact.errors.full_messages
       flash[:errors]=errors
-
       return redirect_to new_students_contact_info_path
+   end
 
+   def edit
+      @students_contact=StudentContactInfo.find(params[:id])
+   end
+
+   def update
+      @students_contact=StudentContactInfo.find(params[:id])
+      if @students_contact.update(student_contact_info_params)
+         flash[:notice]=["Updated Contact Info!"]
+         return redirect_to students_contact_info_index_path
+      end
+
+      errors=@students_contact.errors.full_messages
+      flash[:errors]=errors
+      return redirect_to edit_students_contact_info_path
+   end
+
+   def destroy
+      @students_contact=StudentContactInfo.find(params[:id])
+      @students_contact.destroy
+      return redirect_to students_contact_info_index_path
    end
 
 
