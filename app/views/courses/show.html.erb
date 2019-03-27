@@ -50,13 +50,28 @@
                </div>
                <div class="container">
                   <h1>Students in this class:</h1>
-                  <h2>
-                     <% if @student_course %>
-                        <% @student_course.each do |student| %>
-                           <a href="/<%=student.id%>/<%=@course.id%>"><%= student.first_name.capitalize %> <%= student.last_name.capitalize %> <%= @course.id %></a> <br>
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                           <th>Name</th>
+                           <th>Username</th>
+                           <th>Grade</th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <% if @student_course %>
+                           <% @student_course.each do |student| %>
+                              <tr>
+                                 <td><a href="/<%=student.id%>/<%=@course.id%>"><%= student.first_name.capitalize %> <%= student.last_name.capitalize %> <%= @course.id %></a></td>
+                                 <td><%= student.username %></td>
+                                 <td><%= student.grade_level %></td>
+                                 <td></td>
+                              </tr>
+                           <% end %>
                         <% end %>
-                     <% end %>
-                  </h2>
+                     </tbody>
+                  </table>
                </div>
                <br>
             </div>
@@ -67,8 +82,13 @@
                <form action="/teacher-course/<%= @course.id %>" method="post">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                   <div class="form-group">
-                     <label for="email">Email:</label>
-                     <input type="text" name="email" class="form-control">
+                     <label for="username">Teachers:</label>
+                     <select class="form-control" name="username" id="username">
+                        <option></option>
+                        <% @teachers.each do |teacher|%>
+                           <option value="<%= teacher.email %>"><%= teacher.first_name.capitalize %> <%= teacher.last_name.capitalize %></option>
+                        <% end %>
+                     </select>
                   </div>
                   <button type="submit" class="btn btn-outline-success">Add</button>
                </form>
@@ -78,8 +98,13 @@
                <form action="/student-course/<%= @course.id %>" method="post">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                   <div class="form-group">
-                     <label for="username">Username:</label>
-                     <input type="text" name="username" class="form-control">
+                     <label for="username">Students:</label>
+                     <select class="form-control" name="username" id="username">
+                        <option></option>
+                        <% @students.each do |student|%>
+                           <option value="<%= student.username %>"><%= student.first_name.capitalize %> <%= student.last_name.capitalize %></option>
+                        <% end %>
+                     </select>
                   </div>
                   <button type="submit" class="btn btn-outline-success">Add</button>
                </form>

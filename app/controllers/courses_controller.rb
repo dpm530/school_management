@@ -21,6 +21,8 @@ class CoursesController < ApplicationController
       @course=Course.find(params[:id])
       @student_course=Student.joins(:student_courses).where(student_courses:{ course_id: @course })
       @teacher_course=Teacher.joins(:teacher_courses).where(teacher_courses:{ course_id: @course })
+      @teachers=Teacher.all
+      @students=Student.all
    end
 
    def edit

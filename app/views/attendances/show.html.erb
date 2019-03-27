@@ -15,33 +15,24 @@
          <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-               <% @student_course.each do |student|%>
-                  <form action="" method="post">
-                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+               <%= form_tag attendances_path do %>
+                  <% @classroom.each do |student|%>
+                     <% fields_for 'students[]', student do |s| %>
 
-                     <div class="form-group">
-                        <label for="date">Date:</label>
-                        <input type="date" name="date" value="<%= Date.current %>" class="form-control">
-                     </div>
+                        <div class="field">
+                           <%= s.label 'present', 'Attendance' %><br>
+                           <%= s.text_field 'present' %>
+                        </div>
 
-                     <div class="row">
-                        <div class="col-md-6">
-                           <%= student.first_name.capitalize %> <%= student.last_name.capitalize %>
+                        <div class="field">
+                           <%= s.label 'date', 'Date'%><br>
+                           <%= s.date_field 'date' %>
                         </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label for="sel1">Select:</label>
-                              <select class="form-control" id="sel1">
-                                 <option></option>
-                                 <option>Present</option>
-                                 <option>Absent</option>
-                              </select>
-                           </div>
-                        </div>
-                     </div>
-                     <button type="submit" class="btn btn-outline-success">Submit</button>
-                  </form>
-                  <hr>
+                        <hr>
+                        
+                     <% end %>
+                  <% end %>
+                  <%= submit_tag "Submit" %>
                <% end %>
             </div>
             <div class="col-md-3"></div>
