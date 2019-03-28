@@ -23,11 +23,15 @@
          <hr>
          <div class="row">
             <div class="col-md-4">
-               <h2>Grades:</h2>
+               <h1>Grades:</h1>
                <% unless @grades.empty? %>
                   <% @grades.each do |grade| %>
-                     <%= grade.letter_score %>
-                     <%= grade.number_score %>
+                     <h2>Session: <%= grade.session.capitalize %> <%= grade.year %></h2>
+                     <h2>Letter Grade: <%= grade.letter_score %></h2>
+                     <h2>Number Score: <%= grade.number_score %></h2>
+                     <h2>Comment:</h2>
+                     <p><%= grade.comment %></p>
+                     <hr>
                   <% end %>
                <% end %>
             </div>

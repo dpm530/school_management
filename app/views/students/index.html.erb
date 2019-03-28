@@ -19,15 +19,30 @@
       <div class="row">
          <div class="col-3 text-center"></div>
          <div class="col-6">
-            <div class="container text-center">
+            <div class="container">
                <h1>Courses:</h1>
-               <h2>
-                  <% if @student_course %>   
-                     <% @student_course.each do |course| %>
-                        <%= course.name.capitalize %>
+               <table class="table table-bordered">
+                  <thead>
+                     <tr>
+                        <th>Course</th>
+                        <th>Subject</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% if @student_course %>
+                        <% @student_course.each do |course| %>
+                           <tr>
+                              <td><%= course.name.capitalize %></td>
+                              <td><%= course.subject.capitalize %></td>
+                              <td><%= course.start_date %></td>
+                              <td><%= course.end_date %></td>
+                           </tr>
+                        <% end %>
                      <% end %>
-                  <% end %>
-               </h2>
+                  </tbody>
+               </table>
             </div>
          </div>
          <div class="col-3"></div>

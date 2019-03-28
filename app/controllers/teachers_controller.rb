@@ -1,7 +1,8 @@
 class TeachersController < ApplicationController
 
    def index
-      @teachers=Teacher.all
+      @teacher=Teacher.find(current_teacher.id)
+      @teacher_course=Course.joins(:teacher_courses).where(teacher_courses:{ teacher_id: @teacher })
    end
 
    def create

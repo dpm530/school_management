@@ -20,7 +20,8 @@
                <% if @assignments %>
                   <% @assignments.each do |assignment|%>
                      <h2><%= assignment.name %></h2>
-                     <h2><%= assignment.due_date %></h2>
+                     <h2>Due Date: <%= assignment.due_date %></h2>
+                     <h2>Description:</h2>
                      <p><%= assignment.description %></p>
                      <hr>
                   <% end %>
