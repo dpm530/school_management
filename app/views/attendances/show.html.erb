@@ -15,24 +15,14 @@
          <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-               <%= form_tag attendances_path do %>
-                  <% @classroom.each do |student|%>
-                     <% fields_for 'students[]', student do |s| %>
-
-                        <div class="field">
-                           <%= s.label 'present', 'Attendance' %><br>
-                           <%= s.text_field 'present' %>
-                        </div>
-
-                        <div class="field">
-                           <%= s.label 'date', 'Date'%><br>
-                           <%= s.date_field 'date' %>
-                        </div>
-                        <hr>
-                        
-                     <% end %>
+               <%= form_tag attendances_path, method: :post do %>
+                  <%= date_field_tag(:date) %><br>
+                  <%= hidden_field_tag(:course_id, @course.id)%>
+                  <% @student_course.each do |student|%>
+                     <%= student.first_name %> <%= student.last_name %>
+                     <%= hidden_field_tag "student_ids[]", student.id %><br>
                   <% end %>
-                  <%= submit_tag "Submit" %>
+                  <%= submit_tag "Create Record" %>
                <% end %>
             </div>
             <div class="col-md-3"></div>

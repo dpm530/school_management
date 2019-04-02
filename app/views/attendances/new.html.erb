@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <h1>Attendaces New</h1>
+      <% @attendance.each do |l|%>
+         <%= l.date.strftime("%B %d %Y") %><br>
+      <% end %>
+   </body>
+</html>
