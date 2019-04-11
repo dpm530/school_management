@@ -14,6 +14,10 @@ class AdministratorsController < ApplicationController
       return redirect_to new_administrator_path
    end
 
+   def teachers
+      @teachers=Teacher.all
+   end
+
 
    private
       def admin_params

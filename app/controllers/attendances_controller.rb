@@ -1,6 +1,7 @@
 class AttendancesController < ApplicationController
 
    def index
+      @courses=Course.all
    end
 
    def new
@@ -25,15 +26,28 @@ class AttendancesController < ApplicationController
       @student_course=Student.joins(:student_courses).where(student_courses:{ course_id: @course })
 
       @classroom=[]
-      @attendance=Attendance.where(course: @course).all
+
+      # @dates=[]
+      # @attendance_date=[]
+      @attendances=Attendance.where(course: @course).all
+      # @attendances.each do |d|
+      #    if !(@dates.include?(d.date))
+      #       @dates << d.date
+      #       @attendance << d
+      #    end
+      # end
 
       (@student_course.length).times do
          @classroom << Attendance.new
       end
 
-      puts "="*50
-      puts params[:student_ids]
-      puts "="*50
+      puts "=" *50
+      # @dates.each{|d| puts d}
+      puts "=" *50
+   end
+
+   def edit
+
    end
 
 

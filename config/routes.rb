@@ -10,7 +10,13 @@ Rails.application.routes.draw do
    post 'teacher-course/:id' => 'teacher_courses#create'
    post 'student-course/:id' => 'student_courses#create'
 
-   resources :administrators
+   resources :administrators do
+      collection do
+         get 'teachers'
+         get 'students'
+      end
+   end
+
    resources :students
    resources :parents
    resources :teachers

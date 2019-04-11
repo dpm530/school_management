@@ -6,8 +6,14 @@
    </head>
    <body>
       <h1>Attendaces New</h1>
-      <% @attendance.each do |l|%>
-         <%= l.date.strftime("%B %d %Y") %><br>
+      <%= form_tag attendances_path, method: :post do %>
+         <%= date_field_tag(:date) %><br>
+         <%= hidden_field_tag(:course_id, @course.id)%>
+         <% @student_course.each do |student|%>
+            <%= student.first_name %> <%= student.last_name %>
+            <%= hidden_field_tag "student_ids[]", student.id %><br>
+         <% end %>
+         <%= submit_tag "Create Record" %>
       <% end %>
    </body>
 </html>
