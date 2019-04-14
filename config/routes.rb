@@ -2,10 +2,7 @@ Rails.application.routes.draw do
 
    root 'application#index'
 
-   post 'login/administrator' => 'sessions#create_administrator'
-   post 'login/student' => 'sessions#create_student'
-   post 'login/parent' => 'sessions#create_parent'
-   post 'login/teacher' => 'sessions#create_teacher'
+
 
    post 'teacher-course/:id' => 'teacher_courses#create'
    post 'student-course/:id' => 'student_courses#create'
@@ -14,6 +11,16 @@ Rails.application.routes.draw do
       collection do
          get 'teachers'
          get 'students'
+      end
+   end
+
+   resources :sessions do
+      collection do
+         post 'login/administrator' => 'sessions#create_administrator'
+         post 'login/student' => 'sessions#create_student'
+         post 'login/parent' => 'sessions#create_parent'
+         post 'login/teacher' => 'sessions#create_teacher'
+         delete 'logout' => 'sessions#destroy'
       end
    end
 
@@ -31,7 +38,7 @@ Rails.application.routes.draw do
    get ':student_id/:course_id' => 'gradebooks#show'
    post ':student_id/:course_id' => 'gradebooks#create'
 
-   delete 'logout' => 'sessions#destroy'
+
 
 
 
