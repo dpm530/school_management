@@ -5,39 +5,67 @@
       <title>Student Portal</title>
    </head>
    <body>
-      <div class="container">
-         <div class="container-fluid" style="margin-bottom:50px;">
-            <div class="row">
-               <div class="col-md-12 text-center">
-                  <h1>School Management Service</h1>
-               </div>
-            </div>
+
+      <div class="jumbotron jumbotron-fluid">
+         <div class="container text-center">
+            <h1>School Management System</h1>
+            <p>Scalable software for growing schools. Open-School, School Management made simple.</p>
          </div>
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-md-4">
-                  <a href="/administrators/new" class="btn btn-success btn-block btn-lg">Admin Portal</a>
-               </div>
-               <div class="col-md-4">
-                  <a href="/teachers/new" class="btn btn-success btn-block btn-lg">Teacher Portal</a>
-               </div>
-               <div class="col-md-4">
-                  <a href="/students/new" class="btn btn-success btn-block btn-lg">Student Portal</a>
-               </div>
-            </div>
-            <br>
-            <div class="row">
-               <div class="col-md-4">
-                  <a href="/parents/new" class="btn btn-success btn-block btn-lg">Parent Portal</a>
-               </div>
-               <div class="col-md-4">
-                  <a href="" class="btn btn-success btn-block btn-lg">Calender</a>
-               </div>
-               <div class="col-md-4">
-                  <a href="" class="btn btn-danger btn-block btn-lg">Guest</a>
+      </div>
+
+      <br>
+      <br>
+
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="card-columns">
+                  <a href="/administrators/new">
+                     <div class="card bg-success">
+                        <div class="card-body text-center">
+                           <button class="btn btn-block btn-lg text-white"><i class="fas fa-user-shield"></i> Admin Portal</button>
+                        </div>
+                     </div>
+                  </a>
+                  <a href="/parents/new">
+                     <div class="card bg-success">
+                        <div class="card-body text-center">
+                           <button class="btn btn-block btn-lg text-white"><i class="fas fa-user-friends"></i> Parent Portal</button>
+                        </div>
+                     </div>
+                  </a>
+                  <a href="/teachers/new">
+                     <div class="card bg-success">
+                        <div class="card-body text-center">
+                           <button class="btn btn-block btn-lg text-white"><i class="fas fa-chalkboard-teacher"></i> Teacher Portal</button>
+                        </div>
+                     </div>
+                  </a>
+                  <a href="#">
+                     <div class="card bg-success">
+                        <div class="card-body text-center">
+                           <button class="btn btn-block btn-lg text-white"><i class="far fa-calendar-check"></i> Calender</button>
+                        </div>
+                     </div>
+                  </a>
+                  <a href="/students/new">
+                     <div class="card bg-success">
+                        <div class="card-body text-center">
+                           <button class="btn btn-block btn-lg text-white"><i class="fas fa-user-graduate"></i> Student Portal</button>
+                        </div>
+                     </div>
+                  </a>
+                  <a href="#">
+                     <div class="card bg-warning">
+                        <div class="card-body text-center">
+                           <button class="btn btn-block btn-lg text-white"><i class="fas fa-universal-access"></i> Guest</button>
+                        </div>
+                     </div>
+                  </a>
                </div>
             </div>
          </div>
       </div>
+      <br><br>
    </body>
 </html>
