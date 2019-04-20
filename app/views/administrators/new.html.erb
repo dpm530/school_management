@@ -3,35 +3,40 @@
    <head>
       <meta charset="utf-8">
       <title>Administrator Portal</title>
-      <%= stylesheet_link_tag  'administrators', media: 'all' %>
    </head>
    <body>
 
-      <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 
-         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+         <a class="navbar-brand" href="/">Open-School</a>
 
-            <a class="navbar-brand" href="#">School Management Service</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-            </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+               <li class="nav-item active">
+                  <a class="nav-link" href="/">Home</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#">Help</a>
+               </li>
+            </ul>
+         </div>
+      </nav>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                  <li class="nav-item active">
-                     <a class="nav-link" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#">Info</a>
-                  </li>
-               </ul>
+      <div class="container pt-4">
+         <div class="row">
+            <div class="col-4"></div>
+            <div class="col-md-4 text-center">
+               <h1>Administrator Portal</h1>
             </div>
-         </nav>
-
+            <div class="col-4"></div>
+         </div>
       </div>
 
-      <div class="container">
+      <div class="container mb-4 pb-4">
          <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                <div class="card card-signin my-5">
@@ -61,12 +66,24 @@
          </div>
       </div>
 
+      <footer class="conatiner-fluid" style="background-color:#eee;padding-top:25px;padding-bottom:10px;">
+         <div class="container">
+            <div class="row">
+               <div class="col-1"></div>
+               <div class="col-md-10 text-center">
+                  <p> &copy; Open-School 2019. All Rights Reserved.</p>
+               </div>
+               <div class="col-1"></div>
+            </div>
+         </div>
+      </footer>
 
 
 
 
 
-      <div class="container-fluid">
+
+      <!-- <div class="container-fluid">
          <div class="row">
             <div class="col-md-1"></div>
             <div class="col-10 text-center">
@@ -113,6 +130,6 @@
             <div class="col-md-1"></div>
          </div>
       </div>
-      <br>
+      <br> -->
    </body>
 </html>

@@ -7,22 +7,22 @@
    <body>
       <div class="d-flex" id="wrapper">
 
-        <!-- Sidebar -->
+        <!-- Sidebar Section -->
         <div class="bg-light border-right" id="sidebar-wrapper">
           <div class="sidebar-heading">School Management</div>
           <div class="list-group list-group-flush">
-            <a href="/administrators" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="/administrators/teachers" class="list-group-item list-group-item-action bg-light">Teachers</a>
-            <a href="/administrators/students" class="list-group-item list-group-item-action bg-light">Students</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Courses</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Gradebook</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Assignments</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Attendance</a>
+            <a href="#dashboard" data-toggle="tab" class="list-group-item list-group-item-action">Dashboard</a>
+            <a href="#teachers" data-toggle="tab" class="list-group-item list-group-item-action">Teachers</a>
+            <a href="#students" data-toggle="tab" class="list-group-item list-group-item-action">Students</a>
+            <a href="#courses" data-toggle="tab" class="list-group-item list-group-item-action">Courses</a>
+            <!-- <a href="#gradebook" data-toggle="tab" class="list-group-item list-group-item-action">Gradebook</a>
+            <a href="#assignments" data-toggle="tab" class="list-group-item list-group-item-action">Assignments</a>
+            <a href="#attendance" data-toggle="tab" class="list-group-item list-group-item-action">Attendance</a> -->
           </div>
         </div>
-        <!-- /#sidebar-wrapper -->
+        <!-- Sidebar Section End -->
 
-        <!-- Page Content -->
+        <!-- Page Content Section -->
         <div id="page-content-wrapper">
 
           <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -57,22 +57,110 @@
             </div>
           </nav>
 
-          <div class="container-fluid">
-            <h1 class="mt-4">Simple Sidebar</h1>
-            <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-            <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-          </div>
+         <div class="tab-content container-fluid">
+            <div class="tab-pane container active" id="dashboard"> DASHBOARD</div>
 
-          <div id="teachers" class="container-fluid">
-            <h1 class="mt-4">Simple Sidebar</h1>
-          </div>
+            <!-- Teachers Section -->
+            <div class="tab-pane container fade" id="teachers">
+               <div class="row">
+                  <div class="col-md-12">
+                     <table class="table table-hover">
+                        <thead>
+                           <tr>
+                              <th>Firstname</th>
+                              <th>Lastname</th>
+                              <th>Email</th>
+                              <th>Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <% @teachers.each do |teacher| %>
+                              <tr>
+                                 <td><%= teacher.first_name.capitalize %></td>
+                                 <td><%= teacher.last_name.capitalize %></td>
+                                 <td><%= teacher.email %></td>
+                                 <td><button type="button" name="button" class="btn btn-primary">Something</button></td>
+                              </tr>
+                           <% end %>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <!-- Teachers Section End -->
+
+            <!-- Students Section -->
+            <div class="tab-pane container fade" id="students">
+               <div class="row">
+                  <div class="col-md-12">
+                     <table class="table table-hover">
+                        <thead>
+                           <tr>
+                              <th>Firstname</th>
+                              <th>Lastname</th>
+                              <th>Username</th>
+                              <th>Grade</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <% @students.each do |student| %>
+                              <tr>
+                                 <td><%= student.first_name.capitalize %></td>
+                                 <td><%= student.last_name.capitalize %></td>
+                                 <td><%= student.username %></td>
+                                 <td><%= student.grade_level %></td>
+                              </tr>
+                           <% end %>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <!-- Students Section End -->
+
+
+            <!-- Courses Section -->
+            <div class="tab-pane container fade" id="courses">
+               <div class="row">
+                  <div class="col-md-12">
+                     <table class="table table-hover">
+                        <thead>
+                           <tr>
+                              <th>Name</th>
+                              <th>Subject</th>
+                              <th>Start Date</th>
+                              <th>End Date</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <% @courses.each do |course| %>
+                              <tr>
+                                 <td><%= course.name.capitalize %></td>
+                                 <td><%= course.subject.capitalize %></td>
+                                 <td><%= course.start_date.strftime("%B %d %Y") %></td>
+                                 <td><%= course.end_date.strftime("%B %d %Y") %></td>
+                              </tr>
+                           <% end %>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <!-- Courses Section End -->
+
+            <!-- <div class="tab-pane container fade" id="gradebook">GRADEBOOK</div>
+            <div class="tab-pane container fade" id="assignments">ASSIGNMENTS</div>
+            <div class="tab-pane container fade" id="attendance">ATTENDANCE</div> -->
+         </div>
+
+
         </div>
-        <!-- /#page-content-wrapper -->
+        <!-- Page Content Section End -->
 
       </div>
-      <!-- /#wrapper -->
 
-      <!-- Menu Toggle Script -->
+
+
       <script>
         $("#menu-toggle").click(function(e) {
           e.preventDefault();

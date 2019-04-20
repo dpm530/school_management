@@ -13,7 +13,7 @@
                <a href="/courses" class="btn btn-primary">Courses Dashboard</a>
                <a href="/assignments/<%= @course.id %>" class="btn btn-primary">Assignment</a>
                <a href="/attendances/<%= @course.id %>" class="btn btn-primary">Attendance</a>
-               <a href="/logout" data-method="delete" class="btn btn-primary">Logout</a>
+               <a href="/sessions/logout" data-method="delete" class="btn btn-primary">Logout</a>
             </div>
             <div class="col-md-2"></div>
          </div>
@@ -82,8 +82,8 @@
                <form action="/teacher-course/<%= @course.id %>" method="post">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                   <div class="form-group">
-                     <label for="username">Teachers:</label>
-                     <select class="form-control" name="username" id="username">
+                     <label for="email">Teachers:</label>
+                     <select class="form-control" name="email" id="email">
                         <option></option>
                         <% @teachers.each do |teacher|%>
                            <option value="<%= teacher.email %>"><%= teacher.first_name.capitalize %> <%= teacher.last_name.capitalize %></option>

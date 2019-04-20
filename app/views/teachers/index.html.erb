@@ -11,7 +11,7 @@
             <h1>Welcome, <%= @teacher.first_name.capitalize %> <%= @teacher.last_name.capitalize %></h1>
             <a href="/courses" class="btn btn-primary">Courses</a>
             <a href="/teachers_contact_info" class="btn btn-primary">Contact Information</a>
-            <a href="/logout" data-method="delete" class="btn btn-primary">Logout</a>
+            <a href="sessions/logout" data-method="delete" class="btn btn-primary">Logout</a>
          </div>
          <div class="col-3"></div>
       </div>
@@ -21,7 +21,8 @@
          <div class="col-6">
             <div class="container">
                <h1>Courses:</h1>
-               <table class="table table-bordered">
+               <%= @teacher.courses.length %>
+               <!-- <table class="table table-bordered">
                   <thead>
                      <tr>
                         <th>Course</th>
@@ -31,18 +32,11 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <% if @teacher_course %>
-                        <% @teacher_course.each do |course| %>
-                           <tr>
-                              <td><%= course.name.capitalize %></td>
-                              <td><%= course.subject.capitalize %></td>
-                              <td><%= course.start_date %></td>
-                              <td><%= course.end_date %></td>
-                           </tr>
-                        <% end %>
-                     <% end %>
+
+
+
                   </tbody>
-               </table>
+               </table> -->
             </div>
          </div>
          <div class="col-3"></div>

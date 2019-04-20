@@ -2,7 +2,11 @@ class TeachersController < ApplicationController
 
    def index
       @teacher=Teacher.find(current_teacher.id)
-      @teacher_course=Course.joins(:teacher_courses).where(teacher_courses:{ teacher_id: @teacher })
+      # @teacher_course=Course.joins(:teacher_courses).where(teacher_courses:{ teacher_id: @teacher })
+
+      puts "="*100
+      @teacher.courses.each{|t|t.name}
+      puts "="*100
    end
 
    def create

@@ -1,5 +1,12 @@
 class AdministratorsController < ApplicationController
 
+
+   def index
+      @teachers=Teacher.all
+      @students=Student.all
+      @courses=Course.all
+   end
+
    def create
       @admin=Administrator.new(admin_params)
 

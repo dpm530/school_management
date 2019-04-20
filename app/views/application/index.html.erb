@@ -6,17 +6,75 @@
    </head>
    <body>
 
-      <div class="jumbotron jumbotron-fluid">
-         <div class="container text-center">
-            <h1>School Management System</h1>
-            <p>Scalable software for growing schools. Open-School, School Management made simple.</p>
+      <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #333;">
+
+         <a class="navbar-brand" href="#">Open-School</a>
+
+
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+
+         <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item active">
+                  <a class="nav-link" href="#">Take a tour</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#">Login</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#">Register</a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+
+      <section class="call-to-action text-white text-center">
+         <div class="overlay"></div>
+         <div class="container">
+            <div class="row">
+               <div class="col-xl-9 mx-auto">
+                  <h2 class="mb-4">School Management Software.</h2>
+                  <h4>Scalable software for growing schools. School Management made simple.</h4>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <br>
+
+      <div id="button-panel" class="container">
+         <div class="row">
+            <div class="col-xl-4 mx-auto text-center">
+
+               <a class="btn btn-success btn-block btn-lg" href="/administrators/new"><i class="fas fa-user-shield"></i> Admin Portal</a>
+
+               <a class="btn btn-success btn-block btn-lg" href="/parents/new"><i class="fas fa-user-friends"></i> Parent Portal</a>
+
+            </div>
+            <div class="col-xl-4">
+
+               <a class="btn btn-success btn-block btn-lg" href="/teachers/new"><i class="fas fa-chalkboard-teacher"></i> Teacher Portal</a>
+
+               <a class="btn btn-success btn-block btn-lg" href="#"><i class="far fa-calendar-check"></i> Calender</a>
+
+            </div>
+            <div class="col-xl-4 mx-auto text-center">
+
+               <a class="btn btn-success btn-block btn-lg" href="/students/new"><i class="fas fa-user-graduate"></i> Student Portal</a>
+
+               <a class="btn btn-warning btn-block btn-lg text-white" href="#"><i class="fas fa-universal-access"></i> Guest</a>
+
+            </div>
          </div>
       </div>
 
       <br>
       <br>
 
-      <div class="container">
+      <!-- <div class="container">
          <div class="row">
             <div class="col-md-12">
                <div class="card-columns">
@@ -65,7 +123,19 @@
                </div>
             </div>
          </div>
-      </div>
-      <br><br>
+      </div> -->
+
+      <footer class="conatiner-fluid" style="background-color:#eee;padding-top:25px;padding-bottom:10px;">
+         <div class="container">
+            <div class="row">
+               <div class="col-1"></div>
+               <div class="col-md-10 text-center">
+                  <p> &copy; Open-School 2019. All Rights Reserved.</p>
+               </div>
+               <div class="col-1"></div>
+            </div>
+         </div>
+      </footer>
+
    </body>
 </html>
