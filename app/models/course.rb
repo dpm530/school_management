@@ -3,9 +3,9 @@ class Course < ApplicationRecord
    has_many :teachers, through: :teacher_courses, source: :teacher
    has_many :student_courses, dependent: :destroy
    has_many :students, through: :student_courses, source: :student
-   has_many :attendances, dependent: :nullify
-   has_many :assignments, dependent: :nullify
-   has_many :gradebooks, dependent: :nullify
+   has_many :attendances, dependent: :destroy
+   has_many :assignments, dependent: :destroy
+   has_many :gradebooks, dependent: :destroy
 
    validates :name, :subject, :start_date, :end_date, presence: true
 

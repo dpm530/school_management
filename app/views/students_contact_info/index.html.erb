@@ -5,7 +5,69 @@
       <title></title>
    </head>
    <body>
-      <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
+         <a class="navbar-brand" href="#">Open-School</a>
+
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+               <li class="nav-item active">
+                  <a class="nav-link" href="/students">Home</a>
+               </li>
+               <li class="nav-item" style="border-right: 1px solid #dee2e6;">
+                  <a class="nav-link" href="/students_contact_info/new">Add Address</a>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <i class="fas fa-user-circle"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                     <a class="dropdown-item" href="#">Profile</a>
+                     <a class="dropdown-item" href="#">Settings</a>
+                     <div class="dropdown-divider"></div>
+                     <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
+                  </div>
+               </li>
+            </ul>
+
+         </div>
+      </nav>
+
+      <br>
+
+      <div class="container pt-3 border shadow p-4 mb-4 bg-white">
+         <div class="row">
+            <div class="col-md-12">
+               <h1>Your Addresses</h1>
+            </div>
+         </div>
+         <div class="row pt-2">
+            <% @student_contact.each do |student| %>
+               <div class="col-md-4">
+                  <div class="card">
+                     <div class="card-body">
+                        <p class="card-text"><%= student.line_1_address %> <%= student.line_2_address%></p>
+                        <p class="card-text"><%= student.city %>, <%= student.state %> <%= student.zipcode %></p>
+                        <p class="card-text">Phone Number: <%= student.mobile_number %></p>
+                        <a href="/students_contact_info/<%= student.id %>/edit" class="btn btn-success">Edit</a>
+                        <a href="/students_contact_info/<%= student.id %>" class="btn btn-danger" data-method="delete">Delete</a>
+                     </div>
+                  </div>
+               </div>
+            <% end %>
+         </div>
+      </div>
+
+
+
+
+
+      <!-- <div class="row">
          <div class="col-3"></div>
          <div class="col-6 text-center">
             <h1>Student Contact Info</h1>
@@ -30,22 +92,11 @@
                   </tr>
                </thead>
                <tbody>
-                  <% @student_contact.each do |student| %>
-                     <tr>
-                        <td><%= student.line_1_address %> <%= student.line_2_address%></td>
-                        <td><%= student.city %></td>
-                        <td><%= student.state %></td>
-                        <td><%= student.zipcode %></td>
-                        <td>
-                           <a href="/students_contact_info/<%= student.id %>/edit" class="btn btn-success">Edit</a>
-                           <a href="/students_contact_info/<%= student.id %>" class="btn btn-danger" data-method="delete">Delete</a>
-                        </td>
-                     </tr>
-                  <% end %>
+
                </tbody>
             </table>
          </div>
          <div class="col-md-2"></div>
-      </div>
+      </div> -->
    </body>
 </html>

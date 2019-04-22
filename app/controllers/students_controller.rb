@@ -2,7 +2,8 @@ class StudentsController < ApplicationController
 
    def index
       @student=Student.find(current_student.id)
-      @student_course=Course.joins(:student_courses).where(student_courses:{ student_id: @student })
+      @courses=@student.courses
+      @assignments=Assignment.where(course: @courses).all
    end
 
    def create
