@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
    resources :sessions do
       collection do
+         post 'login/guest' => 'sessions#create_guest'
          post 'login/administrator' => 'sessions#create_administrator'
          post 'login/student' => 'sessions#create_student'
          post 'login/parent' => 'sessions#create_parent'

@@ -1,6 +1,20 @@
 class SessionsController < ApplicationController
 
 
+   def create_guest
+      @guest=Administrator.find_by_login(params[:login])
+
+      if @guest
+         if @guest.try(:authenticate, params[:password])
+            session[:guest_id]=@guest.id
+            return redirect_to administrators_path
+         end
+         flash[:errors]=["Password is invalid."]
+      end
+      flash[:errors]=["Username entered is invalid."]
+      return redirect_to new_administrator_path
+   end
+
    def create_administrator
       @admin=Administrator.find_by_login(params[:login])
 
