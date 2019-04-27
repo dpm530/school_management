@@ -16,9 +16,9 @@
                <a href="#teachers" data-toggle="tab" class="list-group-item list-group-item-action">Teachers</a>
                <a href="#students" data-toggle="tab" class="list-group-item list-group-item-action">Students</a>
                <a href="#courses" data-toggle="tab" class="list-group-item list-group-item-action">Classes</a>
-               <!-- <a href="#gradebook" data-toggle="tab" class="list-group-item list-group-item-action">Gradebook</a>
+               <a href="#gradebook" data-toggle="tab" class="list-group-item list-group-item-action">Gradebook</a>
                <a href="#assignments" data-toggle="tab" class="list-group-item list-group-item-action">Assignments</a>
-               <a href="#attendance" data-toggle="tab" class="list-group-item list-group-item-action">Attendance</a> -->
+               <a href="#attendance" data-toggle="tab" class="list-group-item list-group-item-action">Attendance</a>
             </div>
          </div>
          <!-- Sidebar Section End -->
@@ -27,7 +27,7 @@
          <div id="page-content-wrapper">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-               <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+               <button class="btn btn-outline-primary btn-sm" id="menu-toggle"><i class="fas fa-bars"></i></button>
 
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
                      </li>
                      <li class="nav-item dropdown pl-1">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user-circle"></i>
+                            <%=current_administrator.login%> <i class="fas fa-user-circle"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                            <a class="dropdown-item" href="#">Profile</a>
@@ -70,7 +70,7 @@
                         </ul>
                      </div>
                   </div>
-                  <div class="row pt-3">
+                  <div class="row pt-3 pb-4">
                      <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
                         <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #28a745; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
                            <div class="card-body d-flex align-items-end flex-column text-right pr-4">
@@ -106,6 +106,20 @@
                               <i class="fas fa-calendar-alt" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
                            </div>
                         </a>
+                     </div>
+                  </div>
+                  <div class="row py-4">
+                     <div class="col-md-12 mx-auto">
+                        <div id="articles">
+                           <h1 id="month">
+                              <%= link_to "<", date: @date.prev_month %>
+                              <%= @date.strftime("%B %Y") %>
+                              <%= link_to ">", date: @date.next_month %>
+                           </h1>
+                           <%= calendar do |date| %>
+                              <%= date.day %>
+                           <% end %>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -286,9 +300,136 @@
                </div>
                <!-- Courses Section End -->
 
-               <!-- <div class="tab-pane container fade" id="gradebook">GRADEBOOK</div>
-               <div class="tab-pane container fade" id="assignments">ASSIGNMENTS</div>
-               <div class="tab-pane container fade" id="attendance">ATTENDANCE</div> -->
+               <!-- Gradebook Section -->
+               <div class="tab-pane container fade" id="gradebook">
+                  <div class="row py-2">
+                     <div class="col-md-12">
+                        <h1>Grades</h1>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <% @courses.each do |course| %>
+                           <div class="card my-2">
+                              <div class="card-header">
+                                 <h5><%= course.name.capitalize %></h5>
+                              </div>
+                              <div class="card-body">
+                                 <table class="table table-hover">
+                                    <thead>
+                                       <tr>
+                                          <th>Students Enrolled</th>
+                                          <th>Grade Average</th>
+                                          <th>Actions</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td><%= course.students.length %></td>
+                                          <td><%= course.gradebooks.average(:number_score) %></td>
+                                          <td><a href="#" class="btn">Action</a></td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        <% end %>
+                     </div>
+                  </div>
+               </div>
+               <!-- Gradebook Section End -->
+
+               <!-- Assignments Section -->
+               <div class="tab-pane container fade" id="assignments">
+                  <div class="row py-2">
+                     <div class="col-md-12">
+                        <h1>Assignments</h1>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <% @courses.each do |course| %>
+                           <div class="card my-2">
+                              <div class="card-header">
+                                 <h5><%= course.name.capitalize %></h5>
+                              </div>
+                              <% if (course.assignments) %>
+                                 <div class="card-body">
+                                    <table class="table table-hover">
+                                       <thead>
+                                          <tr>
+                                             <th>Name</th>
+                                             <th>Description</th>
+                                             <th>Due Date</th>
+                                             <th>Date Assigned</th>
+                                             <th>Actions</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <% course.assignments.each do |assignment| %>
+                                             <tr>
+                                                <td><%= assignment.name.capitalize %></td>
+                                                <td><%= assignment.description %></td>
+                                                <td><%= assignment.due_date.strftime("%B %d %Y") %></td>
+                                                <td><%= assignment.date_assigned.strftime("%B %d %Y") %></td>
+                                                <td><a href="#" class="btn">Action</a></td>
+                                             </tr>
+                                          <% end %>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              <% end %>
+                           </div>
+                        <% end %>
+                     </div>
+                  </div>
+               </div>
+               <!-- Assignments Section End -->
+
+               <!-- Attendance Section -->
+               <div class="tab-pane container fade" id="attendance">
+                  <div class="row py-2">
+                     <div class="col-md-12">
+                        <h1>Attendance</h1>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <% @courses.each do |course| %>
+                           <div class="card my-2">
+                              <div class="card-header">
+                                 <h5><%= course.name.capitalize %></h5>
+                              </div>
+
+                              <% if (course.attendances) %>
+                                 <div class="card-body">
+                                    <table class="table table-hover">
+                                       <thead>
+                                          <tr>
+                                             <th>Date</th>
+                                             <th>Actions</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <% course.attendances.each do |attendance| %>
+                                             <tr>
+                                                <td><%= attendance.date.strftime("%B %d %Y") %></td>
+                                                <td><a href="#" class="btn">Action</a></td>
+                                             </tr>
+                                          <% end %>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              <% end %>
+
+                           </div>
+                        <% end %>
+                     </div>
+                  </div>
+               </div>
+               <!-- Attendance Section End -->
+
+
             </div>
 
 

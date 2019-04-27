@@ -5,6 +5,7 @@ class AdministratorsController < ApplicationController
       @teachers=Teacher.all
       @students=Student.all
       @courses=Course.all
+      @date = params[:date] ? Date.parse(params[:date]) : Date.today
    end
 
    def create
