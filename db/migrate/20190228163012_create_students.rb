@@ -6,7 +6,6 @@ class CreateStudents < ActiveRecord::Migration[5.2]
       t.string :username
       t.string :password_digest
       t.string :grade_level
-      t.references :parent, foreign_key: true
 
       t.timestamps
     end

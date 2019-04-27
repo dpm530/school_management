@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_21_223337) do
+ActiveRecord::Schema.define(version: 2019_04_27_194823) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "administrators", force: :cascade do |t|
     t.string "login"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_03_21_223337) do
     t.date "date_assigned"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "course_id"
+    t.bigint "course_id"
     t.index ["course_id"], name: "index_assignments_on_course_id"
   end
 
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 2019_03_21_223337) do
     t.datetime "updated_at", null: false
     t.datetime "date"
     t.boolean "present"
-    t.integer "course_id"
-    t.integer "student_id"
+    t.bigint "course_id"
+    t.bigint "student_id"
     t.index ["course_id"], name: "index_attendances_on_course_id"
     t.index ["student_id"], name: "index_attendances_on_student_id"
   end
@@ -54,10 +57,10 @@ ActiveRecord::Schema.define(version: 2019_03_21_223337) do
     t.string "letter_score"
     t.integer "number_score"
     t.text "comment"
-    t.integer "student_id"
+    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "course_id"
+    t.bigint "course_id"
     t.string "session"
     t.string "year"
     t.date "start_date"
@@ -71,7 +74,7 @@ ActiveRecord::Schema.define(version: 2019_03_21_223337) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.integer "student_id"
+    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_parents_on_student_id"
@@ -84,15 +87,15 @@ ActiveRecord::Schema.define(version: 2019_03_21_223337) do
     t.string "state"
     t.string "zipcode"
     t.integer "mobile_number"
-    t.integer "student_id"
+    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_student_contact_infos_on_student_id"
   end
 
   create_table "student_courses", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "course_id"
+    t.bigint "student_id"
+    t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_student_courses_on_course_id"
@@ -105,9 +108,9 @@ ActiveRecord::Schema.define(version: 2019_03_21_223337) do
     t.string "username"
     t.string "password_digest"
     t.string "grade_level"
-    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_id"
     t.index ["parent_id"], name: "index_students_on_parent_id"
   end
 
@@ -118,15 +121,15 @@ ActiveRecord::Schema.define(version: 2019_03_21_223337) do
     t.string "state"
     t.string "zipcode"
     t.integer "mobile_number"
-    t.integer "teacher_id"
+    t.bigint "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["teacher_id"], name: "index_teacher_contact_infos_on_teacher_id"
   end
 
   create_table "teacher_courses", force: :cascade do |t|
-    t.integer "teacher_id"
-    t.integer "course_id"
+    t.bigint "teacher_id"
+    t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_teacher_courses_on_course_id"
@@ -142,4 +145,17 @@ ActiveRecord::Schema.define(version: 2019_03_21_223337) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "assignments", "courses"
+  add_foreign_key "attendances", "courses"
+  add_foreign_key "attendances", "students"
+  add_foreign_key "gradebooks", "courses"
+  add_foreign_key "gradebooks", "students"
+  add_foreign_key "parents", "students"
+  add_foreign_key "student_contact_infos", "students"
+  add_foreign_key "student_courses", "courses"
+  add_foreign_key "student_courses", "students"
+  add_foreign_key "students", "parents"
+  add_foreign_key "teacher_contact_infos", "teachers"
+  add_foreign_key "teacher_courses", "courses"
+  add_foreign_key "teacher_courses", "teachers"
 end
