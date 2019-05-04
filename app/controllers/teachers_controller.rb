@@ -23,6 +23,32 @@ class TeachersController < ApplicationController
 
    end
 
+   def show
+      @teacher=Teacher.find(params[:id])
+   end
+
+   def edit
+      @teacher=Teacher.find(params[:id])
+   end
+
+   def update
+      @teacher=Teacher.find(params[:id])
+      if @teacher.update(teacher_params)
+         flash[:notice]=["Updated User"]
+         return redirect_to edit_teacher_path
+      end
+
+      errors=@teacher.errors.full_messages
+      flash[:errors]=errors
+      return redirect_to edit_teacher_path
+   end
+
+   def destroy
+      @teacher=Teacher.find(params[:id])
+      @teacher.destroy
+      return redirect_to '/administrators#teachers'
+   end
+
    private
       def teacher_params
          params.require(:teacher).permit(:first_name, :last_name, :email, :password)
