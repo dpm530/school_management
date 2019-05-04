@@ -6,6 +6,7 @@ class Course < ApplicationRecord
    has_many :attendances, dependent: :destroy
    has_many :assignments, dependent: :destroy
    has_many :gradebooks, dependent: :destroy
+   has_many :student_grades, through: :gradebooks, source: :student
 
    validates :name, :subject, :start_date, :end_date, presence: true
 

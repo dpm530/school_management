@@ -21,6 +21,10 @@ class GradebooksController < ApplicationController
       @grades=Gradebook.where(student: @student).all
    end
 
+   def new
+      @course=Course.find(params[:id])
+   end
+
    private
       def gradebook_params
          params.require(:gradebook).permit(:letter_score, :number_score, :comment, :session, :year, :start_date, :end_date).merge(student: @student).merge(course: @course)

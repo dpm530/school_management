@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
    root 'application#index'
+   get 'new' => 'application#new'
 
 
 
@@ -32,17 +33,26 @@ Rails.application.routes.draw do
       end
    end
 
+   resources :attendances do
+      collection do
+         get 'new/:id' => 'attendances#new'
+      end
+   end
+
+   resources :gradebooks do
+      collection do
+         get 'new/:id' => 'gradebooks#new'
+         get ':student_id/:course_id' => 'gradebooks#show'
+         post ':student_id/:course_id' => 'gradebooks#create'
+      end
+   end
+
    resources :students
    resources :parents
    resources :teachers
    resources :students_contact_info
    resources :teachers_contact_info
    resources :courses
-   resources :attendances
-
-
-   get ':student_id/:course_id' => 'gradebooks#show'
-   post ':student_id/:course_id' => 'gradebooks#create'
 
 
 

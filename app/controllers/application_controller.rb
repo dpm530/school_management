@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
    def index
    end
 
+   def new
+   end
+
    def current_guest
       return Administrator.find(session[:guest_id]) if session[:guest_id]
    end

@@ -9,14 +9,16 @@
          <div class="row">
             <div class="col-md-12 text-center">
                <h1>Attendance Show</h1>
+               <a href="/attendances/new/<%= @course.id %>">Create</a>
                <h2>Course: <%= @course.name.capitalize %></h2>
             </div>
          </div>
          <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-               <% @attendances.each do |d|%>
-                  <a href=""><%= d.date.strftime("%B %d %Y") %></a><hr>
+               <% @attendances.each do |attendance|%>
+                  <a href="/attendances/<%= attendance.id %>/edit"><%= attendance.date.strftime("%B %d %Y") %></a>
+                  <hr>
                <% end %>
             </div>
             <div class="col-md-3"></div>

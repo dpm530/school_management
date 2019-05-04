@@ -5,15 +5,18 @@
       <title></title>
    </head>
    <body>
-      <h1>Attendaces New</h1>
-      <%= form_tag attendances_path, method: :post do %>
-         <%= date_field_tag(:date) %><br>
-         <%= hidden_field_tag(:course_id, @course.id)%>
-         <% @student_course.each do |student|%>
-            <%= student.first_name %> <%= student.last_name %>
-            <%= hidden_field_tag "student_ids[]", student.id %><br>
+      <div class="container">
+         <h1>Attendaces New</h1>
+
+         <%= form_tag attendances_path, method: :post do %>
+            <%= date_field_tag(:date) %><br>
+            <%= hidden_field_tag(:course_id, @course.id)%>
+            <% @student_course.each do |student|%>
+               <%= student.first_name %> <%= student.last_name %>
+               <%= hidden_field_tag "student_ids[]", student.id %><br>
+            <% end %>
+            <%= submit_tag "Create Record" %>
          <% end %>
-         <%= submit_tag "Create Record" %>
-      <% end %>
+      </div>
    </body>
 </html>

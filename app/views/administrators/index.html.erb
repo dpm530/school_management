@@ -47,7 +47,7 @@
                             <%=current_administrator.login%> <i class="fas fa-user-circle"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                           <a class="dropdown-item" href="#">Profile</a>
+                           <a class="dropdown-item" href="">Profile</a>
                            <a class="dropdown-item" href="#">Settings</a>
                            <div class="dropdown-divider"></div>
                            <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
@@ -374,7 +374,7 @@
                                  <tbody>
                                     <% course.attendances.each do |attendance| %>
                                     <tr>
-                                       <td><%= attendance.date.strftime("%B %d %Y") %></td>
+                                       <td><a href="/attendances/<%= course.id %>"><%= attendance.date.strftime("%B %d %Y") %></a></td>
                                        <td><a href="#" class="btn">Action</a></td>
                                     </tr>
                                     <% end %>
@@ -402,7 +402,7 @@
                         <% @courses.each do |course| %>
                            <div class="card my-2">
                               <div class="card-header">
-                                 <h5><%= course.name.capitalize %></h5>
+                                 <h5><a href="/gradebooks/new/<%= course.id %>"><%= course.name.capitalize %></a></h5>
                               </div>
                               <div class="card-body">
                                  <table class="table table-hover">
@@ -414,11 +414,13 @@
                                        </tr>
                                     </thead>
                                     <tbody>
+
                                        <tr>
                                           <td><%= course.students.length %></td>
                                           <td><%= course.gradebooks.average(:number_score) %></td>
                                           <td><a href="#" class="btn">Action</a></td>
                                        </tr>
+
                                     </tbody>
                                  </table>
                               </div>
