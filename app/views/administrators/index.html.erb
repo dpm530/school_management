@@ -16,9 +16,9 @@
                <a href="#teachers" data-toggle="tab" class="list-group-item list-group-item-action">Teachers</a>
                <a href="#students" data-toggle="tab" class="list-group-item list-group-item-action">Students</a>
                <a href="#courses" data-toggle="tab" class="list-group-item list-group-item-action">Classes</a>
-               <a href="#gradebook" data-toggle="tab" class="list-group-item list-group-item-action">Gradebook</a>
                <a href="#assignments" data-toggle="tab" class="list-group-item list-group-item-action">Assignments</a>
                <a href="#attendance" data-toggle="tab" class="list-group-item list-group-item-action">Attendance</a>
+               <a href="#gradebook" data-toggle="tab" class="list-group-item list-group-item-action">Gradebook</a>
             </div>
          </div>
          <!-- Sidebar Section End -->
@@ -300,6 +300,96 @@
                </div>
                <!-- Courses Section End -->
 
+               <!-- Assignments Section -->
+               <div class="tab-pane container fade" id="assignments">
+                  <div class="row py-2">
+                     <div class="col-md-12">
+                        <h1>Assignments</h1>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <% @courses.each do |course| %>
+                        <div class="card my-2">
+                           <div class="card-header">
+                              <h5><a href="/assignments/<%= course.id %>"><%= course.name.capitalize %></a></h5>
+                           </div>
+                           <% if (course.assignments) %>
+                           <div class="card-body">
+                              <table class="table table-hover">
+                                 <thead>
+                                    <tr>
+                                       <th>Name</th>
+                                       <th>Description</th>
+                                       <th>Due Date</th>
+                                       <th>Date Assigned</th>
+                                       <th>Actions</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <% course.assignments.each do |assignment| %>
+                                    <tr>
+                                       <td><%= assignment.name.capitalize %></td>
+                                       <td><%= assignment.description %></td>
+                                       <td><%= assignment.due_date.strftime("%B %d %Y") %></td>
+                                       <td><%= assignment.date_assigned.strftime("%B %d %Y") %></td>
+                                       <td><a href="#" class="btn">Action</a></td>
+                                    </tr>
+                                    <% end %>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <% end %>
+                        </div>
+                        <% end %>
+                     </div>
+                  </div>
+               </div>
+               <!-- Assignments Section End -->
+
+               <!-- Attendance Section -->
+               <div class="tab-pane container fade" id="attendance">
+                  <div class="row py-2">
+                     <div class="col-md-12">
+                        <h1>Attendance</h1>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <% @courses.each do |course| %>
+                        <div class="card my-2">
+                           <div class="card-header">
+                              <h5><%= course.name.capitalize %></h5>
+                           </div>
+
+                           <% if (course.attendances) %>
+                           <div class="card-body">
+                              <table class="table table-hover">
+                                 <thead>
+                                    <tr>
+                                       <th>Date</th>
+                                       <th>Actions</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <% course.attendances.each do |attendance| %>
+                                    <tr>
+                                       <td><%= attendance.date.strftime("%B %d %Y") %></td>
+                                       <td><a href="#" class="btn">Action</a></td>
+                                    </tr>
+                                    <% end %>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <% end %>
+
+                        </div>
+                        <% end %>
+                     </div>
+                  </div>
+               </div>
+               <!-- Attendance Section End -->
+
                <!-- Gradebook Section -->
                <div class="tab-pane container fade" id="gradebook">
                   <div class="row py-2">
@@ -339,95 +429,6 @@
                </div>
                <!-- Gradebook Section End -->
 
-               <!-- Assignments Section -->
-               <div class="tab-pane container fade" id="assignments">
-                  <div class="row py-2">
-                     <div class="col-md-12">
-                        <h1>Assignments</h1>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <% @courses.each do |course| %>
-                           <div class="card my-2">
-                              <div class="card-header">
-                                 <h5><%= course.name.capitalize %></h5>
-                              </div>
-                              <% if (course.assignments) %>
-                                 <div class="card-body">
-                                    <table class="table table-hover">
-                                       <thead>
-                                          <tr>
-                                             <th>Name</th>
-                                             <th>Description</th>
-                                             <th>Due Date</th>
-                                             <th>Date Assigned</th>
-                                             <th>Actions</th>
-                                          </tr>
-                                       </thead>
-                                       <tbody>
-                                          <% course.assignments.each do |assignment| %>
-                                             <tr>
-                                                <td><%= assignment.name.capitalize %></td>
-                                                <td><%= assignment.description %></td>
-                                                <td><%= assignment.due_date.strftime("%B %d %Y") %></td>
-                                                <td><%= assignment.date_assigned.strftime("%B %d %Y") %></td>
-                                                <td><a href="#" class="btn">Action</a></td>
-                                             </tr>
-                                          <% end %>
-                                       </tbody>
-                                    </table>
-                                 </div>
-                              <% end %>
-                           </div>
-                        <% end %>
-                     </div>
-                  </div>
-               </div>
-               <!-- Assignments Section End -->
-
-               <!-- Attendance Section -->
-               <div class="tab-pane container fade" id="attendance">
-                  <div class="row py-2">
-                     <div class="col-md-12">
-                        <h1>Attendance</h1>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <% @courses.each do |course| %>
-                           <div class="card my-2">
-                              <div class="card-header">
-                                 <h5><%= course.name.capitalize %></h5>
-                              </div>
-
-                              <% if (course.attendances) %>
-                                 <div class="card-body">
-                                    <table class="table table-hover">
-                                       <thead>
-                                          <tr>
-                                             <th>Date</th>
-                                             <th>Actions</th>
-                                          </tr>
-                                       </thead>
-                                       <tbody>
-                                          <% course.attendances.each do |attendance| %>
-                                             <tr>
-                                                <td><%= attendance.date.strftime("%B %d %Y") %></td>
-                                                <td><a href="#" class="btn">Action</a></td>
-                                             </tr>
-                                          <% end %>
-                                       </tbody>
-                                    </table>
-                                 </div>
-                              <% end %>
-
-                           </div>
-                        <% end %>
-                     </div>
-                  </div>
-               </div>
-               <!-- Attendance Section End -->
 
 
             </div>

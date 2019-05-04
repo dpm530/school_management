@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center">
+               <a href="/courses" class="btn btn-primary">User Edit</a>
+               <a href="/sessions/logout" data-method="delete" class="btn btn-primary">Logout</a>
+            </div>
+            <div class="col-md-2"></div>
+         </div>
+         <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+               <form action="/students/<%= @student.id %>" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <input type="hidden" name="_method" value="patch">
+
+                  <div class="form-group">
+                     <label for="first_name">First Name:</label>
+                     <input type="text" name="student[first_name]" value="<%= @student.first_name.titleize %>" class="form-control" />
+                  </div>
+
+                  <div class="form-group">
+                     <label for="last_name">Last Name:</label>
+                     <input type="text" name="student[last_name]"  value="<%= @student.last_name.titleize %>" class="form-control" />
+                  </div>
+
+                  <div class="form-group">
+                     <label for="username">Username:</label>
+                     <input type="text" name="student[username]" value="<%= @student.username %>" class="form-control" />
+                  </div>
+
+                  <div class="form-group">
+                     <label for="inputPassword">Password</label>
+                     <input type="password" id="inputPassword" class="form-control" value="<%= @student.password %>" name="student[password]" required>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="password_confirmation">Password Confirmation</label>
+                     <input type="password" name="student[password_confirmation]" id="password_confirmation" value="<%= @student.password %>" class="form-control">
+                  </div>
+
+                  <button type="submit" class="btn btn-success">Update</button>
+               </form>
+            </div>
+            <div class="col-md-2"></div>
+         </div>
+      </div>
+   </body>
+</html>

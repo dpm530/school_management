@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 text-center">
+               <h1>Assignments Create</h1>
+               <a href="/courses" class="btn btn-primary">Home</a>
+               <a href="/sessions/logout" data-method="delete" class="btn btn-primary">Logout</a>
+               <h2>Course: <%= @course.name.capitalize %></h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-8 mx-auto">
+               <form action="/assignments/create/<%= @course.id %>" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <div class="form-group">
+                     <label for="name">Assignment:</label>
+                     <input type="text" name="assignment[name]" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="description">Description:</label>
+                     <textarea name="assignment[description]" rows="8" cols="80"></textarea>
+                  </div>
+                  <div class="form-group">
+                     <label for="date_assigned">Date Assigned:</label>
+                     <input type="date" name="assignment[date_assigned]" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="due_date">Due Date:</label>
+                     <input type="date" name="assignment[due_date]" class="form-control">
+                  </div>
+                  <button type="submit" class="btn btn-outline-success">Create</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

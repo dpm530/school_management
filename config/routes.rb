@@ -25,6 +25,13 @@ Rails.application.routes.draw do
       end
    end
 
+   resources :assignments do
+      collection do
+         post 'create/:id' => 'assignments#create'
+         get 'new/:id' => 'assignments#new'
+      end
+   end
+
    resources :students
    resources :parents
    resources :teachers
@@ -33,8 +40,6 @@ Rails.application.routes.draw do
    resources :courses
    resources :attendances
 
-   resources :assignments
-   post 'create/:id' => 'assignments#create'
 
    get ':student_id/:course_id' => 'gradebooks#show'
    post ':student_id/:course_id' => 'gradebooks#create'

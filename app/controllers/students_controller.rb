@@ -6,6 +6,10 @@ class StudentsController < ApplicationController
       @assignments=Assignment.where(course: @courses).all
    end
 
+   def show
+      @student=Student.find(params[:id])
+   end
+
    def create
       # @parent=Parent.exists?(params[:parent][:email])
       @student=Student.new(student_params)
@@ -21,6 +25,28 @@ class StudentsController < ApplicationController
       flash[:errors]=@student.errors.full_messages
       return redirect_to new_student_path
 
+   end
+
+   def edit
+      @student=Student.find(params[:id])
+   end
+
+   def update
+      @student=Student.find(params[:id])
+      if @student.update(student_params)
+         flash[:notice]=["Updated Student"]
+         return redirect_to edit_student_path
+      end
+
+      errors=@student.errors.full_messages
+      flash[:errors]=errors
+      return redirect_to edit_student_path
+   end
+
+   def destroy
+      @student=Student.find(params[:id])
+      @student.destroy
+      return redirect_to '/administrators/#students'
    end
 
 

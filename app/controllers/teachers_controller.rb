@@ -34,7 +34,7 @@ class TeachersController < ApplicationController
    def update
       @teacher=Teacher.find(params[:id])
       if @teacher.update(teacher_params)
-         flash[:notice]=["Updated User"]
+         flash[:notice]=["Updated Teacher"]
          return redirect_to edit_teacher_path
       end
 
