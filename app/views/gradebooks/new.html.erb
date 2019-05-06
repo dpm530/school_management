@@ -7,16 +7,36 @@
    <body>
       <div class="container">
          <div class="row">
-            <div class="col-md-6">
-               <form action="" method="post">
+            <div class="col-md-6 mx-auto">
+               <h1>Student: <%= @student.first_name.capitalize %> <%= @student.last_name.capitalize %></h1>
+               <h1>Course: <%= @course.name.capitalize %></h1>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6 mx-auto">
+               <form action="/gradebooks/<%= @student.id %>/<%= @course.id %>" method="post">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                   <div class="form-group">
                      <label for="letter_score">Grade:</label>
-                     <input type="text" name="gradebook[letter_score]" class="form-control">
+                     <select class="form-control" id="letter_score" name="gradebook[letter_score]" >
+                        <option></option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+                        <option>F</option>
+                     </select>
                   </div>
                   <div class="form-group">
                      <label for="number_score">Numerical Score:</label>
-                     <input type="integer" name="gradebook[number_score]" class="form-control">
+                     <select class="form-control" id="number_score" name="gradebook[number_score]" >
+                        <option></option>
+                        <option>100</option>
+                        <option>90</option>
+                        <option>80</option>
+                        <option>70</option>
+                        <option>60</option>
+                     </select>
                   </div>
                   <div class="form-group">
                      <label for="comment">Comments:</label>

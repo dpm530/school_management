@@ -41,8 +41,7 @@ Rails.application.routes.draw do
 
    resources :gradebooks do
       collection do
-         get 'new/:id' => 'gradebooks#new'
-         get ':student_id/:course_id' => 'gradebooks#show'
+         get ':student_id/:course_id' => 'gradebooks#new'
          post ':student_id/:course_id' => 'gradebooks#create'
       end
    end

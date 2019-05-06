@@ -402,7 +402,7 @@
                         <% @courses.each do |course| %>
                            <div class="card my-2">
                               <div class="card-header">
-                                 <h5><a href="/gradebooks/new/<%= course.id %>"><%= course.name.capitalize %></a></h5>
+                                 <h5><a href="/gradebooks/<%= course.id %>"><%= course.name.capitalize %></a></h5>
                               </div>
                               <div class="card-body">
                                  <table class="table table-hover">

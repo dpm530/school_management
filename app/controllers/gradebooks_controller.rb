@@ -7,22 +7,22 @@ class GradebooksController < ApplicationController
 
       if @gradebook.save
          flash[:notice]=["Grades added Successfully!"]
-         return redirect_to "/"+(@student.id).to_s+"/"+(@course.id).to_s
+         return redirect_to "/gradebooks/"+(@course.id).to_s
       end
 
       flash[:errors]=@gradebook.errors.full_messages
-      return redirect_to "/"+(@student.id).to_s+"/"+(@course.id).to_s
+      return redirect_to "/gradebooks/"+(@student.id).to_s+"/"+(@course.id).to_s
 
    end
 
    def show
-      @course=Course.find(params[:course_id])
-      @student=Student.find(params[:student_id])
-      @grades=Gradebook.where(student: @student).all
+      @course=Course.find(params[:id])
+      @grades=Gradebook.where(course: @course).all
    end
 
    def new
-      @course=Course.find(params[:id])
+      @student=Student.find(params[:student_id])
+      @course=Course.find(params[:course_id])
    end
 
    private
