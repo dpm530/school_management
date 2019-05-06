@@ -23,8 +23,20 @@ class AdministratorsController < ApplicationController
       return redirect_to new_administrator_path
    end
 
-   def teachers
-      @teachers=Teacher.all
+   def edit
+      @admin=Administrator.find(params[:id])
+   end
+
+   def update
+      @admin=Administrator.find(params[:id])
+      if @admin.update(admin_params)
+         flash[:notice]=["Updated admin"]
+         return redirect_to administrator_path(@admin)
+      end
+
+      errors=@admin.errors.full_messages
+      flash[:errors]=errors
+      return redirect_to edit_administrator_path
    end
 
 

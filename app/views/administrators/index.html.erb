@@ -48,8 +48,7 @@
                                <%=current_administrator.login%> <i class="fas fa-user-circle"></i>
                            </a>
                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="">Profile</a>
-                              <a class="dropdown-item" href="#">Settings</a>
+                              <a class="dropdown-item" href="/administrators/<%= current_administrator.id %>">Profile</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
                            </div>
@@ -62,7 +61,6 @@
                            </a>
                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item" href="">Profile</a>
-                              <a class="dropdown-item" href="#">Settings</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
                            </div>
@@ -208,7 +206,7 @@
                      <div class="col-md-12">
                         <ul class="nav bg-light border">
                            <li class="nav-item">
-                              <a class="nav-link" href="#">Create</a>
+                              <a class="nav-link" href="/students/new">Create</a>
                            </li>
                         </ul>
                      </div>

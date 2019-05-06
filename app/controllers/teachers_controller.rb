@@ -13,8 +13,7 @@ class TeachersController < ApplicationController
 
       if @teacher.save
          flash[:notice]=["Registered Successfully"]
-         session[:teacher_id]=@teacher.id
-         return redirect_to teachers_path
+         return redirect_to administrators_path
       end
 
       errors=@teacher.errors.full_messages

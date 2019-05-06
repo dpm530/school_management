@@ -17,7 +17,7 @@
 
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                <li class="nav-item active">
-                  <a class="nav-link" href="/teachers">Home</a>
+                  <a class="nav-link" href="/parents">Home</a>
                </li>
                <li class="nav-item" style="border-right: 1px solid #dee2e6;">
                   <a class="nav-link" href="/students_contact_info/new">Add Address</a>
@@ -51,19 +51,17 @@
                <table class="table table-hover">
                   <thead>
                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
+                        <th>Username</th>
+                        <th>password</th>
                         <th>Action</th>
                      </tr>
                   </thead>
                   <tbody>
                      <tr>
-                        <td><%= current_teacher.first_name.capitalize %></td>
-                        <td><%= current_teacher.last_name.capitalize%></td>
-                        <td><%= current_teacher.email %></td>
+                        <td><%= current_administrator.login %></td>
+                        <td><%= current_administrator.password %></td>
                         <td>
-                           <a href="/teachers/<%= current_teacher.id %>/edit" class="btn btn-primary">Edit</a>
+                           <a href="/administrators/<%= current_administrator.id %>/edit" class="btn btn-primary">Edit</a>
                         </td>
                      </tr>
                   </tbody>
@@ -72,35 +70,5 @@
          </div>
       </div>
 
-      <div class="container pt-3 border shadow p-4 mb-4 bg-white">
-         <div class="row">
-            <div class="col-md-12">
-               <h1>Contact Information</h1>
-            </div>
-         </div>
-         <div class="row pt-2">
-            <% if @teacher_contact %>
-                  <div class="col-md-4">
-                     <div class="card">
-                        <div class="card-body">
-                           <p class="card-text"><%= @teacher_contact.line_1_address %> <%= @teacher_contact.line_2_address%></p>
-                           <p class="card-text"><%= @teacher_contact.city %>, <%= @teacher_contact.state %> <%= @teacher_contact.zipcode %></p>
-                           <p class="card-text">Phone Number: <%=%></p>
-                           <a href="/teachers_contact_info/<%= @teacher_contact.id %>/edit" class="btn btn-success">Edit</a>
-                           <a href="/teachers_contact_info/<%= @teacher_contact.id %>" class="btn btn-danger" data-method="delete">Delete</a>
-                        </div>
-                     </div>
-                  </div>
-            <% else %>
-               <div class="col-md-4">
-                  <div class="card text-center">
-                     <div class="card-body">
-                        <a class="nav-link" href="/teachers_contact_info/new">Add +</a>
-                     </div>
-                  </div>
-               </div>
-            <% end %>
-         </div>
-      </div>
    </body>
 </html>

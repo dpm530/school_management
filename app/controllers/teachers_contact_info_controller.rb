@@ -1,7 +1,7 @@
 class TeachersContactInfoController < ApplicationController
 
    def index
-      @teacher_contact=TeacherContactInfo.all
+      @teacher_contact=current_teacher.teacher_contact_info
    end
 
    def create

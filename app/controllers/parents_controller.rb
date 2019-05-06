@@ -20,6 +20,22 @@ class ParentsController < ApplicationController
 
    end
 
+   def edit
+      @parent=current_parent
+   end
+
+   def update
+      @parent=Parent.find(params[:id])
+      if @parent.update(parent_params)
+         flash[:notice]=["Updated Parent"]
+         return redirect_to parent_path(@parent)
+      end
+
+      errors=@parent.errors.full_messages
+      flash[:errors]=errors
+      return redirect_to edit_parent_path
+   end
+
 
    private
 

@@ -28,6 +28,7 @@
                         <th>Last Name</th>
                         <th>Course</th>
                         <th>Grade</th>
+                        <th>Action</th>
 
                      </tr>
                   </thead>
@@ -37,11 +38,17 @@
                            <td><%= student.first_name.capitalize %></td>
                            <td><%= student.last_name.capitalize %></td>
                            <td><%= @course.name.capitalize %></td>
-                           <td>
-                              <% student.gradebooks.each do |grade| %>
-                                 <%= grade.letter_score %>
-                              <% end %>
-                           </td>
+                           <% student.gradebooks.each do |grade| %>
+                              <td>
+                                    <%= grade.letter_score %>
+                              </td>
+                              <td>
+                                 <% if grade %>
+                                    <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary">Edit</a>
+                                    <a href="#" class="btn btn-danger">Delete</a>
+                                 <% end  %>
+                              </td>
+                           <% end %>
                         </tr>
                      <% end %>
                   </tbody>

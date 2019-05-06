@@ -18,9 +18,8 @@ class StudentsController < ApplicationController
 
       if @student.save
          flash[:notice]=["Registered Successfully!"]
-         session[:student_id]=@student.id
 
-         return redirect_to students_path
+         return redirect_to administrators_path
       end
 
       flash[:errors]=@student.errors.full_messages
@@ -36,7 +35,7 @@ class StudentsController < ApplicationController
       @student=Student.find(params[:id])
       if @student.update(student_params)
          flash[:notice]=["Updated Student"]
-         return redirect_to edit_student_path
+         return redirect_to student_path(@student)
       end
 
       errors=@student.errors.full_messages

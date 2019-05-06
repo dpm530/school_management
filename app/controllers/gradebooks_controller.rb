@@ -21,10 +21,14 @@ class GradebooksController < ApplicationController
       # @gradebook=Gradebook.where(course: @course).all
    end
 
-   def new
-      @student=Student.find(params[:student_id])
-      @course=Course.find(params[:course_id])
+   def edit
+      @gradebook=Gradebook.find(params[:id])
    end
+
+   # def new
+   #    @student=Student.find(params[:student_id])
+   #    @course=Course.find(params[:course_id])
+   # end
 
    private
       def gradebook_params

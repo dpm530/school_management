@@ -15,8 +15,8 @@
             <a href="#dashboard" data-toggle="tab" class="list-group-item list-group-item-action">Dashboard</a>
             <a href="#courses" data-toggle="tab" class="list-group-item list-group-item-action">Courses</a>
             <a href="#assignments" data-toggle="tab" class="list-group-item list-group-item-action">Assignments</a>
-            <a href="#attendance" data-toggle="tab" class="list-group-item list-group-item-action">Attendance</a>
-            <a href="#gradebook" data-toggle="tab" class="list-group-item list-group-item-action">Gradebook</a>
+            <a href="#gradebook" data-toggle="tab" class="list-group-item list-group-item-action">Grades</a>
+            <!-- <a href="#attendance" data-toggle="tab" class="list-group-item list-group-item-action">Attendance</a> -->
           </div>
         </div>
         <!-- Sidebar Section End -->
@@ -25,7 +25,7 @@
         <div id="page-content-wrapper">
 
           <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+            <button class="btn btn-outline-primary btn-sm" id="menu-toggle"><i class="fas fa-bars"></i></button>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -37,16 +37,15 @@
                   <li class="nav-item active">
                      <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item border-right pr-2">
                      <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
                   </li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user-circle"></i>
+                        <%=current_teacher.first_name.capitalize %>  <%=current_teacher.last_name.capitalize %> <i class="fas fa-user-circle"></i>
                      </a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="/teachers_contact_info">Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
                      </div>
@@ -57,6 +56,7 @@
           </nav>
 
          <div class="tab-content container-fluid">
+
             <div class="tab-pane container active" id="dashboard">
                DASHBOARD
                <%= @assignments.length %>
@@ -93,28 +93,50 @@
 
             <!-- Assignments Section -->
             <div class="tab-pane container fade" id="assignments">
+               <div class="row py-2">
+                  <div class="col-md-12">
+                     <h1>Assignments</h1>
+                  </div>
+               </div>
                <div class="row">
                   <div class="col-md-12">
-                     <table class="table table-hover">
-                        <thead>
-                           <tr>
-                              <th>Name</th>
-                              <th>Date Assigned</th>
-                              <th>Due Date</th>
-                              <th>Description</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <% @assignments.each do |assignment| %>
-                              <tr>
-                                 <td><%= assignment.name.capitalize %></td>
-                                 <td><%= assignment.date_assigned.strftime("%B %d %Y") %></td>
-                                 <td><%= assignment.due_date.strftime("%B %d %Y") %></td>
-                                 <td><%= assignment.description %></td>
-                              </tr>
-                           <% end %>
-                        </tbody>
-                     </table>
+                     <% @courses.each do |course| %>
+                     <div class="card my-2">
+                        <div class="card-header">
+                           <h5><a href="/assignments/<%= course.id %>"><%= course.name.capitalize %></a></h5>
+                           <a class="btn btn-primary" href="/assignments/new/<%= course.id %>">Create</a>
+                        </div>
+                        <% if (course.assignments) %>
+                        <div class="card-body">
+                           <table class="table table-hover">
+                              <thead>
+                                 <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Due Date</th>
+                                    <th>Date Assigned</th>
+                                    <th>Actions</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <% course.assignments.each do |assignment| %>
+                                    <tr>
+                                       <td><%= assignment.name.capitalize %></td>
+                                       <td><%= assignment.description %></td>
+                                       <td><%= assignment.due_date.strftime("%B %d %Y") %></td>
+                                       <td><%= assignment.date_assigned.strftime("%B %d %Y") %></td>
+                                       <td>
+                                          <a href="/assignments/<%= assignment.id %>/edit" class="btn btn-primary">Edit</a>
+                                          <a href="/assignments/<%= assignment.id %>" class="btn btn-danger" data-method="delete" >Delete</a>
+                                       </td>
+                                    </tr>
+                                 <% end %>
+                              </tbody>
+                           </table>
+                        </div>
+                        <% end %>
+                     </div>
+                     <% end %>
                   </div>
                </div>
             </div>
@@ -150,30 +172,43 @@
 
             <!-- Gradebook Section -->
             <div class="tab-pane container fade" id="gradebook">
+               <div class="row py-2">
+                  <div class="col-md-12">
+                     <h1>Grades</h1>
+                  </div>
+               </div>
                <div class="row">
-                  <div class="col-md-6">
-                     <table class="table table-hover">
-                        <thead>
-                           <tr>
-                              <th>Course</th>
-                              <th>Records</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <% if @courses %>
-                              <% @courses.each do |course| %>
-                                 <tr>
-                                    <td><%= course.name.capitalize %></td>
-                                    <td><%= course.gradebooks.length %></td>
-                                 </tr>
-                              <% end %>
-                           <% end %>
-                        </tbody>
-                     </table>
+                  <div class="col-md-12">
+                     <% @courses.each do |course| %>
+                        <div class="card my-2">
+                           <div class="card-header">
+                              <h5><a href="/gradebooks/<%= course.id %>"><%= course.name.capitalize %></a></h5>
+                           </div>
+                           <div class="card-body">
+                              <table class="table table-hover">
+                                 <thead>
+                                    <tr>
+                                       <th>Students Enrolled</th>
+                                       <th>Course Average</th>
+                                       <th>Actions</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td><%= course.students.length %></td>
+                                       <td><%= course.gradebooks.average(:number_score) %></td>
+                                       <td><a href="#" class="btn">Action</a></td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     <% end %>
                   </div>
                </div>
             </div>
             <!-- Gradebook Section End -->
+
 
          </div>
 

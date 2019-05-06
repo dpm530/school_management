@@ -41,14 +41,19 @@ Rails.application.routes.draw do
 
    resources :gradebooks do
       collection do
-         get ':student_id/:course_id' => 'gradebooks#new'
+         # get ':student_id/:course_id' => 'gradebooks#new'
          post ':student_id/:course_id' => 'gradebooks#create'
+      end
+   end
+
+   resources :teachers do
+      collection do
+         get 'login' => 'teachers#login_teacher'
       end
    end
 
    resources :students
    resources :parents
-   resources :teachers
    resources :students_contact_info
    resources :teachers_contact_info
    resources :courses
