@@ -1,7 +1,7 @@
 class StudentsContactInfoController < ApplicationController
 
    def index
-      @student_contact=StudentContactInfo.all
+      @student_contact=current_student.student_contact_info
    end
 
    def create

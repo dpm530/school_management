@@ -43,19 +43,61 @@
       <div class="container pt-3 border shadow p-4 mb-4 bg-white">
          <div class="row">
             <div class="col-md-12">
-               <h1>Your Addresses</h1>
+               <h1>Profile:</h1>
             </div>
          </div>
          <div class="row pt-2">
-            <% @student_contact.each do |student| %>
+            <div class="col-md-12">
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Grade Level</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td><%= current_student.first_name.capitalize %></td>
+                        <td><%= current_student.last_name.capitalize%></td>
+                        <td><%= current_student.username %></td>
+                        <td><%= current_student.grade_level %></td>
+                        <td>
+                           <a href="/students/<%= current_student.id %>/edit" class="btn btn-primary">Edit</a>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <div class="container pt-3 border shadow p-4 mb-4 bg-white">
+         <div class="row">
+            <div class="col-md-12">
+               <h1>Contact Information</h1>
+            </div>
+         </div>
+         <div class="row pt-2">
+            <% if @student_contact %>
+                  <div class="col-md-4">
+                     <div class="card">
+                        <div class="card-body">
+                           <p class="card-text"><%= @student_contact.line_1_address %> <%= @student_contact.line_2_address%></p>
+                           <p class="card-text"><%= @student_contact.city %>, <%= @student_contact.state %> <%= @student_contact.zipcode %></p>
+                           <p class="card-text">Phone Number: <%= @student_contact.mobile_number %></p>
+                           <a href="/students_contact_info/<%= @student_contact.id %>/edit" class="btn btn-success">Edit</a>
+                           <a href="/students_contact_info/<%= @student_contact.id %>" class="btn btn-danger" data-method="delete">Delete</a>
+                        </div>
+                     </div>
+                  </div>
+            <% else %>
                <div class="col-md-4">
-                  <div class="card">
+                  <div class="card text-center">
                      <div class="card-body">
-                        <p class="card-text"><%= student.line_1_address %> <%= student.line_2_address%></p>
-                        <p class="card-text"><%= student.city %>, <%= student.state %> <%= student.zipcode %></p>
-                        <p class="card-text">Phone Number: <%= student.mobile_number %></p>
-                        <a href="/students_contact_info/<%= student.id %>/edit" class="btn btn-success">Edit</a>
-                        <a href="/students_contact_info/<%= student.id %>" class="btn btn-danger" data-method="delete">Delete</a>
+                        <a class="nav-link" href="/students_contact_info/new">Add +</a>
                      </div>
                   </div>
                </div>

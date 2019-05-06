@@ -17,7 +17,8 @@ class GradebooksController < ApplicationController
 
    def show
       @course=Course.find(params[:id])
-      @grades=Gradebook.where(course: @course).all
+      @students=@course.students
+      # @gradebook=Gradebook.where(course: @course).all
    end
 
    def new

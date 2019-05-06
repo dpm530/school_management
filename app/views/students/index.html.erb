@@ -15,6 +15,7 @@
             <a href="#dashboard" data-toggle="tab" class="list-group-item list-group-item-action">Dashboard</a>
             <a href="#courses" data-toggle="tab" class="list-group-item list-group-item-action">Courses</a>
             <a href="#assignments" data-toggle="tab" class="list-group-item list-group-item-action">Assignments</a>
+            <a href="#gradebook" data-toggle="tab" class="list-group-item list-group-item-action">Grades</a>
           </div>
         </div>
         <!-- Sidebar Section End -->
@@ -23,10 +24,10 @@
         <div id="page-content-wrapper">
 
           <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+            <button class="btn btn-outline-primary btn-sm" id="menu-toggle"><i class="fas fa-bars"></i></button>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+               <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -35,16 +36,15 @@
                   <li class="nav-item active">
                      <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item border-right pr-2">
                      <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
                   </li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user-circle"></i>
+                         <%=current_student.first_name.capitalize %>  <%=current_student.last_name.capitalize %> <i class="fas fa-user-circle"></i>
                      </a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/students_contact_info">Profile</a>
-                        <a class="dropdown-item" href="#">Settings</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
                      </div>
@@ -57,11 +57,87 @@
          <div class="tab-content container-fluid">
 
             <!-- Dashboard Section -->
-            <div class="tab-pane container active" id="dashboard">
-               DASHBOARD
+            <div class="tab-pane container active pt-2" id="dashboard">
+               <div class="row">
+                  <div class="col-md-12">
+                     <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Overview</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="row pt-3 pb-4">
+                  <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
+                     <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #28a745; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+                        <div class="card-body d-flex align-items-end flex-column text-right pr-4">
+                           <h4 style="font-weight:700;font-size: 2rem;">
+                              <% if current_student.courses %>
+                                 <%= current_student.courses.length %>
+                              <% else %>
+                                 0
+                              <% end %>
+                           </h4>
+                           <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Classes</p>
+                           <i class="fas fa-chalkboard" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
+                        </div>
+                     </a>
+                  </div>
+                  <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
+                     <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #dd3d31; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+                        <div class="card-body d-flex align-items-end flex-column text-right pr-4">
+                           <h4 style="font-weight:700;font-size: 2rem;">
+                              <% if @assignments %>
+                                 <%= @assignments.length %>
+                              <% else %>
+                                 0
+                              <% end %>
+                           </h4>
+                           <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Assignments</p>
+                           <i class="fas fa-chalkboard-teacher" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
+                        </div>
+                     </a>
+                  </div>
+                  <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
+                     <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #2092ed; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+                        <div class="card-body d-flex align-items-end flex-column text-right pr-4">
+                           <h4 style="font-weight:700;font-size: 2rem;">
+                              <% if current_student.gradebooks %>
+                                 <%= current_student.gradebooks.length %>
+                              <% else %>
+                                 0
+                              <% end %>
+                           </h4>
+                           <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Grades</p>
+                           <i class="fas fa-user-graduate" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
+                        </div>
+                     </a>
+                  </div>
+                  <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
+                     <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #fdb800; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+                        <div class="card-body d-flex align-items-end flex-column text-right pr-4">
+                           <h4 style="font-weight:700;font-size: 2rem;">0</h4>
+                           <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Events</p>
+                           <i class="fas fa-calendar-alt" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+               <div class="row py-4">
+                  <div class="col-md-12 mx-auto">
+                     <div id="articles">
+                        <h1 id="month">
+                           <%= link_to "<", date: @date.prev_month %>
+                           <%= @date.strftime("%B %Y") %>
+                           <%= link_to ">", date: @date.next_month %>
+                        </h1>
+                        <%= calendar do |date| %>
+                           <%= date.day %>
+                        <% end %>
+                     </div>
+                  </div>
+               </div>
             </div>
             <!-- Dashboard Section End -->
-
 
             <!-- Courses Section -->
             <div class="tab-pane container fade" id="courses">
@@ -123,6 +199,16 @@
             </div>
             <!-- Assignments Section End -->
 
+            <!-- Gradebook Section -->
+            <div class="tab-pane container fade" id="gradebook">
+               <div class="row">
+                  <div class="col-md-12">
+                     <h1>grades</h1>
+                  </div>
+               </div>
+            </div>
+            <!-- Gradebook Section End -->
+
          </div>
 
 
@@ -139,50 +225,5 @@
           $("#wrapper").toggleClass("toggled");
         });
       </script>
-
-
-
-      <div class="row">
-         <div class="col-3"></div>
-         <div class="col-6 text-center">
-            <h1>Welcome, <%= @student.first_name.capitalize %> <%= @student.last_name.capitalize %></h1>
-            <a href="/" class="btn btn-primary">Home</a>
-            <a href="/students_contact_info" class="btn btn-primary">Contact Information</a>
-            <a href="/logout" data-method="delete" class="btn btn-primary">Logout</a>
-         </div>
-         <div class="col-3"></div>
-      </div>
-      <br>
-      <div class="row">
-         <div class="col-3 text-center"></div>
-         <div class="col-6">
-            <div class="container">
-               <h1>Courses:</h1>
-               <table class="table table-bordered">
-                  <thead>
-                     <tr>
-                        <th>Course</th>
-                        <th>Subject</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <% if @student_course %>
-                        <% @student_course.each do |course| %>
-                           <tr>
-                              <td><%= course.name.capitalize %></td>
-                              <td><%= course.subject.capitalize %></td>
-                              <td><%= course.start_date %></td>
-                              <td><%= course.end_date %></td>
-                           </tr>
-                        <% end %>
-                     <% end %>
-                  </tbody>
-               </table>
-            </div>
-         </div>
-         <div class="col-3"></div>
-      </div>
    </body>
 </html>

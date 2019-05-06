@@ -4,6 +4,7 @@ class StudentsController < ApplicationController
       @student=Student.find(current_student.id)
       @courses=@student.courses
       @assignments=Assignment.where(course: @courses).all
+      @date = params[:date] ? Date.parse(params[:date]) : Date.today
    end
 
    def show

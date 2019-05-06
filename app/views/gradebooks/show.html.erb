@@ -19,17 +19,33 @@
          </div>
          <hr>
          <div class="row">
-            <div class="col-md-6 mx-auto">
-               <h1>Grades:</h1>
-               <% @grades.each do |grade| %>
-                  <%= grade.student.first_name.capitalize %> <%= grade.student.last_name.capitalize %><br>
-                  <%= grade.course.name %><br>
-                  <%= grade.letter_score %><br>
-                  <a href="/gradebooks/<%= grade.student.id %>/<%= grade.course.id %>" class="btn btn-primary">Add Record</a>
-                  <a href="/gradebooks/<%= grade.student.id %>/<%= grade.course.id %>" class="btn btn-primary">Edit Record </a>
-                  <a href="/gradebooks/<%= grade.student.id %>/<%= grade.course.id %>" class="btn btn-primary">Delete Record</a>
-                  <hr>
-               <% end %>
+            <div class="col-md-8 mx-auto">
+               <h1>Students:</h1>
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Course</th>
+                        <th>Grade</th>
+
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% @students.each do |student| %>
+                        <tr>
+                           <td><%= student.first_name.capitalize %></td>
+                           <td><%= student.last_name.capitalize %></td>
+                           <td><%= @course.name.capitalize %></td>
+                           <td>
+                              <% student.gradebooks.each do |grade| %>
+                                 <%= grade.letter_score %>
+                              <% end %>
+                           </td>
+                        </tr>
+                     <% end %>
+                  </tbody>
+               </table>
             </div>
          </div>
       </div>

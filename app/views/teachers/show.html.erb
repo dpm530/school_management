@@ -5,10 +5,77 @@
       <title></title>
    </head>
    <body>
-      <div class="container text-center">
-         <h1>
-            <%= @teacher.first_name.capitalize %> <%= @teacher.last_name.capitalize %>
-         </h1>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
+         <a class="navbar-brand" href="/">Open-School</a>
+
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+               <li class="nav-item active">
+                  <a class="nav-link" href="/administrators">Home</a>
+               </li>
+               <li class="nav-item active">
+                  <a class="nav-link" href="/teachers_contact_info/new">New contact info</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/sessions/logout">Logout</a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+
+
+      <div class="container pt-4">
+         <div class="row">
+            <div class="col-md-8">
+               <h1>Teacher: <%= @teacher.first_name.capitalize %> <%= @teacher.last_name.capitalize %></h1>
+               <table class="table table-bordered">
+                  <thead>
+                     <tr>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zipcode</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% if  @teacher.teacher_contact_info %>
+                        <% @teacher.teacher_contact_info.each do |contact| %>
+                           <tr>
+                              <td><%= contact.line_1_address %> <%= contact.line_2_address%></td>
+                              <td><%= contact.city %></td>
+                              <td><%= contact.state %></td>
+                              <td><%= contact.zipcode %></td>
+                              <td>
+                                 <a href="/teachers_contact_info/<%= contact.id %>/edit" class="btn btn-success">Edit</a>
+                                 <a href="/teachers_contact_info/<%= contact.id %>" class="btn btn-danger" data-method="delete">Delete</a>
+                              </td>
+                           </tr>
+                        <% end %>
+                     <% end %>
+                  </tbody>
+               </table>
+            </div>
+         </div>
       </div>
+
+
+      <footer class="conatiner-fluid" style="background-color:#eee;padding-top:25px;padding-bottom:10px;">
+         <div class="container">
+            <div class="row">
+               <div class="col-1"></div>
+               <div class="col-md-10 text-center">
+                  <p> &copy; Open-School 2019. All Rights Reserved.</p>
+               </div>
+               <div class="col-1"></div>
+            </div>
+         </div>
+      </footer>
+
    </body>
 </html>
