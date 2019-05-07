@@ -9,6 +9,8 @@ class StudentsController < ApplicationController
 
    def show
       @student=Student.find(params[:id])
+      @contact=@student.student_contact_info
+      @courses=@student.courses
    end
 
    def create

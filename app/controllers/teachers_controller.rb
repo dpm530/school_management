@@ -24,6 +24,8 @@ class TeachersController < ApplicationController
 
    def show
       @teacher=Teacher.find(params[:id])
+      @contact=@teacher.teacher_contact_info
+      @courses=@teacher.courses
    end
 
    def edit
