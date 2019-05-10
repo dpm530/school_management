@@ -18,17 +18,34 @@ class GradebooksController < ApplicationController
    def show
       @course=Course.find(params[:id])
       @students=@course.students
-      # @gradebook=Gradebook.where(course: @course).all
+      @gradebooks=Gradebook.all
+      # @a=Student.find(3)
+
+      # puts "="*100
+      # @students.each do |student|
+      #    puts student.first_name
+      #    if (student.gradebooks.exists?)
+      #       puts "Yes it does"
+      #    else
+      #       puts "No it doesnt"
+      #    end
+      # end
+      # puts "="*100
    end
 
    def edit
       @gradebook=Gradebook.find(params[:id])
+      @student=@gradebook.student
+      @course=@gradebook.course
    end
 
-   # def new
-   #    @student=Student.find(params[:student_id])
-   #    @course=Course.find(params[:course_id])
-   # end
+   def update
+   end
+
+   def new
+      @student=Student.find(params[:student_id])
+      @course=Course.find(params[:course_id])
+   end
 
    private
       def gradebook_params

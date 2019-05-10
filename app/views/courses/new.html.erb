@@ -5,57 +5,110 @@
       <title></title>
    </head>
    <body>
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 text-center">
-               <h1>Add Courses</h1>
-               <a href="/teachers" class="btn btn-primary">Teacher Dashboard</a>
-               <a href="/courses" class="btn btn-primary">Courses Index</a>
-               <a href="/logout" data-method="delete" class="btn btn-primary">Logout</a>
-            </div>
-            <div class="col-md-3"></div>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
+         <a class="navbar-brand" href="/administrators">Open-School</a>
+
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+               <li class="nav-item active">
+                  <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+               </li>
+               <li class="nav-item border-right pr-2">
+                  <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
+               </li>
+               <% if current_administrator %>
+                  <li class="nav-item dropdown pl-1">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <%=current_administrator.login%> <i class="fas fa-user-circle"></i>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/administrators/<%= current_administrator.id %>">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
+                     </div>
+                  </li>
+               <% end %>
+               <% if current_guest %>
+                  <li class="nav-item dropdown pl-1">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <%=current_guest.login%> <i class="fas fa-user-circle"></i>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
+                     </div>
+                  </li>
+               <% end %>
+            </ul>
          </div>
-         <br>
+      </nav>
+
+      <div class="container py-4">
          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-               <form action="/courses" method="post">
-                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-                  <div class="form-group">
-                     <label for="name">Name</label>
-                     <input type="text" name="course[name]" id="name" class="form-control">
+            <div class="col-md-8 mx-auto border shadow p-4 my-4 bg-white">
+               <div class="row">
+                  <div class="col-md-12 mb-2">
+                     <h1>New Course:</h1>
                   </div>
-                  <div class="form-group">
-                     <label for="subject">Subject:</label>
-                     <select class="form-control" id="subject" name="course[subject]">
-                        <option></option>
-                        <option>Mathematics</option>
-                        <option>Science</option>
-                        <option>Geography</option>
-                        <option>History</option>
-                        <option>Physical Education</option>
-                        <option>Home Economics</option>
-                        <option>Art</option>
-                        <option>Music</option>
-                        <option>English Language Arts</option>
-                     </select>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 mb-2">
+                     <form action="/courses" method="post">
+                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                        <div class="form-group">
+                           <label for="name">Name</label>
+                           <input type="text" name="course[name]" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                           <label for="subject">Subject:</label>
+                           <select class="form-control" id="subject" name="course[subject]">
+                              <option></option>
+                              <option>Mathematics</option>
+                              <option>Science</option>
+                              <option>Geography</option>
+                              <option>History</option>
+                              <option>Physical Education</option>
+                              <option>Home Economics</option>
+                              <option>Art</option>
+                              <option>Music</option>
+                              <option>English Language Arts</option>
+                           </select>
+                        </div>
+                        <div class="form-group">
+                           <label for="start_date">Start Date</label>
+                           <input type="date" name="course[start_date]" id="start_date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                           <label for="end_date">End Date</label>
+                           <input type="date" name="course[end_date]" id="end_date" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Create</button>
+                     </form>
                   </div>
-                  <div class="form-group">
-                     <label for="start_date">Start Date</label>
-                     <input type="date" name="course[start_date]" id="start_date" class="form-control">
-                  </div>
-                  <div class="form-group">
-                     <label for="end_date">End Date</label>
-                     <input type="date" name="course[end_date]" id="end_date" class="form-control">
-                  </div>
-                  <button type="submit" class="btn btn-outline-success">Create</button>
-               </form>
+               </div>
             </div>
-            <div class="col-md-2"></div>
          </div>
       </div>
-      <br>
-      <br>
+
+      <footer class="conatiner-fluid" style="background-color:#eee;padding-top:25px;padding-bottom:10px;">
+         <div class="container">
+            <div class="row">
+               <div class="col-1"></div>
+               <div class="col-md-10 text-center">
+                  <p> &copy; Open-School 2019. All Rights Reserved.</p>
+               </div>
+               <div class="col-1"></div>
+            </div>
+         </div>
+      </footer>
+
    </body>
 </html>

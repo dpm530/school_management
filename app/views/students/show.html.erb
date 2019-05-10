@@ -7,7 +7,7 @@
    <body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-4">
 
-         <a class="navbar-brand" href="#">Open-School</a>
+         <a class="navbar-brand" href="/administrators">Open-School</a>
 
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@
                </div>
                <div class="row">
                   <div class="col-md-10">
-                     <p><strong>Name:</strong> <%= @student.first_name.capitalize %> <%= @student.first_name.capitalize %></p>
+                     <p><strong>Name:</strong> <%= @student.first_name.capitalize %> <%= @student.last_name.capitalize %></p>
                      <p><strong>Username:</strong> <%= @student.username %></p>
                      <p><strong>Grade:</strong> <%= @student.grade_level %></p>
                   </div>

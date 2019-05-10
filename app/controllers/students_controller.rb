@@ -13,6 +13,10 @@ class StudentsController < ApplicationController
       @courses=@student.courses
    end
 
+   def login_student
+   
+   end
+
    def create
       # @parent=Parent.exists?(params[:parent][:email])
       @student=Student.new(student_params)
