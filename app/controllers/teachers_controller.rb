@@ -5,6 +5,8 @@ class TeachersController < ApplicationController
       @courses=@teacher.courses
       @assignments=Assignment.where(course: @courses).all
       @attendances=Attendance.where(course: @courses).all
+      @date = params[:date] ? Date.parse(params[:date]) : Date.today
+   
    end
 
    def create

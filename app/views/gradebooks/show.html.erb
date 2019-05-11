@@ -7,8 +7,12 @@
    <body>
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-4">
-
-         <a class="navbar-brand" href="/administrators">Open-School</a>
+         <% if current_administrator %>
+            <a class="navbar-brand" href="/administrators">Open-School</a>
+         <% end %>
+         <% if current_teacher %>
+            <a class="navbar-brand" href="/teachers">Open-School</a>
+         <% end %>
 
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -95,7 +99,7 @@
                                        <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary disabled">Edit</a>
                                        <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger disabled" data-method="delete">Delete</a>
                                     <% end %>
-                                    <% if current_administrator %>
+                                    <% if current_administrator || current_teacher%>
                                        <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary">Edit</a>
                                        <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger" data-method="delete">Delete</a>
                                     <% end %>

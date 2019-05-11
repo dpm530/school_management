@@ -86,7 +86,7 @@
                   <% if current_guest %>
                      <a href="#" class="btn btn-primary disabled">Create</a>
                   <% end %>
-                  <% if current_administrator %>
+                  <% if current_administrator || current_teacher%>
                      <button type="submit" class="btn btn-primary">Create</button>
                   <% end %>
                </form>

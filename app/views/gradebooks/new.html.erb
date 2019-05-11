@@ -54,12 +54,6 @@
          </div>
       </nav>
 
-      <div class="container">
-         <div class="row">
-
-         </div>
-      </div>
-
       <div class="container border py-2 shadow p-4 mb-4 bg-white">
          <div class="row">
             <div class="col-md-12">
@@ -133,7 +127,7 @@
                   <% if current_guest %>
                      <a href="#" class="btn btn-primary disabled">Submit</a>
                   <% end %>
-                  <% if current_administrator %>
+                  <% if current_administrator || current_teacher%>
                      <button type="submit" class="btn btn-primary">Submit</button>
                   <% end %>
                </form>
