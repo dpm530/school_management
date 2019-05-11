@@ -90,7 +90,12 @@
                            <label for="end_date">End Date</label>
                            <input type="date" name="course[end_date]" id="end_date" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-outline-success">Create</button>
+                        <% if current_guest %>
+                           <a href="" class="btn btn-primary disabled">Create</a>
+                        <% end %>
+                        <% if current_administrator %>
+                           <button type="submit" class="btn btn-primary">Create</button>
+                        <% end %>
                      </form>
                   </div>
                </div>

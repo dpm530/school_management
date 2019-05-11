@@ -40,6 +40,15 @@ class GradebooksController < ApplicationController
    end
 
    def update
+      @gradebook=Gradebook.find(params[:id])
+      if @gradebook.update(update_gradebook_params)
+         flash[:notice]=["Updated Grade Record"]
+         return redirect_to "/gradebooks/"+ (@gradebook.course.id).to_s
+      end
+
+      errors=@gradebook.errors.full_messages
+      flash[:errors]=errors
+      return redirect_to edit_gradebook_path
    end
 
    def new
@@ -47,9 +56,19 @@ class GradebooksController < ApplicationController
       @course=Course.find(params[:course_id])
    end
 
+   def destroy
+      @gradebook=Gradebook.find(params[:id])
+      @gradebook.destroy
+      return redirect_to "/gradebooks/"+(@gradebook.course.id).to_s
+   end
+
    private
       def gradebook_params
          params.require(:gradebook).permit(:letter_score, :number_score, :comment, :session, :year, :start_date, :end_date).merge(student: @student).merge(course: @course)
+      end
+
+      def update_gradebook_params
+         params.require(:gradebook).permit(:letter_score, :number_score, :comment, :session, :year, :start_date, :end_date)
       end
 
 end

@@ -21,6 +21,8 @@ class CoursesController < ApplicationController
       @course=Course.find(params[:id])
       @student_course=Student.joins(:student_courses).where(student_courses:{ course_id: @course })
       @teacher_course=Teacher.joins(:teacher_courses).where(teacher_courses:{ course_id: @course })
+      @teacher_courses=TeacherCourse.where(course: @course).all
+      @student_courses=StudentCourse.where(course: @course).all
       @teachers=Teacher.all
       @students=Student.all
    end
@@ -45,7 +47,6 @@ class CoursesController < ApplicationController
       @course=Course.find(params[:id])
       @course.destroy
       return redirect_to courses_path
-
    end
 
    private

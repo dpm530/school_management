@@ -17,6 +17,13 @@ class StudentCoursesController < ApplicationController
 
    end
 
+   def destroy
+      @student_course=StudentCourse.find(params[:id])
+      @course=@student_course.course
+      @student_course.destroy
+      return redirect_to course_path(@course)
+   end
+
 
 
 

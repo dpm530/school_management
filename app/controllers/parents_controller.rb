@@ -4,14 +4,17 @@ class ParentsController < ApplicationController
       @parents=Parent.all
    end
 
+   def show
+      @parent=Parent.find(params[:id])
+   end
+
    def create
 
       @parent=Parent.new(parent_params)
 
       if @parent.save
          flash[:notice]=["Registered Successfully"]
-         session[:parent_id]=@parent.id
-         return redirect_to parents_path
+         return redirect_to administrators_path
       end
 
       errors=@parent.errors.full_messages
@@ -21,7 +24,7 @@ class ParentsController < ApplicationController
    end
 
    def edit
-      @parent=current_parent
+      @parent=Parent.find(params[:id])
    end
 
    def update
@@ -34,6 +37,12 @@ class ParentsController < ApplicationController
       errors=@parent.errors.full_messages
       flash[:errors]=errors
       return redirect_to edit_parent_path
+   end
+
+   def destroy
+      @parent=Parent.find(params[:id])
+      @parent.destroy
+      return redirect_to '/administrators'
    end
 
 

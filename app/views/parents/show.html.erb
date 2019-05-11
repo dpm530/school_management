@@ -7,7 +7,7 @@
    <body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 
-         <a class="navbar-brand" href="#">Open-School</a>
+         <a class="navbar-brand" href="/administrators">Open-School</a>
 
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,10 +17,7 @@
 
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                <li class="nav-item active">
-                  <a class="nav-link" href="/parents">Home</a>
-               </li>
-               <li class="nav-item" style="border-right: 1px solid #dee2e6;">
-                  <a class="nav-link" href="/students_contact_info/new">Add Address</a>
+                  <a class="nav-link" href="/administrators">Home</a>
                </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,11 +56,11 @@
                   </thead>
                   <tbody>
                      <tr>
-                        <td><%= current_parent.first_name.capitalize %></td>
-                        <td><%= current_parent.last_name.capitalize%></td>
-                        <td><%= current_parent.email %></td>
+                        <td><%= @parent.first_name.capitalize %></td>
+                        <td><%= @parent.last_name.capitalize%></td>
+                        <td><%= @parent.email %></td>
                         <td>
-                           <a href="/parents/<%= current_parent.id %>/edit" class="btn btn-primary">Edit</a>
+                           <a href="/parents/<%= @parent.id %>/edit" class="btn btn-primary">Edit</a>
                         </td>
                      </tr>
                   </tbody>
@@ -71,6 +68,18 @@
             </div>
          </div>
       </div>
+
+      <footer class="conatiner-fluid" style="background-color:#eee;padding-top:25px;padding-bottom:10px;">
+         <div class="container">
+            <div class="row">
+               <div class="col-1"></div>
+               <div class="col-md-10 text-center">
+                  <p> &copy; Open-School 2019. All Rights Reserved.</p>
+               </div>
+               <div class="col-1"></div>
+            </div>
+         </div>
+      </footer>
 
    </body>
 </html>

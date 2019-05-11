@@ -26,7 +26,7 @@
                <% if current_administrator %>
                   <li class="nav-item dropdown pl-1">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%=current_administrator.login%> <i class="fas fa-user-circle"></i>
+                         <%=current_administrator.login.capitalize %> <i class="fas fa-user-circle"></i>
                      </a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/administrators/<%= current_administrator.id %>">Profile</a>
@@ -38,7 +38,7 @@
                <% if current_guest %>
                   <li class="nav-item dropdown pl-1">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%=current_guest.login%> <i class="fas fa-user-circle"></i>
+                         Guest <i class="fas fa-user-circle"></i>
                      </a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="">Profile</a>
@@ -51,114 +51,209 @@
          </div>
       </nav>
 
-
-      <br>
       <div class="container">
          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8 text-center">
-               <a href="/courses" class="btn btn-primary">Courses Dashboard</a>
-               <a href="/assignments/<%= @course.id %>" class="btn btn-primary">Assignment</a>
-               <a href="/attendances/<%= @course.id %>" class="btn btn-primary">Attendance</a>
-               <a href="/sessions/logout" data-method="delete" class="btn btn-primary">Logout</a>
-            </div>
-            <div class="col-md-2"></div>
-         </div>
-         <br>
-         <div class="row">
-            <div class="col-md-12">
-               <div class="container">
-                  <table class="table table-bordered">
-                     <thead>
-                        <tr>
-                           <th>Teacher</th>
-                           <th>Course</th>
-                           <th>Subject</th>
-                           <th>Start Date</th>
-                           <th>End Date</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td>
-                              <% if @teacher_course %>
-                                 <% @teacher_course.each do |teacher| %>
-                                    <%= teacher.first_name.capitalize %> <%= teacher.last_name.capitalize %> <br>
-                                 <% end %>
-                              <% end %>
-                           </td>
-                           <td><%= @course.name.capitalize %></td>
-                           <td><%= @course.subject.capitalize %></td>
-                           <td><%= @course.start_date %></td>
-                           <td><%= @course.end_date %></td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-               <div class="container">
-                  <h1>Students in this class:</h1>
-                  <table class="table table-bordered">
-                     <thead>
-                        <tr>
-                           <th>Name</th>
-                           <th>Username</th>
-                           <th>Grade</th>
-                           <th>Action</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <% if @student_course %>
-                           <% @student_course.each do |student| %>
-                              <tr>
-                                 <td><a href="/<%=student.id%>/<%=@course.id%>"><%= student.first_name.capitalize %> <%= student.last_name.capitalize %> <%= @course.id %></a></td>
-                                 <td><%= student.username %></td>
-                                 <td><%= student.grade_level %></td>
-                                 <td></td>
-                              </tr>
-                           <% end %>
-                        <% end %>
-                     </tbody>
-                  </table>
-               </div>
-               <br>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-6">
-               <h1>Add Teacher to this Course:</h1>
-               <form action="/teacher-course/<%= @course.id %>" method="post">
-                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-                  <div class="form-group">
-                     <label for="email">Teachers:</label>
-                     <select class="form-control" name="email" id="email">
-                        <option></option>
-                        <% @teachers.each do |teacher|%>
-                           <option value="<%= teacher.email %>"><%= teacher.first_name.capitalize %> <%= teacher.last_name.capitalize %></option>
-                        <% end %>
-                     </select>
+            <div class="col-md-12 col-md-8 border shadow p-4 my-4 bg-white">
+               <h1>Course</h1>
+               <div class="row mb-4">
+                  <div class="col-md-12">
+                     <ul class="nav bg-light border">
+                        <li class="nav-item">
+                           <a class="nav-link" href="">Assignments</a>
+                        </li>
+                     </ul>
                   </div>
-                  <button type="submit" class="btn btn-outline-success">Add</button>
-               </form>
-            </div>
-            <div class="col-md-6">
-               <h1>Add Student to this Course:</h1>
-               <form action="/student-course/<%= @course.id %>" method="post">
-                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-                  <div class="form-group">
-                     <label for="username">Students:</label>
-                     <select class="form-control" name="username" id="username">
-                        <option></option>
-                        <% @students.each do |student|%>
-                           <option value="<%= student.username %>"><%= student.first_name.capitalize %> <%= student.last_name.capitalize %></option>
-                        <% end %>
-                     </select>
-                  </div>
-                  <button type="submit" class="btn btn-outline-success">Add</button>
-               </form>
+               </div>
+               <table class="table table-bordered my-4">
+                  <thead>
+                     <tr>
+                        <th>Name</th>
+                        <th>Subject</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td><%= @course.name.capitalize %></td>
+                        <td><%= @course.subject.capitalize %></td>
+                        <td><%= @course.start_date %></td>
+                        <td><%= @course.end_date %></td>
+                     </tr>
+                  </tbody>
+               </table>
             </div>
          </div>
       </div>
-      <br>
+
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 col-md-8 border shadow p-4 my-4 bg-white">
+               <h1>Course Teachers</h1>
+               <div class="row mb-4">
+                  <div class="col-md-12">
+                     <ul class="nav bg-light border">
+                        <li class="nav-item">
+                           <a class="nav-link" href="" data-toggle="modal" data-target="#addTeacher">Add Teacher</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <table class="table table-bordered my-4">
+                  <thead>
+                     <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% if @teacher_courses %>
+                        <% @teacher_courses.each do |course| %>
+                           <tr>
+                              <td><%= course.teacher.first_name.capitalize %></td>
+                              <td><%= course.teacher.last_name.capitalize %></td>
+                              <td><%= course.teacher.email %></td>
+                              <td><%= course.id %></td>
+                              <td>
+                                 <% if current_guest %>
+                                    <a href="/teacher_courses/<%= course.id %>/delete" class="btn btn-danger disabled" data-method="delete">Remove</a>
+                                 <% end %>
+                                 <% if current_administrator%>
+                                    <a href="/teacher_courses/<%= course.id %>/delete" class="btn btn-danger" data-method="delete">Remove</a>
+                                 <% end %>
+                              </td>
+                           </tr>
+                        <% end %>
+                     <% end %>
+                  </tbody>
+               </table>
+
+               <h1>Course Students</h1>
+               <div class="row mb-4">
+                  <div class="col-md-12">
+                     <ul class="nav bg-light border">
+                        <li class="nav-item">
+                           <a class="nav-link" href="" data-toggle="modal" data-target="#addStudent">Add Student</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <table class="table table-bordered my-4">
+                  <thead>
+                     <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Grade</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% if @student_courses %>
+                        <% @student_courses.each do |course| %>
+                           <tr>
+                              <td><%= course.student.first_name.capitalize %></td>
+                              <td><%= course.student.last_name.capitalize %></td>
+                              <td><%= course.student.username %></td>
+                              <td><%= course.student.grade_level %></td>
+                              <td>
+                                 <% if current_guest %>
+                                    <a href="/student_courses/<%= course.id %>/delete" class="btn btn-danger disabled" data-method="delete">Remove</a>
+                                 <% end %>
+                                 <% if current_administrator %>
+                                    <a href="/student_courses/<%= course.id %>/delete" class="btn btn-danger" data-method="delete">Remove</a>
+                                 <% end %>
+                              </td>
+                           </tr>
+                        <% end %>
+                     <% end %>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <!-- Add Teacher Modal -->
+      <div class="modal" id="addTeacher">
+         <div class="modal-dialog">
+            <div class="modal-content">
+
+               <div class="modal-header">
+                  <h4 class="modal-title">Add Teacher</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+
+               <div class="modal-body">
+                  <form action="/teacher_courses/<%= @course.id %>" method="post">
+                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                     <div class="form-group">
+                        <select class="form-control" name="email" id="email">
+                           <option></option>
+                           <% @teachers.each do |teacher|%>
+                              <% if !(@teacher_course.include? teacher) %>
+                                 <option value="<%= teacher.email %>"><%= teacher.first_name.capitalize %> <%= teacher.last_name.capitalize %></option>
+                              <% end %>
+                           <% end %>
+                        </select>
+                     </div>
+                     <% if current_guest %>
+                        <a href="#" class="btn btn-outline-success disabled">Add</a>
+                     <% end %>
+                     <% if current_administrator %>
+                        <button type="submit" class="btn btn-outline-success">Add</button>
+                     <% end %>
+                  </form>
+               </div>
+
+               <div class="modal-footer">
+               </div>
+
+            </div>
+         </div>
+      </div>
+      <!-- Add Teacher Modal End -->
+
+      <!-- Add Student Modal -->
+      <div class="modal" id="addStudent">
+         <div class="modal-dialog">
+            <div class="modal-content">
+
+               <div class="modal-header">
+                  <h4 class="modal-title">Add Student</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+
+               <div class="modal-body">
+                  <form action="/student_courses/<%= @course.id %>" method="post">
+                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                     <div class="form-group">
+                        <select class="form-control" name="username" id="username">
+                           <option></option>
+                           <% @students.each do |student|%>
+                              <% if !(@student_course.include? student) %>
+                              <option value="<%= student.username %>"><%= student.first_name.capitalize %> <%= student.last_name.capitalize %></option>
+                              <% end %>
+                           <% end %>
+                        </select>
+                     </div>
+                     <% if current_guest %>
+                        <a href="#" class="btn btn-outline-success disabled">Add</a>
+                     <% end %>
+                     <% if current_administrator %>
+                        <button type="submit" class="btn btn-outline-success">Add</button>
+                     <% end %>
+                  </form>
+               </div>
+
+               <div class="modal-footer">
+               </div>
+
+            </div>
+         </div>
+      </div>
+      <!-- Add Student Modal End -->
 
       <footer class="conatiner-fluid" style="background-color:#eee;padding-top:25px;padding-bottom:10px;">
          <div class="container">
@@ -171,6 +266,6 @@
             </div>
          </div>
       </footer>
-      
+
    </body>
 </html>

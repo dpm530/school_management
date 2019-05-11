@@ -29,7 +29,7 @@
                <% if current_administrator %>
                   <li class="nav-item dropdown pl-1">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%=current_administrator.login%> <i class="fas fa-user-circle"></i>
+                         <%=current_administrator.login.capitalize%> <i class="fas fa-user-circle"></i>
                      </a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/administrators/<%= current_administrator.id %>">Profile</a>
@@ -41,7 +41,7 @@
                <% if current_guest %>
                   <li class="nav-item dropdown pl-1">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%=current_guest.login%> <i class="fas fa-user-circle"></i>
+                        Guest <i class="fas fa-user-circle"></i>
                      </a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="">Profile</a>
@@ -91,8 +91,14 @@
                                        <%= grade.letter_score %>
                                  </td>
                                  <td>
-                                    <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary">Edit</a>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <% if current_guest %>
+                                       <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary disabled">Edit</a>
+                                       <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger disabled" data-method="delete">Delete</a>
+                                    <% end %>
+                                    <% if current_administrator %>
+                                       <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary">Edit</a>
+                                       <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger" data-method="delete">Delete</a>
+                                    <% end %>
                                  </td>
                               <% end %>
                            <% else %>

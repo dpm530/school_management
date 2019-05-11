@@ -26,7 +26,7 @@
                <% if current_administrator %>
                   <li class="nav-item dropdown pl-1">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%=current_administrator.login%> <i class="fas fa-user-circle"></i>
+                         <%=current_administrator.login.capitalize %> <i class="fas fa-user-circle"></i>
                      </a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/administrators/<%= current_administrator.id %>">Profile</a>
@@ -38,7 +38,7 @@
                <% if current_guest %>
                   <li class="nav-item dropdown pl-1">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%=current_guest.login%> <i class="fas fa-user-circle"></i>
+                         Guest <i class="fas fa-user-circle"></i>
                      </a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="">Profile</a>
@@ -55,8 +55,8 @@
          <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                <div class="card card-signin my-5">
-               <div class="card-body">
-                  <h5 class="card-title text-center">Create New Student Account</h5>
+                  <div class="card-body">
+                     <h5 class="card-title text-center">New Student</h5>
                      <form class="form-signin" action="/students" method="post">
                         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
 
@@ -112,7 +112,12 @@
                            <input type="checkbox" class="custom-control-input" id="customCheck1">
                            <label class="custom-control-label" for="customCheck1">Remember password</label>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
+                        <% if current_guest %>
+                           <a href="#" class="btn btn-lg btn-primary btn-block text-uppercase disabled">Create</a>
+                        <% end %>
+                        <% if current_administrator %>
+                           <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
+                        <% end %>
                      </form>
                   </div>
                </div>

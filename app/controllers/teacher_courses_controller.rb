@@ -22,5 +22,12 @@ class TeacherCoursesController < ApplicationController
 
    end
 
+   def destroy
+      @teacher_course=TeacherCourse.find(params[:id])
+      @course=@teacher_course.course
+      @teacher_course.destroy
+      return redirect_to course_path(@course)
+   end
+
 
 end

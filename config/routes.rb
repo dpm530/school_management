@@ -3,10 +3,19 @@ Rails.application.routes.draw do
    root 'application#index'
    get 'new' => 'application#new'
 
+   resources :teacher_courses do
+      collection do
+         post ':id' => 'teacher_courses#create'
+         delete ':id/delete' => 'teacher_courses#destroy'
+      end
+   end
 
-
-   post 'teacher-course/:id' => 'teacher_courses#create'
-   post 'student-course/:id' => 'student_courses#create'
+   resources :student_courses do
+      collection do
+         post ':id' => 'student_courses#create'
+         delete ':id/delete' => 'student_courses#destroy'
+      end
+   end
 
    resources :administrators do
       collection do
