@@ -67,6 +67,19 @@ Rails.application.routes.draw do
       end
    end
 
+   resources :teacher_parent_conversations do
+      collection do
+         post 'teacher/:teacher_id' => 'teacher_parent_conversations#teacher_create'
+         post 'parent/:parent_id' => 'teacher_parent_conversations#parent_create'
+      end
+   end
+
+   resources :teacher_parent_messages do
+      collection do
+         post 'teacher/:conversation_id' => 'teacher_parent_messages#teacher_create'
+         post 'parent/:conversation_id' => 'teacher_parent_messages#parent_create'
+      end
+   end
 
    resources :parents
    resources :students_contact_info

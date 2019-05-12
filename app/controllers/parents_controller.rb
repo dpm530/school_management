@@ -1,7 +1,18 @@
 class ParentsController < ApplicationController
 
    def index
-      @parents=Parent.all
+      @parent=Parent.find(current_parent.id)
+      @student=@parent.student
+      
+      if @student
+         @courses=@student.courses
+         @grades=Gradebook.where(student: @student).all
+      end
+      if @courses
+         @assignments=Assignment.where(course: @courses).all
+      end
+
+      @date = params[:date] ? Date.parse(params[:date]) : Date.today
    end
 
    def show

@@ -4,7 +4,12 @@ class StudentsController < ApplicationController
       @student=Student.find(current_student.id)
       @courses=@student.courses
       @assignments=Assignment.where(course: @courses).all
+      @grades=Gradebook.where(student: @student).all
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
+
+      puts "="*100
+      puts @grades.length
+      puts "="*100
    end
 
    def show
@@ -14,7 +19,7 @@ class StudentsController < ApplicationController
    end
 
    def login_student
-   
+
    end
 
    def create

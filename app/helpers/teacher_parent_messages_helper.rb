@@ -1,0 +1,2 @@
+module TeacherParentMessagesHelper
+end

@@ -1,6 +1,7 @@
 class Parent < ApplicationRecord
    belongs_to :student, optional: true
-   has_many :students
+   has_one :student
+   has_many :teacher_parent_conversations
 
    has_secure_password
 
