@@ -7,9 +7,6 @@ class StudentsController < ApplicationController
       @grades=Gradebook.where(student: @student).all
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
-      puts "="*100
-      puts @grades.length
-      puts "="*100
    end
 
    def show
@@ -18,17 +15,24 @@ class StudentsController < ApplicationController
       @courses=@student.courses
    end
 
+   def new
+      @parents=Parent.all
+   end
+
    def login_student
 
    end
 
    def create
-      # @parent=Parent.exists?(params[:parent][:email])
+      @parent=Parent.find(params[:parent][:id])
       @student=Student.new(student_params)
-      # @student.parent=@parent
-
+      @student.parent=@parent
+      
       if @student.save
          flash[:notice]=["Registered Successfully!"]
+         puts "="*100
+         puts @parent.id
+         puts "="*100
 
          return redirect_to administrators_path
       end
@@ -40,9 +44,11 @@ class StudentsController < ApplicationController
 
    def edit
       @student=Student.find(params[:id])
+      @parents=Parent.all
    end
 
    def update
+      @parent=Parent.find(params[:parent][:id])
       @student=Student.find(params[:id])
       if @student.update(student_params)
          flash[:notice]=["Updated Student"]

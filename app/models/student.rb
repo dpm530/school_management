@@ -1,5 +1,4 @@
 class Student < ApplicationRecord
-   has_one :parent
    belongs_to :parent, optional: true
    has_one :student_contact_info, dependent: :destroy
    has_many :student_courses, dependent: :destroy

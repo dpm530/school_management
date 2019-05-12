@@ -86,9 +86,7 @@
       </nav>
 
       <div class="container">
-         <h1> Mailbox </h1>
-
-
+         <h1> New Conversation: </h1>
 
             <% if current_teacher %>
                <form class="" action="/teacher_parent_conversations/teacher/<%= current_teacher.id %>" method="post">
@@ -120,7 +118,7 @@
                            <option value="<%= teacher.id %>"><%= teacher.first_name.capitalize %> <%= teacher.last_name.capitalize %></option>
                         <% end %>
                      </select>
-                     <button type="submit" name="button" class="btn btn-primary">Message</button>
+                     <button type="submit" name="button" class="btn btn-primary pt-2">Message</button>
                   </div>
 
                </form>
@@ -132,19 +130,30 @@
       <hr>
 
       <div class="container">
-         <h1>Conversations:</h1>
+         <div class="row">
+            <div class="col-md-6">
+               <h1>Inbox:</h1>
 
-         <div class="container">
-            <% @inbox.each do |item| %>
-            <% if current_parent%>
-            <a href="/teacher_parent_conversations/<%= item.id %>"><%= item.teacher.first_name.capitalize %> <%= item.teacher.last_name.capitalize %></a>
-            <% end %>
-            <% if current_teacher %>
-            <a href="/teacher_parent_conversations/<%= item.id %>"><%= item.parent.first_name.capitalize %> <%= item.parent.last_name.capitalize %></a>
-            <% end %>
-            <hr>
-            <% end %>
+               <% @inbox.each do |item| %>
+                  <% if current_parent%>
+                     <div class="card bg-light">
+                        <div class="card-body">
+                           <a href="/teacher_parent_conversations/<%= item.id %>"><%= item.teacher.first_name.capitalize %> <%= item.teacher.last_name.capitalize %></a>
+                        </div>
+                     </div>
+                  <% end %>
+                  <% if current_teacher %>
+                     <div class="card bg-light">
+                        <div class="card-body">
+                           <a href="/teacher_parent_conversations/<%= item.id %>"><%= item.parent.first_name.capitalize %> <%= item.parent.last_name.capitalize %></a>
+                        </div>
+                     </div>
+                  <% end %>
+                  <br>
+               <% end %>
+            </div>
          </div>
+
       </div>
 
    </body>

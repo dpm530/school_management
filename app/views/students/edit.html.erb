@@ -107,10 +107,15 @@
                               <option>12th</option>
                            </select>
                         </div>
-                        
-                        <div class="form-label-group">
-                           <input type="text" name="parent[email]" id="email" placeholder="Parent Email" class="form-control">
-                           <label for="email">Parent Email</label>
+
+                        <div class="form-group">
+                           <label for="parent">Parent:</label>
+                           <select class="form-control" name="parent[id]">
+                              <option></option>
+                              <% @parents.each do |parent| %>
+                                 <option value="<%= parent.id %>"><%= parent.first_name.capitalize %> <%= parent.last_name.capitalize %></option>
+                              <% end %>
+                           </select>
                         </div>
 
                         <div class="custom-control custom-checkbox mb-3">
