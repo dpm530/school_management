@@ -6,7 +6,7 @@ class TeachersController < ApplicationController
       @assignments=Assignment.where(course: @courses).all
       @attendances=Attendance.where(course: @courses).all
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
-   
+
    end
 
    def create
@@ -54,7 +54,7 @@ class TeachersController < ApplicationController
 
    private
       def teacher_params
-         params.require(:teacher).permit(:first_name, :last_name, :email, :password)
+         params.require(:teacher).permit(:first_name, :last_name, :email, :password, :image)
       end
 
 end

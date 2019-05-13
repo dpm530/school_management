@@ -57,7 +57,7 @@
                <div class="card card-signin my-5">
                   <div class="card-body">
                      <h5 class="card-title text-center">New Teacher</h5>
-                        <form class="form-signin" action="/teachers" method="post">
+                        <form class="form-signin" action="/teachers" method="post" enctype="multipart/form-data">
                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
 
                            <div class="form-label-group">
@@ -82,6 +82,11 @@
                            <div class="form-label-group">
                               <input type="password" name="teacher[password_confirmation]" id="password_confirmation" placeholder="Password" class="form-control">
                               <label for="password_confirmation">Password Confirmation</label>
+                           </div>
+
+                           <div class="form-group">
+                              <label for="image">Profile Picture</label>
+                              <input type="file" name="teacher[image]" multiple>
                            </div>
 
                            <div class="custom-control custom-checkbox mb-3">

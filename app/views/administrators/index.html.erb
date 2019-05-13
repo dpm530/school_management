@@ -161,6 +161,7 @@
                         <table class="table table-bordered table-hover">
                            <thead>
                               <tr>
+                                 <th>Picture</th>
                                  <th>First Name</th>
                                  <th>Last Name</th>
                                  <th>Email</th>
@@ -171,6 +172,7 @@
                            <tbody>
                               <% @teachers.each do |teacher| %>
                                  <tr>
+                                    <td><%= image_tag(teacher.image_url(:thumb).to_s) %></td>
                                     <td><%= teacher.first_name.capitalize %></td>
                                     <td><%= teacher.last_name.capitalize %></td>
                                     <td><%= teacher.email %></td>
@@ -218,6 +220,7 @@
                         <table class="table table-bordered table-hover">
                            <thead>
                               <tr>
+                                 <th>Picture</th>
                                  <th>First Name</th>
                                  <th>Last Name</th>
                                  <th>Username</th>
@@ -229,6 +232,7 @@
                            <tbody>
                               <% @students.each do |student| %>
                                  <tr>
+                                    <td><%= image_tag(student.image_url(:thumb).to_s) %></td>
                                     <td><%= student.first_name.capitalize %></td>
                                     <td><%= student.last_name.capitalize %></td>
                                     <td><%= student.username %></td>

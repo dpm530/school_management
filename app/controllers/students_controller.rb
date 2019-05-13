@@ -27,7 +27,7 @@ class StudentsController < ApplicationController
       @parent=Parent.find(params[:parent][:id])
       @student=Student.new(student_params)
       @student.parent=@parent
-      
+
       if @student.save
          flash[:notice]=["Registered Successfully!"]
          puts "="*100
@@ -48,9 +48,9 @@ class StudentsController < ApplicationController
    end
 
    def update
-      @parent=Parent.find(params[:parent][:id])
+      # @parent=Parent.find(params[:parent][:id])
       @student=Student.find(params[:id])
-      if @student.update(student_params)
+      if @student.update(update_student_params)
          flash[:notice]=["Updated Student"]
          return redirect_to student_path(@student)
       end
@@ -71,6 +71,10 @@ class StudentsController < ApplicationController
 
       def student_params
          params.require(:student).permit(:first_name, :last_name, :username, :password, :grade_level).merge(parent: @parent)
+      end
+
+      def update_student_params
+         params.require(:student).permit(:first_name, :last_name, :username, :password, :grade_level, :image).merge(parent: @parent)
       end
 
 end

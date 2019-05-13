@@ -81,7 +81,12 @@ Rails.application.routes.draw do
       end
    end
 
-   resources :parents
+   resources :parents do
+      collection do
+         get 'login' => 'parents#login_parent'
+      end
+   end
+
    resources :students_contact_info
    resources :teachers_contact_info
    resources :courses

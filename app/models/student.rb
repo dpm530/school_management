@@ -6,6 +6,8 @@ class Student < ApplicationRecord
    has_many :attendances, dependent: :destroy
    has_many :gradebooks, dependent: :destroy
 
+   mount_uploader :image, StudentUploader
+
    has_secure_password
 
    validates :first_name, :last_name, presence: true, length: { minimum: 2 }

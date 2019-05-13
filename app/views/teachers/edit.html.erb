@@ -60,7 +60,7 @@
                <div class="card card-signin my-5">
                <div class="card-body">
                   <h5 class="card-title text-center">Edit Teacher Account</h5>
-                     <form class="form-signin" action="/teachers/<%= @teacher.id %>" method="post">
+                     <form class="form-signin" action="/teachers/<%= @teacher.id %>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                         <input type="hidden" name="_method" value="patch">
 
@@ -87,6 +87,11 @@
                         <div class="form-label-group">
                            <input type="password" name="teacher[password_confirmation]" id="password_confirmation" value="<%= @teacher.password %>" placeholder="Password" class="form-control">
                            <label for="password_confirmation">Password Confirmation</label>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="image">Profile Picture</label>
+                           <input type="file" name="teacher[image]" multiple>
                         </div>
 
                         <div class="custom-control custom-checkbox mb-3">

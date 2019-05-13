@@ -6,6 +6,8 @@ class Teacher < ApplicationRecord
 
    has_secure_password
 
+   mount_uploader :image, TeacherUploader
+
    validates :first_name, :last_name, presence: true, length: { minimum: 2 }
    validates :email, presence: true, uniqueness: true
    validates_format_of :email,with:  /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
