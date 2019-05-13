@@ -55,7 +55,7 @@
          <div class="row">
             <div class="col-md-8 mx-auto border py-2 shadow p-4 mb-4 bg-white">
                <h5 class="card-title text-center">Edit Parent</h5>
-               <form action="/parents/<%= @parent.id %>" method="post">
+               <form action="/parents/<%= @parent.id %>" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                   <input type="hidden" name="_method" value="patch">
 
@@ -82,6 +82,11 @@
                   <div class="form-group">
                      <label for="password_confirmation">Password Confirmation</label>
                      <input type="password" name="parent[password_confirmation]" id="password_confirmation" value="<%= @parent.password %>" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                     <label for="image">Profile Picture</label>
+                     <input type="file" name="parent[image]" multiple>
                   </div>
 
                   <button type="submit" class="btn btn-success">Update</button>

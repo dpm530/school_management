@@ -11,6 +11,8 @@ class Parent < ApplicationRecord
 
    before_save :downcase_fields
 
+   mount_uploader :image, ParentUploader
+
    def downcase_fields
       self.first_name.downcase!
       self.last_name.downcase!

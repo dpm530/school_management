@@ -16,7 +16,7 @@ class ParentsController < ApplicationController
    end
 
    def login_parent
-   end    
+   end
 
    def show
       @parent=Parent.find(params[:id])
@@ -43,6 +43,7 @@ class ParentsController < ApplicationController
 
    def update
       @parent=Parent.find(params[:id])
+      
       if @parent.update(parent_params)
          flash[:notice]=["Updated Parent"]
          return redirect_to parent_path(@parent)
@@ -61,9 +62,8 @@ class ParentsController < ApplicationController
 
 
    private
-
       def parent_params
-         params.require(:parent).permit(:first_name, :last_name, :email, :password).merge(student: @student)
+         params.require(:parent).permit(:first_name, :last_name, :email, :password, :image).merge(student: @student)
       end
 
 

@@ -38,7 +38,7 @@ class TeachersController < ApplicationController
       @teacher=Teacher.find(params[:id])
       if @teacher.update(teacher_params)
          flash[:notice]=["Updated Teacher"]
-         return redirect_to edit_teacher_path
+         return redirect_to teacher_path(@teacher)
       end
 
       errors=@teacher.errors.full_messages
