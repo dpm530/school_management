@@ -87,8 +87,20 @@ Rails.application.routes.draw do
       end
    end
 
-   resources :students_contact_info
-   resources :teachers_contact_info
+   resources :teachers_contact_info do
+      collection do
+         get 'new/:id' => 'teachers_contact_info#new'
+         post ':id' => 'teachers_contact_info#create'
+      end
+   end
+
+   resources :students_contact_info do
+      collection do
+         get 'new/:id' => 'students_contact_info#new'
+         post ':id' => 'students_contact_info#create'
+      end
+   end
+
    resources :courses
 
 

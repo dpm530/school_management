@@ -30,7 +30,19 @@ class ParentUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
+    process resize_to_fit: [30, 30]
+  end
+
+  version :profile do
     process resize_to_fit: [100, 100]
+  end
+
+  version :profile_medium do
+    process resize_to_fit: [300, 300]
+  end
+
+  version :profile_large do
+    process resize_to_fit: [500, 500]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

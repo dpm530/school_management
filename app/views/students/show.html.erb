@@ -20,7 +20,7 @@
                   <a class="nav-link" href="/administrators">Home</a>
                </li>
                <li class="nav-item" style="border-right: 1px solid #dee2e6;">
-                  <a class="nav-link" href="/students_contact_info/new">Add Address</a>
+                  <a class="nav-link" href="/students_contact_info/new/<%= @student.id %>">Add Address</a>
                </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,20 +47,27 @@
                      <h1>Profile:</h1>
                   </div>
                </div>
+               <hr>
                <div class="row">
-                  <div class="col-md-4">
-                     <%= image_tag(@student.image_url.to_s, class:"w-100") %>
+                  <div class="col-md-4 mb-2 text-center">
+                     <div class="border py-4">
+                        <%= image_tag(@student.image_url(:profile).to_s) %>
+                     </div>
                   </div>
                </div>
+               <hr>
                <div class="row">
                   <div class="col-md-10">
                      <p><strong>Name:</strong> <%= @student.first_name.capitalize %> <%= @student.last_name.capitalize %></p>
+                     <hr>
                      <p><strong>Username:</strong> <%= @student.username %></p>
+                     <hr>
                      <p><strong>Grade:</strong> <%= @student.grade_level %></p>
+                     <hr>
                   </div>
                </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 border-left">
                <div class="row">
                   <div class="col-md-10">
                      <h1>Contact Information:</h1>
@@ -70,6 +77,8 @@
                      <p><strong>City:</strong> <%= @contact.city %></p>
                      <p><strong>State:</strong> <%= @contact.state %></p>
                      <p><strong>Zipcode:</strong> <%= @contact.zipcode %></p>
+                     <a href="/students_contact_info/<%= @contact.id %>/edit" class="btn btn-primary">Edit</a>
+                     <a href="/students_contact_info/<%= @contact.id %>" data-method="delete" class="btn btn-danger">Delete</a>
                      <% end %>
                   </div>
                </div>

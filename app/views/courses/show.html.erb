@@ -102,6 +102,7 @@
                <table class="table table-bordered my-4">
                   <thead>
                      <tr>
+                        <th>Picture</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
@@ -112,6 +113,7 @@
                      <% if @teacher_courses %>
                         <% @teacher_courses.each do |course| %>
                            <tr>
+                              <td><%= image_tag(course.teacher.image_url(:thumb).to_s) %></td>
                               <td><%= course.teacher.first_name.capitalize %></td>
                               <td><%= course.teacher.last_name.capitalize %></td>
                               <td><%= course.teacher.email %></td>
@@ -154,6 +156,7 @@
                      <% if @student_courses %>
                         <% @student_courses.each do |course| %>
                            <tr>
+                              <td><%= image_tag(course.student.image_url(:thumb).to_s) %></td>
                               <td><%= course.student.first_name.capitalize %></td>
                               <td><%= course.student.last_name.capitalize %></td>
                               <td><%= course.student.username %></td>

@@ -19,7 +19,7 @@
       <div class="row">
          <div class="col-md-1"></div>
          <div class="col-md-10">
-            <form action="/students_contact_info" method="post">
+            <form action="/students_contact_info/<%= @student.id %>" method="post">
                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                <div class="form-group">
                   <label for="line_1_address">Address Line 1</label>

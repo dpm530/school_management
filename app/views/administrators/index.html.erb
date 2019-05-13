@@ -172,7 +172,7 @@
                            <tbody>
                               <% @teachers.each do |teacher| %>
                                  <tr>
-                                    <td><%= image_tag(teacher.image_url(:thumb).to_s) %></td>
+                                    <td><%= image_tag(teacher.image_url(:profile).to_s) %></td>
                                     <td><%= teacher.first_name.capitalize %></td>
                                     <td><%= teacher.last_name.capitalize %></td>
                                     <td><%= teacher.email %></td>
@@ -232,7 +232,7 @@
                            <tbody>
                               <% @students.each do |student| %>
                                  <tr>
-                                    <td><%= image_tag(student.image_url(:thumb).to_s) %></td>
+                                    <td><%= image_tag(student.image_url(:profile).to_s) %></td>
                                     <td><%= student.first_name.capitalize %></td>
                                     <td><%= student.last_name.capitalize %></td>
                                     <td><%= student.username %></td>
@@ -292,7 +292,7 @@
                            <tbody>
                               <% @parents.each do |parent| %>
                                  <tr>
-                                    <td><%= image_tag(parent.image_url(:thumb).to_s) %></td>
+                                    <td><%= image_tag(parent.image_url(:profile).to_s) %></td>
                                     <td><%= parent.first_name.capitalize %></td>
                                     <td><%= parent.last_name.capitalize %></td>
                                     <td><%= parent.email %></td>

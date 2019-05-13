@@ -20,7 +20,7 @@
                   <a class="nav-link" href="/administrators">Home</a>
                </li>
                <li class="nav-item active">
-                  <a class="nav-link" href="/teachers_contact_info/new">New contact info</a>
+                  <a class="nav-link" href="/teachers_contact_info/new/<%= @teacher.id %>">New contact info</a>
                </li>
                <li class="nav-item active">
                   <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
@@ -65,10 +65,21 @@
                      <h1>Teacher:</h1>
                   </div>
                </div>
+               <hr>
                <div class="row">
-                  <div class="col-md-12">
-                     <p><strong>Name:</strong> <%= @teacher.first_name.capitalize %> <%= @teacher.first_name.capitalize %></p>
+                  <div class="col-md-4 mb-2 text-center">
+                     <div class="border py-4">
+                        <%= image_tag(@teacher.image_url(:profile).to_s) %>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+               <div class="row">
+                  <div class="col-md-12 mt-2">
+                     <p><strong>Name:</strong> <%= @teacher.first_name.capitalize %> <%= @teacher.last_name.capitalize %></p>
+                     <hr>
                      <p><strong>Email:</strong> <%= @teacher.email %></p>
+                     <hr>
                   </div>
                </div>
             </div>
@@ -86,6 +97,8 @@
                         <p><strong>City:</strong> <%= @contact.city %></p>
                         <p><strong>State:</strong> <%= @contact.state %></p>
                         <p><strong>Zipcode:</strong> <%= @contact.zipcode %></p>
+                        <a href="/teachers_contact_info/<%= @contact.id %>/edit" class="btn btn-primary">Edit</a>
+                        <a href="/teachers_contact_info/<%= @contact.id %>" data-method="delete" class="btn btn-danger">Delete</a>
                      <% end %>
                   </div>
                </div>

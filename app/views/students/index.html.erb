@@ -38,7 +38,7 @@
                   </li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%=current_student.first_name.capitalize %>  <%=current_student.last_name.capitalize %> <i class="fas fa-user-circle"></i>
+                         <%=current_student.first_name.capitalize %>  <%=current_student.last_name.capitalize %> <%= image_tag(current_student.image_url(:thumb).to_s) %>
                      </a>
                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/students_contact_info">Profile</a>

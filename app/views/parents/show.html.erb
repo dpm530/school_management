@@ -43,28 +43,23 @@
                <h1>Profile:</h1>
             </div>
          </div>
-         <div class="row pt-2">
-            <div class="col-md-12">
-               <table class="table table-hover">
-                  <thead>
-                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td><%= @parent.first_name.capitalize %></td>
-                        <td><%= @parent.last_name.capitalize%></td>
-                        <td><%= @parent.email %></td>
-                        <td>
-                           <a href="/parents/<%= @parent.id %>/edit" class="btn btn-primary">Edit</a>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
+         <hr>
+         <div class="row">
+            <div class="col-md-4 mb-2">
+
+               <%= image_tag(@parent.image_url(:profile).to_s) %>
+
+            </div>
+         </div>
+         <hr>
+         <div class="row">
+            <div class="col-md-12 mt-2">
+               <p><strong>Name:</strong> <%= @parent.first_name.capitalize %> <%= @parent.last_name.capitalize %></p>
+               <hr>
+               <p><strong>Email:</strong> <%= @parent.email %></p>
+               <hr>
+               <p><strong>Student:</strong> <%= @parent.student %></p>
+               <hr>
             </div>
          </div>
       </div>
