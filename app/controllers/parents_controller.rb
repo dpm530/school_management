@@ -1,4 +1,6 @@
 class ParentsController < ApplicationController
+   before_action :require_parent_login, only: [:index]
+   layout "users_dashboard", only: [:index]
 
    def index
       @parent=Parent.find(current_parent.id)
@@ -43,7 +45,7 @@ class ParentsController < ApplicationController
 
    def update
       @parent=Parent.find(params[:id])
-      
+
       if @parent.update(parent_params)
          flash[:notice]=["Updated Parent"]
          return redirect_to parent_path(@parent)

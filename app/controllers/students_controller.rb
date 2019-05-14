@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+   before_action :require_student_login, only: [:index]
+   layout "users_dashboard", only: [:index]
 
    def index
       @student=Student.find(current_student.id)

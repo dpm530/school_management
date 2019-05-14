@@ -1,4 +1,7 @@
 class TeachersController < ApplicationController
+   before_action :require_teacher_login, only: [:index]
+   layout "users_dashboard", only: [:index]
+   layout "admin_dashboard", only: [:new]
 
    def index
       @teacher=Teacher.find(current_teacher.id)
@@ -7,6 +10,9 @@ class TeachersController < ApplicationController
       @attendances=Attendance.where(course: @courses).all
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
+   end
+
+   def new
    end
 
    def create

@@ -1,4 +1,6 @@
 class AdministratorsController < ApplicationController
+   before_action :require_admin_login, only: [:index]
+   layout "admin_dashboard", only: [:index]
 
 
    def index
