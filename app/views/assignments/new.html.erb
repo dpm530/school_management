@@ -1,109 +1,39 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title></title>
-   </head>
-   <body>
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-4">
-
-         <a class="navbar-brand" href="/administrators">Open-School</a>
-
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-               <li class="nav-item active">
-                  <a class="nav-link" href="/administrators">Home</a>
-               </li>
-               <li class="nav-item active">
-                  <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
-               </li>
-               <li class="nav-item border-right pr-2">
-                  <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
-               </li>
-               <% if current_administrator %>
-                  <li class="nav-item dropdown pl-1">
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%= current_administrator.login.capitalize %> <i class="fas fa-user-circle"></i>
-                     </a>
-                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/administrators/<%= current_administrator.id %>">Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
-                     </div>
-                  </li>
-               <% end %>
-               <% if current_guest %>
-                  <li class="nav-item dropdown pl-1">
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         Guest <i class="fas fa-user-circle"></i>
-                     </a>
-                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="">Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
-                     </div>
-                  </li>
-               <% end %>
-            </ul>
-         </div>
-      </nav>
-
-      <div class="container">
-         <div class="row">
-            <div class="col-md-12 text-center">
-               <h1>Assignments Create</h1>
-               <a href="/courses" class="btn btn-primary">Home</a>
-               <a href="/sessions/logout" data-method="delete" class="btn btn-primary">Logout</a>
-               <h2>Course: <%= @course.name.capitalize %></h2>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-8 mx-auto">
-               <form action="/assignments/create/<%= @course.id %>" method="post">
-                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-                  <div class="form-group">
-                     <label for="name">Assignment:</label>
-                     <input type="text" name="assignment[name]" class="form-control">
-                  </div>
-                  <div class="form-group">
-                     <label for="description">Description:</label>
-                     <textarea name="assignment[description]" rows="8" cols="80"></textarea>
-                  </div>
-                  <div class="form-group">
-                     <label for="date_assigned">Date Assigned:</label>
-                     <input type="date" name="assignment[date_assigned]" class="form-control">
-                  </div>
-                  <div class="form-group">
-                     <label for="due_date">Due Date:</label>
-                     <input type="date" name="assignment[due_date]" class="form-control">
-                  </div>
-                  <% if current_guest %>
-                     <a href="#" class="btn btn-primary disabled">Create</a>
-                  <% end %>
-                  <% if current_administrator || current_teacher%>
-                     <button type="submit" class="btn btn-primary">Create</button>
-                  <% end %>
-               </form>
-            </div>
-         </div>
+<div class="container">
+   <div class="row">
+      <div class="col-md-12 text-center">
+         <h1>Assignments Create</h1>
+         <a href="/courses" class="btn btn-primary">Home</a>
+         <a href="/sessions/logout" data-method="delete" class="btn btn-primary">Logout</a>
+         <h2>Course: <%= @course.name.capitalize %></h2>
       </div>
-
-      <footer class="conatiner-fluid pt-4" style="background-color:#eee;">
-         <div class="container">
-            <div class="row">
-               <div class="col-1"></div>
-               <div class="col-md-10 text-center">
-                  <p> &copy; Open-School 2019. All Rights Reserved.</p>
-               </div>
-               <div class="col-1"></div>
+   </div>
+   <div class="row">
+      <div class="col-md-8 mx-auto">
+         <form action="/assignments/create/<%= @course.id %>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+            <div class="form-group">
+               <label for="name">Assignment:</label>
+               <input type="text" name="assignment[name]" class="form-control">
             </div>
-         </div>
-      </footer>
-   </body>
-</html>
+            <div class="form-group">
+               <label for="description">Description:</label>
+               <textarea name="assignment[description]" rows="8" cols="80"></textarea>
+            </div>
+            <div class="form-group">
+               <label for="date_assigned">Date Assigned:</label>
+               <input type="date" name="assignment[date_assigned]" class="form-control">
+            </div>
+            <div class="form-group">
+               <label for="due_date">Due Date:</label>
+               <input type="date" name="assignment[due_date]" class="form-control">
+            </div>
+            <% if current_guest %>
+               <a href="#" class="btn btn-primary disabled">Create</a>
+            <% end %>
+            <% if current_administrator || current_teacher%>
+               <button type="submit" class="btn btn-primary">Create</button>
+            <% end %>
+         </form>
+      </div>
+   </div>
+</div>

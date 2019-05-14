@@ -1,6 +1,6 @@
 class AdministratorsController < ApplicationController
    before_action :require_admin_login, only: [:index]
-   layout "admin_dashboard", only: [:index]
+   layout "admin_dashboard", only: [:index, :teachers, :students, :parents, :courses, :gradebook, :assignments, :edit, :show, :new]
 
 
    def index
@@ -10,6 +10,34 @@ class AdministratorsController < ApplicationController
       @parents=Parent.all
       @gradebooks=Gradebook.all
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
+   end
+
+   def teachers
+      @teachers=Teacher.all
+   end
+
+   def students
+      @students=Student.all
+   end
+
+   def parents
+      @parents=Parent.all
+   end
+
+   def courses
+      @courses=Course.all
+   end
+
+   def gradebook
+      @courses=Course.all
+      @gradebooks=Gradebook.all
+   end
+
+   def assignments
+      @courses=Course.all
+   end
+
+   def show
    end
 
    def create

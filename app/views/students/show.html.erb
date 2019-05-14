@@ -1,136 +1,80 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title></title>
-   </head>
-   <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-4">
-
-         <a class="navbar-brand" href="/administrators">Open-School</a>
-
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-               <li class="nav-item active">
-                  <a class="nav-link" href="/administrators">Home</a>
-               </li>
-               <li class="nav-item" style="border-right: 1px solid #dee2e6;">
-                  <a class="nav-link" href="/students_contact_info/new/<%= @student.id %>">Add Address</a>
-               </li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <i class="fas fa-user-circle"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                     <a class="dropdown-item" href="#">Profile</a>
-                     <a class="dropdown-item" href="#">Settings</a>
-                     <div class="dropdown-divider"></div>
-                     <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
-                  </div>
-               </li>
-            </ul>
-
-         </div>
-      </nav>
-
-
-      <div class="container border py-2 shadow p-4 mb-4 bg-white">
-         <div class="row">
-            <div class="col-md-6">
-               <div class="row">
-                  <div class="col-md-12">
-                     <h1>Profile:</h1>
-                  </div>
-               </div>
-               <hr>
-               <div class="row">
-                  <div class="col-md-4 mb-2 text-center">
-                     <div class="border py-4">
-                        <%= image_tag(@student.image_url(:profile).to_s) %>
-                     </div>
-                  </div>
-               </div>
-               <hr>
-               <div class="row">
-                  <div class="col-md-10">
-                     <p><strong>Name:</strong> <%= @student.first_name.capitalize %> <%= @student.last_name.capitalize %></p>
-                     <hr>
-                     <p><strong>Username:</strong> <%= @student.username %></p>
-                     <hr>
-                     <p><strong>Grade:</strong> <%= @student.grade_level %></p>
-                     <hr>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-6 border-left">
-               <div class="row">
-                  <div class="col-md-10">
-                     <h1>Contact Information:</h1>
-                     <% if @contact %>
-                     <p><strong>Address Line 1:</strong> <%= @contact.line_1_address %></p>
-                     <p><strong>Address Line 2:</strong> <%= @contact.line_2_address %></p>
-                     <p><strong>City:</strong> <%= @contact.city %></p>
-                     <p><strong>State:</strong> <%= @contact.state %></p>
-                     <p><strong>Zipcode:</strong> <%= @contact.zipcode %></p>
-                     <a href="/students_contact_info/<%= @contact.id %>/edit" class="btn btn-primary">Edit</a>
-                     <a href="/students_contact_info/<%= @contact.id %>" data-method="delete" class="btn btn-danger">Delete</a>
-                     <% end %>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-
-      <div class="container border py-2 shadow p-4 mb-4 bg-white">
-         <div class="row">
-            <div class="col-md-6">
-               <h1>Courses</h1>
-            </div>
-         </div>
+<div class="container border py-2 shadow p-4 mb-4 bg-white">
+   <div class="row">
+      <div class="col-md-6">
          <div class="row">
             <div class="col-md-12">
-               <table class="table table-hover">
-                  <thead>
-                     <tr>
-                        <th>Course</th>
-                        <th>Subject</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <% if @courses %>
-                        <% @courses.each do |course| %>
-                           <tr>
-                              <td><%= course.name.capitalize %></td>
-                              <td><%= course.subject.capitalize%></td>
-                              <td><%=  course.start_date %></td>
-                              <td><%= course.end_date %></td>
-                           </tr>
-                        <% end %>
-                     <% end %>
-                  </tbody>
-               </table>
+               <h1>Profile:</h1>
+            </div>
+         </div>
+         <hr>
+         <div class="row">
+            <div class="col-md-4 mb-2 text-center">
+               <div class="border py-4">
+                  <%= image_tag(@student.image_url(:profile).to_s) %>
+               </div>
+            </div>
+         </div>
+         <hr>
+         <div class="row">
+            <div class="col-md-10">
+               <p><strong>Name:</strong> <%= @student.first_name.capitalize %> <%= @student.last_name.capitalize %></p>
+               <hr>
+               <p><strong>Username:</strong> <%= @student.username %></p>
+               <hr>
+               <p><strong>Grade:</strong> <%= @student.grade_level %></p>
+               <hr>
             </div>
          </div>
       </div>
-
-      <footer class="conatiner-fluid pt-4" style="background-color:#eee;">
-         <div class="container">
-            <div class="row">
-               <div class="col-1"></div>
-               <div class="col-md-10 text-center">
-                  <p> &copy; Open-School 2019. All Rights Reserved.</p>
-               </div>
-               <div class="col-1"></div>
+      <div class="col-md-6 border-left">
+         <div class="row">
+            <div class="col-md-10">
+               <h1>Contact Information:</h1>
+               <% if @contact %>
+               <p><strong>Address Line 1:</strong> <%= @contact.line_1_address %></p>
+               <p><strong>Address Line 2:</strong> <%= @contact.line_2_address %></p>
+               <p><strong>City:</strong> <%= @contact.city %></p>
+               <p><strong>State:</strong> <%= @contact.state %></p>
+               <p><strong>Zipcode:</strong> <%= @contact.zipcode %></p>
+               <a href="/students_contact_info/<%= @contact.id %>/edit" class="btn btn-primary">Edit</a>
+               <a href="/students_contact_info/<%= @contact.id %>" data-method="delete" class="btn btn-danger">Delete</a>
+               <% end %>
             </div>
          </div>
-      </footer>
+      </div>
+   </div>
+</div>
 
-   </body>
-</html>
+<div class="container border py-2 shadow p-4 mb-4 bg-white">
+   <div class="row">
+      <div class="col-md-6">
+         <h1>Courses</h1>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+         <table class="table table-hover">
+            <thead>
+               <tr>
+                  <th>Course</th>
+                  <th>Subject</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+               </tr>
+            </thead>
+            <tbody>
+               <% if @courses %>
+                  <% @courses.each do |course| %>
+                     <tr>
+                        <td><%= course.name.capitalize %></td>
+                        <td><%= course.subject.capitalize%></td>
+                        <td><%=  course.start_date %></td>
+                        <td><%= course.end_date %></td>
+                     </tr>
+                  <% end %>
+               <% end %>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>

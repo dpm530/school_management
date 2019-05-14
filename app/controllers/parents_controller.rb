@@ -1,6 +1,7 @@
 class ParentsController < ApplicationController
    before_action :require_parent_login, only: [:index]
    layout "users_dashboard", only: [:index]
+   layout "admin_dashboard", only: [:new, :show, :edit]
 
    def index
       @parent=Parent.find(current_parent.id)

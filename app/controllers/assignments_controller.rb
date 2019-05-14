@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+   layout "admin_dashboard", only: [:new, :show, :edit]
 
    def create
       @course=Course.find(params[:id])

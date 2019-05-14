@@ -1,7 +1,7 @@
 class TeachersController < ApplicationController
    before_action :require_teacher_login, only: [:index]
    layout "users_dashboard", only: [:index]
-   layout "admin_dashboard", only: [:new]
+   layout "admin_dashboard", only: [:new, :show, :edit]
 
    def index
       @teacher=Teacher.find(current_teacher.id)

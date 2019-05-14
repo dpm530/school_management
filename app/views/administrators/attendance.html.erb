@@ -1,0 +1,46 @@
+<!-- Attendance Section -->
+<div class="tab-pane container active" id="attendance">
+   <div class="row py-2">
+      <div class="col-md-12">
+         <h1>Attendance</h1>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+         <% @courses.each do |course| %>
+         <div class="card my-2">
+            <div class="card-header">
+               <h5><%= course.name.capitalize %></h5>
+            </div>
+
+
+               <div class="card-body">
+                  <table class="table table-hover">
+                     <thead>
+                        <tr>
+                           <th>Name</th>
+                           <th>attendance</th>
+                           <th>Date</th>
+                           <th>Actions</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <% course.attendances.each do |attendance| %>
+                        <tr>
+                           <td><%= attendance.student.first_name %></td>
+                           <td><%= attendance.present %></td>
+                           <td><a href="/attendances/<%= course.id %>"><%= attendance.date.strftime("%B %d %Y") %></a></td>
+                           <td><a href="#" class="btn">Action</a></td>
+                        </tr>
+                        <% end %>
+                     </tbody>
+                  </table>
+               </div>
+
+
+         </div>
+         <% end %>
+      </div>
+   </div>
+</div>
+<!-- Attendance Section End -->

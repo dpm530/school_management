@@ -1,8 +1,12 @@
 class CoursesController < ApplicationController
+   layout "admin_dashboard", only: [:new, :show, :edit]
 
    def index
       @courses=Course.all
    end
+
+   def new
+   end    
 
    def create
       @course=Course.new(course_params)

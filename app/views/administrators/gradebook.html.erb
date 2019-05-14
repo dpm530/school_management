@@ -1,0 +1,40 @@
+<!-- Gradebook Section -->
+<div class="tab-pane container active" id="gradebook">
+   <div class="row pt-2">
+      <div class="col-md-12">
+         <h1>Listing Grades</h1>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+         <% @courses.each do |course| %>
+            <div class="card my-2">
+               <div class="card-header">
+                  <h5><a href="/gradebooks/<%= course.id %>"><%= course.name.capitalize %></a></h5>
+               </div>
+               <div class="card-body">
+                  <table class="table table-hover">
+                     <thead>
+                        <tr>
+                           <th>Students Enrolled</th>
+                           <th>Course Average</th>
+                           <th>Actions</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+
+                        <tr>
+                           <td><%= course.students.length %></td>
+                           <td><%= course.gradebooks.average(:number_score) %></td>
+                           <td><a href="#" class="btn">Action</a></td>
+                        </tr>
+
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         <% end %>
+      </div>
+   </div>
+</div>
+<!-- Gradebook Section End -->

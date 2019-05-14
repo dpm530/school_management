@@ -1,0 +1,58 @@
+<!-- Teachers Section -->
+<div class="tab-pane container active" id="teachers">
+   <div class="row pt-2">
+      <div class="col-md-12">
+         <h1>Listing Teachers</h1>
+      </div>
+   </div>
+   <div class="row mb-4">
+      <div class="col-md-12">
+         <ul class="nav bg-light border">
+            <li class="nav-item">
+               <a class="nav-link" href="/teachers/new">Create Teacher</a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+         <table class="table table-bordered table-hover">
+            <thead>
+               <tr>
+                  <th>Picture</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Classes</th>
+                  <th>Actions</th>
+               </tr>
+            </thead>
+            <tbody>
+               <% @teachers.each do |teacher| %>
+               <tr>
+                  <td><%= image_tag(teacher.image_url(:profile).to_s) %></td>
+                  <td><%= teacher.first_name.capitalize %></td>
+                  <td><%= teacher.last_name.capitalize %></td>
+                  <td><%= teacher.email %></td>
+                  <td><%= teacher.courses.length %></td>
+                  <% if current_administrator %>
+                  <td>
+                     <a href="/teachers/<%= teacher.id %>" class="btn btn-primary">Details</a>
+                     <a href="/teachers/<%= teacher.id %>/edit" class="btn btn-success">Edit</a>
+                     <a href="/teachers/<%= teacher.id %>" data-method="delete" class="btn btn-danger">Delete</a>
+                  </td>
+                  <% else %>
+                  <td>
+                     <a href="/teachers/<%= teacher.id %>" class="btn btn-primary">Details</a>
+                     <a href="/teachers/<%= teacher.id %>/edit" class="btn btn-success disabled">Edit</a>
+                     <a href="/teachers/<%= teacher.id %>" data-method="delete" class="btn btn-danger disabled">Delete</a>
+                  </td>
+                  <% end %>
+               </tr>
+               <% end %>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+<!-- Teachers Section End -->

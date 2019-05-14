@@ -1,147 +1,76 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title></title>
-   </head>
-   <body>
+<div class="container mb-4 pb-4">
+   <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+         <div class="card card-signin my-5">
+         <div class="card-body">
+            <h5 class="card-title text-center">Edit Student Account</h5>
+               <%= render 'form', student: @student %>
+               <!-- <form class="form-signin" action="/students/<%= @student.id %>" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                  <input type="hidden" name="_method" value="patch">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-4">
-
-         <a class="navbar-brand" href="/administrators">Open-School</a>
-
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-               <li class="nav-item active">
-                  <a class="nav-link" href="/administrators">Home</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
-               </li>
-               <li class="nav-item border-right pr-2">
-                  <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
-               </li>
-               <% if current_administrator %>
-                  <li class="nav-item dropdown pl-1">
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%=current_administrator.login%> <i class="fas fa-user-circle"></i>
-                     </a>
-                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/administrators/<%= current_administrator.id %>">Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
-                     </div>
-                  </li>
-               <% end %>
-               <% if current_guest %>
-                  <li class="nav-item dropdown pl-1">
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <%=current_guest.login%> <i class="fas fa-user-circle"></i>
-                     </a>
-                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="">Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
-                     </div>
-                  </li>
-               <% end %>
-            </ul>
-         </div>
-      </nav>
-
-      <div class="container mb-4 pb-4">
-         <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-               <div class="card card-signin my-5">
-               <div class="card-body">
-                  <h5 class="card-title text-center">Edit Student Account</h5>
-                     <%= render 'form', student: @student %>
-                     <!-- <form class="form-signin" action="/students/<%= @student.id %>" method="post">
-                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-                        <input type="hidden" name="_method" value="patch">
-
-                        <div class="form-label-group">
-                           <input type="text" name="student[first_name]" id="first_name" placeholder="First Name" value="<%= @student.first_name.titleize %>" class="form-control">
-                           <label for="first_name">First Name</label>
-                        </div>
-
-                        <div class="form-label-group">
-                           <input type="text" name="student[last_name]" id="last_name" placeholder="Last Name" value="<%= @student.last_name.titleize %>" class="form-control">
-                           <label for="last_name">Last Name</label>
-                        </div>
-
-                        <div class="form-label-group">
-                           <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="student[username]" value="<%= @student.username %>" required autofocus>
-                           <label for="inputUsername">Username</label>
-                        </div>
-
-                        <div class="form-label-group">
-                           <input type="password" id="inputPassword" class="form-control" placeholder="Password" value="<%= @student.password %>" name="student[password]" required>
-                           <label for="inputPassword">Password</label>
-                        </div>
-
-                        <div class="form-label-group">
-                           <input type="password" name="student[password_confirmation]" id="password_confirmation" value="<%= @student.password %>" placeholder="Password" class="form-control">
-                           <label for="password_confirmation">Password Confirmation</label>
-                        </div>
-
-                        <div class="form-group">
-                           <label for="grade_level">Grade:</label>
-                           <select class="form-control" name="student[grade_level]" id="grade_level">
-                              <option></option>
-                              <option>1st</option>
-                              <option>2nd</option>
-                              <option>3rd</option>
-                              <option>4th</option>
-                              <option>5th</option>
-                              <option>6th</option>
-                              <option>7th</option>
-                              <option>8th</option>
-                              <option>9th</option>
-                              <option>10th</option>
-                              <option>11th</option>
-                              <option>12th</option>
-                           </select>
-                        </div>
-
-                        <div class="form-group">
-                           <label for="parent">Parent:</label>
-                           <select class="form-control" name="parent[id]">
-                              <option></option>
-                              <% @parents.each do |parent| %>
-                                 <option value="<%= parent.id %>"><%= parent.first_name.capitalize %> <%= parent.last_name.capitalize %></option>
-                              <% end %>
-                           </select>
-                        </div>
-
-                        <div class="custom-control custom-checkbox mb-3">
-                           <input type="checkbox" class="custom-control-input" id="customCheck1">
-                           <label class="custom-control-label" for="customCheck1">Remember password</label>
-                        </div>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
-                     </form> -->
+                  <div class="form-label-group">
+                     <input type="text" name="student[first_name]" id="first_name" placeholder="First Name" value="<%= @student.first_name.titleize %>" class="form-control">
+                     <label for="first_name">First Name</label>
                   </div>
-               </div>
+
+                  <div class="form-label-group">
+                     <input type="text" name="student[last_name]" id="last_name" placeholder="Last Name" value="<%= @student.last_name.titleize %>" class="form-control">
+                     <label for="last_name">Last Name</label>
+                  </div>
+
+                  <div class="form-label-group">
+                     <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="student[username]" value="<%= @student.username %>" required autofocus>
+                     <label for="inputUsername">Username</label>
+                  </div>
+
+                  <div class="form-label-group">
+                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" value="<%= @student.password %>" name="student[password]" required>
+                     <label for="inputPassword">Password</label>
+                  </div>
+
+                  <div class="form-label-group">
+                     <input type="password" name="student[password_confirmation]" id="password_confirmation" value="<%= @student.password %>" placeholder="Password" class="form-control">
+                     <label for="password_confirmation">Password Confirmation</label>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="grade_level">Grade:</label>
+                     <select class="form-control" name="student[grade_level]" id="grade_level">
+                        <option></option>
+                        <option>1st</option>
+                        <option>2nd</option>
+                        <option>3rd</option>
+                        <option>4th</option>
+                        <option>5th</option>
+                        <option>6th</option>
+                        <option>7th</option>
+                        <option>8th</option>
+                        <option>9th</option>
+                        <option>10th</option>
+                        <option>11th</option>
+                        <option>12th</option>
+                     </select>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="parent">Parent:</label>
+                     <select class="form-control" name="parent[id]">
+                        <option></option>
+                        <% @parents.each do |parent| %>
+                           <option value="<%= parent.id %>"><%= parent.first_name.capitalize %> <%= parent.last_name.capitalize %></option>
+                        <% end %>
+                     </select>
+                  </div>
+
+                  <div class="custom-control custom-checkbox mb-3">
+                     <input type="checkbox" class="custom-control-input" id="customCheck1">
+                     <label class="custom-control-label" for="customCheck1">Remember password</label>
+                  </div>
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
+               </form> -->
             </div>
          </div>
       </div>
-
-      <footer class="conatiner-fluid pt-4" style="background-color:#eee;">
-         <div class="container">
-            <div class="row">
-               <div class="col-1"></div>
-               <div class="col-md-10 text-center">
-                  <p> &copy; Open-School 2019. All Rights Reserved.</p>
-               </div>
-               <div class="col-1"></div>
-            </div>
-         </div>
-      </footer>
-
-   </body>
-</html>
+   </div>
+</div>

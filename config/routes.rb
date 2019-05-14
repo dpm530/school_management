@@ -19,8 +19,13 @@ Rails.application.routes.draw do
 
    resources :administrators do
       collection do
-         get 'teachers'
-         get 'students'
+            get 'assignments' => 'administrators#assignments'
+            get 'attendance' => 'administrators#attendance'
+            get 'courses' => 'administrators#courses'
+            get 'gradebook' => 'administrators#gradebook'
+            get 'parents' => 'administrators#parents'
+            get 'students' => 'administrators#students'
+            get 'teachers' => 'administrators#teachers'
       end
    end
 
