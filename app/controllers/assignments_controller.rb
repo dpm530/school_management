@@ -1,5 +1,5 @@
 class AssignmentsController < ApplicationController
-   layout "admin_dashboard", only: [:new, :show, :edit]
+   layout :determine_layout
 
    def create
       @course=Course.find(params[:id])
@@ -48,12 +48,23 @@ class AssignmentsController < ApplicationController
    end
 
    private
+
       def assignment_params
          params.require(:assignment).permit(:name, :description, :due_date, :date_assigned).merge(course: @course)
       end
 
       def update_assignment_params
          params.require(:assignment).permit(:name, :description, :due_date, :date_assigned)
+      end
+
+      def determine_layout
+         if current_administrator
+            "admin_dashboard"
+         end
+
+         if (current_teacher || current_parent || current_student)
+            "users_dashboard"
+         end
       end
 
 end

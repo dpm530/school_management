@@ -1,5 +1,5 @@
 class GradebooksController < ApplicationController
-   layout "admin_dashboard", only: [:new, :show, :edit]
+   layout :determine_layout
 
    def create
       @course=Course.find(params[:course_id])
@@ -64,12 +64,23 @@ class GradebooksController < ApplicationController
    end
 
    private
+
       def gradebook_params
          params.require(:gradebook).permit(:letter_score, :number_score, :comment, :session, :year, :start_date, :end_date).merge(student: @student).merge(course: @course)
       end
 
       def update_gradebook_params
          params.require(:gradebook).permit(:letter_score, :number_score, :comment, :session, :year, :start_date, :end_date)
+      end
+
+      def determine_layout
+         if current_administrator
+            "admin_dashboard"
+         end
+
+         if (current_teacher || current_parent || current_student)
+            "users_dashboard"
+         end
       end
 
 end

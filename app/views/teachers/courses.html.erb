@@ -1,0 +1,39 @@
+<!-- Courses Section -->
+<div class="tab-pane container active" id="courses">
+   <div class="row p-2">
+      <div class="col-md-12">
+         <h1>Listing Courses</h1>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+         <table class="table table-bordered table-hover">
+            <thead>
+               <tr>
+                  <th>Name</th>
+                  <th>Subject</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Students Enrolled</th>
+                  <th>Actions</th>
+               </tr>
+            </thead>
+            <tbody>
+               <% @teacher.courses.each do |course| %>
+                  <tr>
+                     <td><%= course.name.capitalize %></td>
+                     <td><%= course.subject.capitalize %></td>
+                     <td><%= course.start_date.strftime("%B %d %Y") %></td>
+                     <td><%= course.end_date.strftime("%B %d %Y") %></td>
+                     <td><%= course.students.length %></td>
+                     <td>
+                        <a href="/courses/<%= course.id %>" class="btn btn-primary">Details</a>
+                     </td>
+                  </tr>
+               <% end %>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+<!-- Courses Section End -->

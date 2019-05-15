@@ -1,0 +1,44 @@
+<!-- Assignments Section -->
+<div class="tab-pane container active" id="assignments">
+   <div class="row pt-2">
+      <div class="col-md-12">
+         <h1>Listing Assignments</h1>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+         <% @courses.each do |course| %>
+         <div class="card my-2">
+            <div class="card-header">
+               <h5><a href="/assignments/<%= course.id %>"><%= course.name.capitalize %></a></h5>
+            </div>
+            <% if (course.assignments) %>
+            <div class="card-body">
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Due Date</th>
+                        <th>Date Assigned</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% course.assignments.each do |assignment| %>
+                     <tr>
+                        <td><%= assignment.name.capitalize %></td>
+                        <td><%= assignment.description %></td>
+                        <td><%= assignment.due_date.strftime("%B %d %Y") %></td>
+                        <td><%= assignment.date_assigned.strftime("%B %d %Y") %></td>
+                     </tr>
+                     <% end %>
+                  </tbody>
+               </table>
+            </div>
+            <% end %>
+         </div>
+         <% end %>
+      </div>
+   </div>
+</div>
+<!-- Assignments Section End -->

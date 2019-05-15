@@ -1,12 +1,12 @@
 class CoursesController < ApplicationController
-   layout "admin_dashboard", only: [:new, :show, :edit]
+   layout :determine_layout
 
    def index
       @courses=Course.all
    end
 
    def new
-   end    
+   end
 
    def create
       @course=Course.new(course_params)
@@ -54,8 +54,19 @@ class CoursesController < ApplicationController
    end
 
    private
+
       def course_params
          params.require(:course).permit(:name, :subject, :start_date, :end_date)
+      end
+
+      def determine_layout
+         if current_administrator
+            "admin_dashboard"
+         end
+
+         if (current_teacher || current_parent || current_student)
+            "users_dashboard"
+         end
       end
 
 end

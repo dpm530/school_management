@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
    helper_method :current_teacher
    helper_method :current_parent
    helper_method :current_user
+   helper_method :dashboard_url
+   helper_method :courses_url
+   helper_method :assignments_url
+   helper_method :gradebook_url
 
    def index
    end
@@ -39,6 +43,30 @@ class ApplicationController < ActionController::Base
       return Student.find(session[:student_id]) if current_student
       return Teacher.find(session[:teacher_id]) if current_teacher
       return Parent.find(session[:parent_id]) if current_parent
+   end
+
+   def dashboard_url
+      return "/teachers" if current_teacher
+      return "/students" if current_student
+      return "/parents" if current_parent
+   end
+
+   def courses_url
+      return "/teachers/courses" if current_teacher
+      return "/students/courses" if current_student
+      return "/parents/courses" if current_parent
+   end
+
+   def assignments_url
+      return "/teachers/assignments" if current_teacher
+      return "/students/assignments" if current_student
+      return "/parents/assignments" if current_parent
+   end
+
+   def gradebook_url
+      return "/teachers/gradebook" if current_teacher
+      return "/students/gradebook" if current_student
+      return "/parents/gradebook" if current_parent
    end
 
 

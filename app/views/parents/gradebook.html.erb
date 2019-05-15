@@ -1,0 +1,87 @@
+<!-- Gradebook Section -->
+<div class="tab-pane container active" id="gradebook">
+   <div class="row pt-2">
+      <div class="col-md-12">
+         <h1>Listing Grades</h1>
+      </div>
+   </div>
+   <% if @grades %>
+   <div class="row mb-4">
+      <div class="col-md-12">
+         <ul class="nav bg-light border">
+            <li class="nav-item">
+               <a class="nav-link" href="">Gradebook Average: <%= @grades.average(:number_score) %></a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <% end %>
+   <div class="row">
+      <div class="col-md-12">
+         <% if @courses %>
+            <% @courses.each do |course| %>
+               <div class="card my-2">
+                  <div class="card-header">
+                     <h5><a href="/gradebooks/<%= course.id %>"><%= course.name.capitalize %></a></h5>
+                  </div>
+                  <div class="card-body">
+                     <div class="table-responsive">
+                        <table class="table table-bordered">
+                           <thead>
+                              <tr>
+                                 <th>Course</th>
+                                 <th>Subject</th>
+                                 <th>Letter Score</th>
+                                 <th>Number Score</th>
+                                 <th>Session</th>
+                                 <th>Year</th>
+                                 <th>Start Date</th>
+                                 <th>End Date</th>
+                                 <th>Comment</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <% if @grades %>
+                              <% @grades.each do |grade| %>
+                              <tr>
+                                 <td><%= grade.course.name %></td>
+                                 <td><%= grade.course.subject %></td>
+                                 <td><%= grade.letter_score %></td>
+                                 <td><%= grade.number_score %></td>
+                                 <td><%= grade.session %></td>
+                                 <td><%= grade.year %></td>
+                                 <td><%= grade.start_date %></td>
+                                 <td><%= grade.end_date%></td>
+                                 <td><%= grade.comment %></td>
+                              </tr>
+                              <% end %>
+                              <% end %>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            <% end  %>
+         <% else %>
+            <table class="table table-bordered">
+               <thead>
+                  <tr>
+                     <th>Course</th>
+                     <th>Subject</th>
+                     <th>Letter Score</th>
+                     <th>Number Score</th>
+                     <th>Session</th>
+                     <th>Year</th>
+                     <th>Start Date</th>
+                     <th>End Date</th>
+                     <th>Comment</th>
+                  </tr>
+               </thead>
+               <tbody>
+               </tbody>
+            </table>
+         <% end %>
+      </div>
+   </div>
+</div>
+<!-- Gradebook Section End -->

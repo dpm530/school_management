@@ -17,6 +17,45 @@ class ParentsController < ApplicationController
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
    end
 
+   def courses
+      @parent=Parent.find(current_parent.id)
+      @student=@parent.student
+
+      if @student
+         @courses=@student.courses
+         @grades=Gradebook.where(student: @student).all
+      end
+      if @courses
+         @assignments=Assignment.where(course: @courses).all
+      end
+   end
+
+   def assignments
+      @parent=Parent.find(current_parent.id)
+      @student=@parent.student
+
+      if @student
+         @courses=@student.courses
+         @grades=Gradebook.where(student: @student).all
+      end
+      if @courses
+         @assignments=Assignment.where(course: @courses).all
+      end
+   end
+
+   def gradebook
+      @parent=Parent.find(current_parent.id)
+      @student=@parent.student
+
+      if @student
+         @courses=@student.courses
+         @grades=Gradebook.where(student: @student).all
+      end
+      if @courses
+         @assignments=Assignment.where(course: @courses).all
+      end
+   end
+
    def login_parent
    end
 

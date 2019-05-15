@@ -11,6 +11,22 @@ class StudentsController < ApplicationController
 
    end
 
+   def gradebook
+      @student=Student.find(current_student.id)
+      @grades=Gradebook.where(student: @student).all
+   end
+
+   def courses
+      @student=Student.find(current_student.id)
+      @courses=@student.courses
+   end
+
+   def assignments
+      @student=Student.find(current_student.id)
+      @courses=@student.courses
+      @assignments=Assignment.where(course: @courses).all
+   end
+
    def show
       @student=Student.find(params[:id])
       @contact=@student.student_contact_info

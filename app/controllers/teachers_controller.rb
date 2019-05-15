@@ -13,6 +13,22 @@ class TeachersController < ApplicationController
    def new
    end
 
+   def assignmetns
+      @teacher=Teacher.find(current_teacher.id)
+      @courses=@teacher.courses
+      @assignments=Assignment.where(course: @courses).all
+   end
+
+   def courses
+      @teacher=Teacher.find(current_teacher.id)
+      @courses=@teacher.courses
+   end
+
+   def gradebook
+      @teacher=Teacher.find(current_teacher.id)
+      @courses=@teacher.courses
+   end
+
    def create
 
       @teacher=Teacher.new(teacher_params)

@@ -1,238 +1,82 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title></title>
-   </head>
-   <body>
-
-      <!-- Dashboard Section -->
-      <div class="tab-pane container active pt-2" id="dashboard">
-         <div class="row">
-            <div class="col-md-12">
-               <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Overview</li>
-               </ul>
-            </div>
-         </div>
-         <div class="row pt-3 pb-4">
-            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
-               <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #28a745; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
-                  <div class="card-body d-flex align-items-end flex-column text-right pr-4">
-                     <h4 style="font-weight:700;font-size: 2rem;">
-                        <% if current_student.courses %>
-                           <%= current_student.courses.length %>
-                        <% else %>
-                           0
-                        <% end %>
-                     </h4>
-                     <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Classes</p>
-                     <i class="fas fa-chalkboard" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
-                  </div>
-               </a>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
-               <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #dd3d31; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
-                  <div class="card-body d-flex align-items-end flex-column text-right pr-4">
-                     <h4 style="font-weight:700;font-size: 2rem;">
-                        <% if @assignments %>
-                           <%= @assignments.length %>
-                        <% else %>
-                           0
-                        <% end %>
-                     </h4>
-                     <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Assignments</p>
-                     <i class="fas fa-chalkboard-teacher" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
-                  </div>
-               </a>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
-               <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #2092ed; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
-                  <div class="card-body d-flex align-items-end flex-column text-right pr-4">
-                     <h4 style="font-weight:700;font-size: 2rem;">
-                        <% if current_student.gradebooks %>
-                           <%= current_student.gradebooks.length %>
-                        <% else %>
-                           0
-                        <% end %>
-                     </h4>
-                     <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Grades</p>
-                     <i class="fas fa-user-graduate" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
-                  </div>
-               </a>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
-               <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #fdb800; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
-                  <div class="card-body d-flex align-items-end flex-column text-right pr-4">
-                     <h4 style="font-weight:700;font-size: 2rem;">0</h4>
-                     <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Events</p>
-                     <i class="fas fa-calendar-alt" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
-                  </div>
-               </a>
-            </div>
-         </div>
-         <div class="row py-4">
-            <div class="col-md-12 mx-auto">
-               <div id="articles">
-                  <h1 id="month">
-                     <%= link_to "<", date: @date.prev_month %>
-                     <%= @date.strftime("%B %Y") %>
-                     <%= link_to ">", date: @date.next_month %>
-                  </h1>
-                  <%= calendar do |date| %>
-                     <%= date.day %>
+<!-- Dashboard Section -->
+<div class="tab-pane container active pt-2" id="dashboard">
+   <div class="row">
+      <div class="col-md-12">
+         <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active">Overview</li>
+         </ul>
+      </div>
+   </div>
+   <div class="row pt-3 pb-4">
+      <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
+         <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #28a745; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+            <div class="card-body d-flex align-items-end flex-column text-right pr-4">
+               <h4 style="font-weight:700;font-size: 2rem;">
+                  <% if current_student.courses %>
+                     <%= current_student.courses.length %>
+                  <% else %>
+                     0
                   <% end %>
-               </div>
+               </h4>
+               <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Classes</p>
+               <i class="fas fa-chalkboard" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
             </div>
-         </div>
+         </a>
       </div>
-      <!-- Dashboard Section End -->
-
-      <!-- Courses Section -->
-      <div class="tab-pane container fade" id="courses">
-         <div class="row p-2">
-            <div class="col-md-12">
-               <h1>Listing Courses</h1>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-12">
-               <table class="table table-bordered table-hover">
-                  <thead>
-                     <tr>
-                        <th>Name</th>
-                        <th>Subject</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <% @student.courses.each do |course| %>
-                        <tr>
-                           <td><%= course.name.capitalize %></td>
-                           <td><%= course.subject.capitalize %></td>
-                           <td><%= course.start_date.strftime("%B %d %Y") %></td>
-                           <td><%= course.end_date.strftime("%B %d %Y") %></td>
-                        </tr>
-                     <% end %>
-                  </tbody>
-               </table>
-            </div>
-         </div>
-      </div>
-      <!-- Courses Section End -->
-
-      <!-- Assignments Section -->
-      <div class="tab-pane container fade" id="assignments">
-         <div class="row pt-2">
-            <div class="col-md-12">
-               <h1>Listing Assignments</h1>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-12">
-               <% @courses.each do |course| %>
-               <div class="card my-2">
-                  <div class="card-header">
-                     <h5><a href="/assignments/<%= course.id %>"><%= course.name.capitalize %></a></h5>
-                  </div>
-                  <% if (course.assignments) %>
-                  <div class="card-body">
-                     <table class="table table-hover">
-                        <thead>
-                           <tr>
-                              <th>Name</th>
-                              <th>Description</th>
-                              <th>Due Date</th>
-                              <th>Date Assigned</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <% course.assignments.each do |assignment| %>
-                           <tr>
-                              <td><%= assignment.name.capitalize %></td>
-                              <td><%= assignment.description %></td>
-                              <td><%= assignment.due_date.strftime("%B %d %Y") %></td>
-                              <td><%= assignment.date_assigned.strftime("%B %d %Y") %></td>
-                           </tr>
-                           <% end %>
-                        </tbody>
-                     </table>
-                  </div>
+      <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
+         <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #dd3d31; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+            <div class="card-body d-flex align-items-end flex-column text-right pr-4">
+               <h4 style="font-weight:700;font-size: 2rem;">
+                  <% if @assignments %>
+                     <%= @assignments.length %>
+                  <% else %>
+                     0
                   <% end %>
-               </div>
-               <% end %>
+               </h4>
+               <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Assignments</p>
+               <i class="fas fa-chalkboard-teacher" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
             </div>
+         </a>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
+         <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #2092ed; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+            <div class="card-body d-flex align-items-end flex-column text-right pr-4">
+               <h4 style="font-weight:700;font-size: 2rem;">
+                  <% if current_student.gradebooks %>
+                     <%= current_student.gradebooks.length %>
+                  <% else %>
+                     0
+                  <% end %>
+               </h4>
+               <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Grades</p>
+               <i class="fas fa-user-graduate" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
+            </div>
+         </a>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5 mb-lg-0 mx-auto">
+         <a href="#" class="card border-0 shadow-lg" style="border-radius:0.5rem; background-color: #fdb800; color: #fff; position: relative; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+            <div class="card-body d-flex align-items-end flex-column text-right pr-4">
+               <h4 style="font-weight:700;font-size: 2rem;">0</h4>
+               <p class="w-75" style="color: rgba(255,255,255,.7); font-weight: 600;">Events</p>
+               <i class="fas fa-calendar-alt" style="position: absolute; top: 50%; transform: translateY(-50%); font-size: 4rem; left: 1rem; color: rgba(255,255,255,.2);"></i>
+            </div>
+         </a>
+      </div>
+   </div>
+   <div class="row py-4">
+      <div class="col-md-12 mx-auto">
+         <div id="articles">
+            <h1 id="month">
+               <%= link_to "<", date: @date.prev_month %>
+               <%= @date.strftime("%B %Y") %>
+               <%= link_to ">", date: @date.next_month %>
+            </h1>
+            <%= calendar do |date| %>
+               <%= date.day %>
+            <% end %>
          </div>
       </div>
-      <!-- Assignments Section End -->
-
-      <!-- Gradebook Section -->
-      <div class="tab-pane container fade" id="gradebook">
-         <div class="row pt-2">
-            <div class="col-md-12">
-               <h1>Listing Grades</h1>
-            </div>
-         </div>
-         <div class="row mb-4">
-            <div class="col-md-12">
-               <ul class="nav bg-light border">
-                  <li class="nav-item">
-                     <a class="nav-link" href="">Gradebook Average: <%= @grades.average(:number_score) %></a>
-                  </li>
-               </ul>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-12">
-               <% @courses.each do |course| %>
-                  <div class="card my-2">
-                     <div class="card-header">
-                        <h5><a href="/gradebooks/<%= course.id %>"><%= course.name.capitalize %></a></h5>
-                     </div>
-                     <div class="card-body">
-                        <div class="table-responsive">
-                           <table class="table table-bordered">
-                              <thead>
-                                 <tr>
-                                    <th>Course</th>
-                                    <th>Subject</th>
-                                    <th>Letter Score</th>
-                                    <th>Number Score</th>
-                                    <th>Session</th>
-                                    <th>Year</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Comment</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <% if @grades %>
-                                 <% @grades.each do |grade| %>
-                                 <tr>
-                                    <td><%= grade.course.name %></td>
-                                    <td><%= grade.course.subject %></td>
-                                    <td><%= grade.letter_score %></td>
-                                    <td><%= grade.number_score %></td>
-                                    <td><%= grade.session %></td>
-                                    <td><%= grade.year %></td>
-                                    <td><%= grade.start_date %></td>
-                                    <td><%= grade.end_date%></td>
-                                    <td><%= grade.comment %></td>
-                                 </tr>
-                                 <% end %>
-                                 <% end %>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                  </div>
-               <% end %>
-            </div>
-         </div>
-      </div>
-      <!-- Gradebook Section End -->
-
-   </body>
-</html>
+   </div>
+</div>
+<!-- Dashboard Section End -->

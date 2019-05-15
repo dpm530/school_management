@@ -63,12 +63,18 @@ Rails.application.routes.draw do
    resources :teachers do
       collection do
          get 'login' => 'teachers#login_teacher'
+         get 'courses' => 'teachers#courses'
+         get 'gradebook' => 'teachers#gradebook'
+         get 'assignments' => 'teachers#assignments'
       end
    end
 
    resources :students do
       collection do
          get 'login' => 'students#login_student'
+         get 'courses' => 'students#courses'
+         get 'gradebook' => 'students#gradebook'
+         get 'assignments' => 'students#assignments'
       end
    end
 
@@ -89,6 +95,9 @@ Rails.application.routes.draw do
    resources :parents do
       collection do
          get 'login' => 'parents#login_parent'
+         get 'courses' => 'parents#courses'
+         get 'assignments' => 'parents#assignments'
+         get 'gradebook' => 'parents#gradebook'
       end
    end
 
