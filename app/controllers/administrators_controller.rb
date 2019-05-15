@@ -1,6 +1,6 @@
 class AdministratorsController < ApplicationController
    before_action :require_admin_login, only: [:index]
-   layout "admin_dashboard", only: [:index, :teachers, :students, :parents, :courses, :gradebook, :assignments, :edit, :show, :new]
+   layout "admin_dashboard", only: [:index, :teachers, :students, :parents, :courses, :gradebook, :assignments, :edit, :show]
 
 
    def index
@@ -38,6 +38,9 @@ class AdministratorsController < ApplicationController
    end
 
    def show
+   end
+
+   def new
    end
 
    def create

@@ -1,7 +1,6 @@
 class ParentsController < ApplicationController
    before_action :require_parent_login, only: [:index]
-   layout "users_dashboard", only: [:index]
-   layout "admin_dashboard", only: [:new, :show, :edit]
+   layout :determine_layout
 
    def index
       @parent=Parent.find(current_parent.id)
@@ -65,8 +64,19 @@ class ParentsController < ApplicationController
 
 
    private
+
       def parent_params
          params.require(:parent).permit(:first_name, :last_name, :email, :password, :image).merge(student: @student)
+      end
+
+      def determine_layout
+         if current_administrator
+            "admin_dashboard"
+         end
+
+         if (current_teacher || current_parent || current_student)
+            "users_dashboard"
+         end
       end
 
 

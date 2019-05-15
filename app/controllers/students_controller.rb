@@ -1,7 +1,6 @@
 class StudentsController < ApplicationController
    before_action :require_student_login, only: [:index]
-   layout "users_dashboard", only: [:index]
-   layout "admin_dashboard", only: [:new, :show, :edit]
+   layout :determine_layout
 
    def index
       @student=Student.find(current_student.id)
@@ -78,6 +77,16 @@ class StudentsController < ApplicationController
 
       def update_student_params
          params.require(:student).permit(:first_name, :last_name, :username, :password, :grade_level, :image).merge(parent: @parent)
+      end
+
+      def determine_layout
+         if current_administrator
+            "admin_dashboard"
+         end
+
+         if (current_teacher || current_parent || current_student)
+            "users_dashboard"
+         end
       end
 
 end

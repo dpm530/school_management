@@ -1,7 +1,6 @@
 class TeachersController < ApplicationController
    before_action :require_teacher_login, only: [:index]
-   layout "users_dashboard", only: [:index]
-   layout "admin_dashboard", only: [:new, :show, :edit]
+   layout :determine_layout
 
    def index
       @teacher=Teacher.find(current_teacher.id)
@@ -9,7 +8,6 @@ class TeachersController < ApplicationController
       @assignments=Assignment.where(course: @courses).all
       @attendances=Attendance.where(course: @courses).all
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
-
    end
 
    def new
@@ -58,9 +56,23 @@ class TeachersController < ApplicationController
       return redirect_to '/administrators#teachers'
    end
 
+
    private
+
       def teacher_params
          params.require(:teacher).permit(:first_name, :last_name, :email, :password, :image)
       end
+
+      def determine_layout
+         if current_administrator
+            "admin_dashboard"
+         end
+
+         if (current_teacher || current_parent || current_student)
+            "users_dashboard"
+         end
+      end
+
+
 
 end
