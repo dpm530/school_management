@@ -27,7 +27,7 @@
                      <td><%= course.end_date.strftime("%B %d %Y") %></td>
                      <td><%= course.students.length %></td>
                      <td>
-                        <a href="/courses/<%= course.id %>" class="btn btn-primary">Details</a>
+                        <a href="/courses/<%= course.id %>" class="btn btn-primary"><i class="far fa-arrow-alt-circle-right"></i> Details</a>
                      </td>
                   </tr>
                <% end %>

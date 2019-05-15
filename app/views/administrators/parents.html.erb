@@ -9,7 +9,7 @@
       <div class="col-md-12">
          <ul class="nav bg-light border">
             <li class="nav-item">
-               <a class="nav-link" href="/parents/new">New Parent</a>
+               <a class="nav-link" href="/parents/new"><i class="fas fa-plus-circle"></i> New Parent</a>
             </li>
          </ul>
       </div>
@@ -40,14 +40,14 @@
                         <% end %>
                      </td>
                      <td>
-                        <a href="/parents/<%= parent.id %>" class="btn btn-primary">Details</a>
+                        <a href="/parents/<%= parent.id %>" class="btn btn-primary"><i class="far fa-arrow-alt-circle-right"></i> Details</a>
                         <% if current_guest %>
-                           <a href="/parents/<%= parent.id %>/edit" class="btn btn-success disabled">Edit</a>
-                           <a href="/parents/<%= parent.id %>" class="btn btn-danger disabled" data-method="delete">Delete</a>
+                           <a href="/parents/<%= parent.id %>/edit" class="btn btn-success disabled"><i class="far fa-edit"></i> Edit</a>
+                           <a href="/parents/<%= parent.id %>" class="btn btn-danger disabled" data-method="delete"><i class="fas fa-trash"></i> Delete</a>
                         <% end %>
                         <% if current_administrator %>
-                           <a href="/parents/<%= parent.id %>/edit" class="btn btn-success">Edit</a>
-                           <a href="/parents/<%= parent.id %>" class="btn btn-danger" data-method="delete">Delete</a>
+                           <a href="/parents/<%= parent.id %>/edit" class="btn btn-success"><i class="far fa-edit"></i> Edit</a>
+                           <a href="/parents/<%= parent.id %>" class="btn btn-danger" data-method="delete"><i class="fas fa-trash"></i> Delete</a>
                         <% end %>
                      </td>
                   </tr>

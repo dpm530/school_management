@@ -1,4 +1,6 @@
 class TeacherParentConversationsController < ApplicationController
+   before_action :require_teacher_login
+   layout :determine_layout
 
    def index
       @teachers=Teacher.all
@@ -45,5 +47,17 @@ class TeacherParentConversationsController < ApplicationController
 
 
    end
+
+   private
+
+      def determine_layout
+         if current_administrator
+            "admin_dashboard"
+         end
+
+         if (current_teacher || current_parent || current_student)
+            "users_dashboard"
+         end
+      end
 
 end

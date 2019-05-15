@@ -28,6 +28,8 @@ class ParentsController < ApplicationController
       if @courses
          @assignments=Assignment.where(course: @courses).all
       end
+
+
    end
 
    def assignments
@@ -41,6 +43,12 @@ class ParentsController < ApplicationController
       if @courses
          @assignments=Assignment.where(course: @courses).all
       end
+
+      puts "="*100
+      puts @parent.first_name
+      puts @student.first_name
+      puts "="*100
+      
    end
 
    def gradebook

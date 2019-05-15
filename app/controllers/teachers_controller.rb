@@ -5,6 +5,7 @@ class TeachersController < ApplicationController
    def index
       @teacher=Teacher.find(current_teacher.id)
       @courses=@teacher.courses
+      @gradebooks=Gradebook.where(course: @courses).all
       @assignments=Assignment.where(course: @courses).all
       @attendances=Attendance.where(course: @courses).all
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
@@ -13,10 +14,17 @@ class TeachersController < ApplicationController
    def new
    end
 
-   def assignmetns
+   def assignments
       @teacher=Teacher.find(current_teacher.id)
       @courses=@teacher.courses
       @assignments=Assignment.where(course: @courses).all
+
+      puts "="*100
+      puts @teacher.first_name
+      puts "="*100
+      @courses.each{|c| puts c.name }
+      puts "="*100
+
    end
 
    def courses

@@ -17,13 +17,13 @@
          <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Open-School</div>
             <div class="list-group list-group-flush">
-               <a href="/administrators" class="list-group-item list-group-item-action">Dashboard</a>
-               <a href="/administrators/teachers"  class="list-group-item list-group-item-action">Teachers</a>
-               <a href="/administrators/students"  class="list-group-item list-group-item-action">Students</a>
-               <a href="/administrators/parents" class="list-group-item list-group-item-action">Parents</a>
-               <a href="/administrators/courses" class="list-group-item list-group-item-action">Courses</a>
-               <a href="/administrators/assignments"  class="list-group-item list-group-item-action">Assignments</a>
-               <a href="/administrators/gradebook" class="list-group-item list-group-item-action">Gradebook</a>
+               <a href="/administrators" class="list-group-item list-group-item-action"><i class="fas fa-school"></i> Dashboard</a>
+               <a href="/administrators/teachers"  class="list-group-item list-group-item-action"><i class="fas fa-chalkboard-teacher"></i> Teachers</a>
+               <a href="/administrators/students"  class="list-group-item list-group-item-action"><i class="fas fa-user-graduate"></i> Students</a>
+               <a href="/administrators/parents" class="list-group-item list-group-item-action"><i class="fas fa-user-friends"></i> Parents</a>
+               <a href="/administrators/courses" class="list-group-item list-group-item-action"><i class="fas fa-chalkboard"></i> Courses</a>
+               <a href="/administrators/assignments"  class="list-group-item list-group-item-action"><i class="fas fa-book-reader"></i> Assignments</a>
+               <a href="/administrators/gradebook" class="list-group-item list-group-item-action"><i class="fas fa-chart-bar"></i> Gradebook</a>
                <!-- <a href="#attendance" data-toggle="tab" class="list-group-item list-group-item-action">Attendance</a> -->
             </div>
          </div>
@@ -42,17 +42,17 @@
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                   <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                     <li class="nav-item border-right pr-2">
+                     <!-- <li class="nav-item border-right pr-2">
                         <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
-                     </li>
+                     </li> -->
                      <li class="nav-item dropdown pl-1">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <%= current_user.login.capitalize %> <i class="fas fa-user-circle"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                           <a class="dropdown-item" href="/administrators/<%= current_user.id %>">Profile</a>
+                           <a class="dropdown-item" href="/administrators/<%= current_user.id %>">My Account</a>
                            <div class="dropdown-divider"></div>
-                           <a class="dropdown-item" href="/sessions/logout" data-method="delete">Logout</a>
+                           <a class="dropdown-item" href="/sessions/logout" data-method="delete"><i class="fas fa-sign-out-alt"></i> Sign out</a>
                         </div>
                      </li>
 

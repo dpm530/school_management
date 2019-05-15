@@ -9,7 +9,7 @@
       <div class="col-md-12">
          <ul class="nav bg-light border">
             <li class="nav-item">
-               <a class="nav-link" href="/students/new">New Student</a>
+               <a class="nav-link" href="/students/new"><i class="fas fa-plus-circle"></i> New Student</a>
             </li>
          </ul>
       </div>
@@ -39,15 +39,15 @@
                      <td><%= student.courses.length %></td>
                      <% if current_administrator %>
                         <td>
-                           <a href="/students/<%= student.id %>" class="btn btn-primary">Details</a>
-                           <a href="/students/<%= student.id %>/edit" class="btn btn-success">Edit</a>
-                           <a href="/students/<%= student.id %>" data-method="delete" class="btn btn-danger">Delete</a>
+                           <a href="/students/<%= student.id %>" class="btn btn-primary"><i class="far fa-arrow-alt-circle-right"></i> Details</a>
+                           <a href="/students/<%= student.id %>/edit" class="btn btn-success"><i class="far fa-edit"></i> Edit</a>
+                           <a href="/students/<%= student.id %>" data-method="delete" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                         </td>
                      <% else %>
                         <td>
-                           <a href="/students/<%= student.id %>" class="btn btn-primary">Details</a>
-                           <a href="/students/<%= student.id %>/edit" class="btn btn-success disabled">Edit</a>
-                           <a href="/students/<%= student.id %>" data-method="delete" class="btn btn-danger disabled">Delete</a>
+                           <a href="/students/<%= student.id %>" class="btn btn-primary"><i class="far fa-arrow-alt-circle-right"></i> Details</a>
+                           <a href="/students/<%= student.id %>/edit" class="btn btn-success disabled"><i class="far fa-edit"></i> Edit</a>
+                           <a href="/students/<%= student.id %>" data-method="delete" class="btn btn-danger disabled"><i class="fas fa-trash"></i> Delete</a>
                         </td>
                      <% end %>
                   </tr>

@@ -9,7 +9,7 @@
       <div class="col-md-12">
          <ul class="nav bg-light border">
             <li class="nav-item">
-               <a class="nav-link" href="/courses/new">New Course</a>
+               <a class="nav-link" href="/courses/new"><i class="fas fa-plus-circle"></i> New Course</a>
             </li>
          </ul>
       </div>
@@ -37,15 +37,15 @@
                      <td><%= course.students.length %></td>
                      <% if current_administrator %>
                         <td>
-                           <a href="/courses/<%= course.id %>" class="btn btn-primary">Details</a>
-                           <a href="/courses/<%= course.id %>/edit" class="btn btn-success">Edit</a>
-                           <a href="/courses/<%= course.id %>" data-method="delete" class="btn btn-danger">Delete</a>
+                           <a href="/courses/<%= course.id %>" class="btn btn-primary"><i class="far fa-arrow-alt-circle-right"></i> Details</a>
+                           <a href="/courses/<%= course.id %>/edit" class="btn btn-success"><i class="far fa-edit"></i> Edit</a>
+                           <a href="/courses/<%= course.id %>" data-method="delete" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                         </td>
                      <% else %>
                         <td>
-                           <a href="/courses/<%= course.id %>" class="btn btn-primary">Details</a>
-                           <a href="/courses/<%= course.id %>/edit" class="btn btn-success disabled">Edit</a>
-                           <a href="/courses/<%= course.id %>" data-method="delete" class="btn btn-danger disabled">Delete</a>
+                           <a href="/courses/<%= course.id %>" class="btn btn-primary"><i class="far fa-arrow-alt-circle-right"></i> Details</a>
+                           <a href="/courses/<%= course.id %>/edit" class="btn btn-success disabled"><i class="far fa-edit"></i> Edit</a>
+                           <a href="/courses/<%= course.id %>" data-method="delete" class="btn btn-danger disabled"><i class="fas fa-trash"></i> Delete</a>
                         </td>
                      <% end %>
                   </tr>

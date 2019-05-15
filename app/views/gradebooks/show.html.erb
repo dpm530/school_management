@@ -38,18 +38,18 @@
                                  </td>
                                  <td>
                                     <% if current_guest %>
-                                       <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary disabled">Edit</a>
-                                       <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger disabled" data-method="delete">Delete</a>
+                                       <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary disabled"><i class="far fa-edit"></i> Edit</a>
+                                       <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger disabled" data-method="delete"><i class="fas fa-trash"></i> Delete</a>
                                     <% end %>
                                     <% if current_administrator || current_teacher%>
-                                       <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary">Edit</a>
-                                       <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger" data-method="delete">Delete</a>
+                                       <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary"><i class="far fa-edit"></i> Edit</a>
+                                       <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger" data-method="delete"><i class="fas fa-trash"></i> Delete</a>
                                     <% end %>
                                  </td>
                               <% end %>
                            <% else %>
                               <td></td>
-                              <td><a href="/gradebooks/new/<%= student.id %>/<%= @course.id %>" class="btn btn-primary">ADD NEW RECORD</a></td>
+                              <td><a href="/gradebooks/new/<%= student.id %>/<%= @course.id %>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add Grade Record</a></td>
                            <% end %>
                         </tr>
                      <% end %>
@@ -58,5 +58,3 @@
             </div>
          </div>
       </div>
-
-   

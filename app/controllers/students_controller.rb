@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
 
    def gradebook
       @student=Student.find(current_student.id)
+      @courses=@student.courses
       @grades=Gradebook.where(student: @student).all
    end
 
