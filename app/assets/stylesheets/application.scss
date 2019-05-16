@@ -98,8 +98,13 @@ section {
   transition: margin .25s ease-out;
 }
 
-#sidebar-wrapper .sidebar-heading {
+#sidebar-wrapper .sidebar-heading.users {
   padding: 1.05rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .sidebar-heading.admin {
+  padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
 }
 
@@ -126,7 +131,7 @@ section {
   }
 
   #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
+    margin-left: -13rem;
   }
 }
 

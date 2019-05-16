@@ -33,13 +33,13 @@ class SessionsController < ApplicationController
 
       if (params[:username] === "") && (params[:password] === "")
          flash[:errors]=["Username and Password can't be blank."]
-         return redirect_to new_student_path
+         return redirect_to login_students_path
       elsif (!(params[:password] === "") && (params[:username] === ""))
          flash[:errors]=["Username can't be blank."]
-         return redirect_to new_student_path
+         return redirect_to login_students_path
       elsif (!(params[:username] === "") && (params[:password] === ""))
          flash[:errors]=["Password can't be blank."]
-         return redirect_to new_student_path
+         return redirect_to login_students_path
       else
          @student=Student.find_by_username(params[:username])
 
@@ -51,7 +51,7 @@ class SessionsController < ApplicationController
             flash[:errors]=["Password is invalid."]
          end
          flash[:errors]=["Username Account is Invalid."]
-         return redirect_to new_student_path
+         return redirect_to login_students_path
       end
 
    end
@@ -60,13 +60,13 @@ class SessionsController < ApplicationController
 
       if (params[:email] === "") && (params[:password] === "")
          flash[:errors]=["Username and Password can't be blank."]
-         return redirect_to new_parent_path
+         return redirect_to login_parents_path
       elsif (!(params[:password] === "") && (params[:email] === ""))
          flash[:errors]=["Email can't be blank."]
-         return redirect_to new_parent_path
+         return redirect_to login_parents_path
       elsif (!(params[:email] === "") && (params[:password] === ""))
          flash[:errors]=["Password can't be blank."]
-         return redirect_to new_parent_path
+         return redirect_to login_parents_path
       else
          @parent=Parent.find_by_email(params[:email])
 
@@ -78,7 +78,7 @@ class SessionsController < ApplicationController
             flash[:errors]=["Password is invalid."]
          end
          flash[:errors]=["Email Account is Invalid."]
-         return redirect_to new_parent_path
+         return redirect_to login_parents_path
       end
 
    end
@@ -86,13 +86,13 @@ class SessionsController < ApplicationController
    def create_teacher
       if (params[:email] === "") && (params[:password] === "")
          flash[:errors]=["Username and Password can't be blank."]
-         return redirect_to new_teacher_path
+         return redirect_to login_teachers_path
       elsif (!(params[:password] === "") && (params[:email] === ""))
          flash[:errors]=["Email can't be blank."]
-         return redirect_to new_teacher_path
+         return redirect_to login_teachers_path
       elsif (!(params[:email] === "") && (params[:password] === ""))
          flash[:errors]=["Password can't be blank."]
-         return redirect_to new_teacher_path
+         return redirect_to login_teachers_path
       else
          @teacher=Teacher.find_by_email(params[:email])
 
@@ -104,7 +104,7 @@ class SessionsController < ApplicationController
             flash[:errors]=["Password is invalid."]
          end
          flash[:errors]=["Email Account is Invalid."]
-         return redirect_to new_teacher_path
+         return redirect_to login_teachers_path
       end
    end
 

@@ -99,9 +99,11 @@ class StudentsController < ApplicationController
       def determine_layout
          if current_administrator
             "admin_dashboard"
-         end
-
-         if (current_teacher || current_parent || current_student)
+         elsif current_teacher
+            "users_dashboard"
+         elsif current_parent
+            "users_dashboard"
+         elsif current_student
             "users_dashboard"
          end
       end

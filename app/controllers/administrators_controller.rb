@@ -1,6 +1,6 @@
 class AdministratorsController < ApplicationController
    before_action :require_admin_login, only: [:index]
-   layout "admin_dashboard", only: [:index, :teachers, :students, :parents, :courses, :gradebook, :assignments, :edit, :show]
+   layout :determine_layout
 
 
    def index
@@ -75,8 +75,21 @@ class AdministratorsController < ApplicationController
 
 
    private
+
       def admin_params
          params.require(:administrator).permit(:login, :password)
+      end
+
+      def determine_layout
+         if current_administrator
+            "admin_dashboard"
+         elsif current_teacher
+            "users_dashboard"
+         elsif current_parent
+            "users_dashboard"
+         elsif current_student
+            "users_dashboard"
+         end
       end
 
 end
