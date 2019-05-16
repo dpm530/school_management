@@ -117,7 +117,7 @@ class ParentsController < ApplicationController
       end
 
       def determine_layout
-         if current_administrator
+         if (current_administrator || current_guest)
             "admin_dashboard"
          elsif current_teacher
             "users_dashboard"

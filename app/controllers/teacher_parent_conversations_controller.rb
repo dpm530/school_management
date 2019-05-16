@@ -50,18 +50,20 @@ class TeacherParentConversationsController < ApplicationController
 
    private
 
-      def determine_layout
-         if current_administrator
-            "admin_dashboard"
-         end
-
-         if (current_teacher || current_parent || current_student)
-            "users_dashboard"
-         end
+   def determine_layout
+      if (current_administrator || current_guest)
+         "admin_dashboard"
+      elsif current_teacher
+         "users_dashboard"
+      elsif current_parent
+         "users_dashboard"
+      elsif current_student
+         "users_dashboard"
       end
+   end
 
       def require_login
-         unless (session[:teacher_id] || session[:parent_id])
+         unless ((session[:teacher_id] || session[:parent_id]) || (session[:guest_id]))
             return redirect_to root_path
          end
       end
