@@ -44,7 +44,7 @@
                      </li> -->
                      <% unless current_student%>
                         <li class="nav-item border-right pr-2">
-                           <a class="nav-link" href="/teacher_parent_conversations"><i class="fas fa-envelope"></i></a>
+                           <a class="nav-link" href="/teacher_parent_conversations"><i class="fas fa-inbox fa-lg" data-toggle="tooltip" data-placement="left" title="Inbox"></i></a>
                         </li>
                      <% end %>
                      <li class="nav-item dropdown">
@@ -81,9 +81,14 @@
       <!-- Page Wrapper End -->
 
       <script>
+
          $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
+         });
+
+         $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
          });
       </script>
 

@@ -82,7 +82,7 @@ class StudentsController < ApplicationController
    def destroy
       @student=Student.find(params[:id])
       @student.destroy
-      return redirect_to '/administrators/#students'
+      return redirect_to '/administrators/students'
    end
 
 

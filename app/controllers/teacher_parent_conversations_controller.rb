@@ -1,5 +1,5 @@
 class TeacherParentConversationsController < ApplicationController
-   before_action :require_teacher_login
+   before_action :require_login
    layout :determine_layout
 
    def index
@@ -57,6 +57,12 @@ class TeacherParentConversationsController < ApplicationController
 
          if (current_teacher || current_parent || current_student)
             "users_dashboard"
+         end
+      end
+
+      def require_login
+         unless (session[:teacher_id] || session[:parent_id])
+            return redirect_to root_path
          end
       end
 
