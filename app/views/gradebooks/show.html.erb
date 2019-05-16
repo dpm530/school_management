@@ -33,19 +33,21 @@
                            <td><%= @course.name.capitalize %></td>
                            <% if student.gradebooks.exists? %>
                               <% student.gradebooks.each do |grade| %>
-                                 <td>
-                                       <%= grade.letter_score %>
-                                 </td>
-                                 <td>
-                                    <% if current_guest %>
-                                       <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary disabled"><i class="far fa-edit"></i> Edit</a>
-                                       <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger disabled" data-method="delete"><i class="fas fa-trash"></i> Delete</a>
-                                    <% end %>
-                                    <% if current_administrator || current_teacher%>
-                                       <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary"><i class="far fa-edit"></i> Edit</a>
-                                       <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger" data-method="delete"><i class="fas fa-trash"></i> Delete</a>
-                                    <% end %>
-                                 </td>
+                                 <% if grade.course == @course %>
+                                    <td>
+                                          <%= grade.letter_score %>
+                                    </td>
+                                    <td>
+                                       <% if current_guest %>
+                                          <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary disabled"><i class="far fa-edit"></i> Edit</a>
+                                          <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger disabled" data-method="delete"><i class="fas fa-trash"></i> Delete</a>
+                                       <% end %>
+                                       <% if current_administrator || current_teacher%>
+                                          <a href="/gradebooks/<%= grade.id %>/edit" class="btn btn-primary"><i class="far fa-edit"></i> Edit</a>
+                                          <a href="/gradebooks/<%= grade.id %>" class="btn btn-danger" data-method="delete"><i class="fas fa-trash"></i> Delete</a>
+                                       <% end %>
+                                    </td>
+                                 <% end %>
                               <% end %>
                            <% else %>
                               <td></td>

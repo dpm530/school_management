@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
       if @course.save
          flash[:notice]=["Successfully Added New Course"]
          session[:course_id]=@course.id
-         return redirect_to courses_path
+         return redirect_to course_path(@course)
       end
       errors=@course.errors.full_messages
       flash[:errors]=errors
