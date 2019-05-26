@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_014130) do
+ActiveRecord::Schema.define(version: 2019_05_26_200521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_014130) do
     t.string "city"
     t.string "state"
     t.string "zipcode"
-    t.integer "mobile_number"
+    t.string "mobile_number"
     t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_014130) do
     t.string "city"
     t.string "state"
     t.string "zipcode"
-    t.integer "mobile_number"
+    t.string "mobile_number"
     t.bigint "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

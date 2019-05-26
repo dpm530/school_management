@@ -1,11 +1,12 @@
 class StudentsContactInfoController < ApplicationController
+   layout :determine_layout
 
    def index
       @student_contact=current_student.student_contact_info
    end
 
    def new
-      @student=Student.find(params[:id])
+      @student=current_student
    end
 
    def create
@@ -48,8 +49,21 @@ class StudentsContactInfoController < ApplicationController
 
 
    private
+
       def student_contact_info_params
          params.require(:student_contact_info).permit(:line_1_address, :line_2_address, :city, :state, :zipcode, :mobile_number).merge(student: @student)
+      end
+
+      def determine_layout
+         if (current_administrator || current_guest)
+            "admin_dashboard"
+         elsif current_teacher
+            "users_dashboard"
+         elsif current_parent
+            "users_dashboard"
+         elsif current_student
+            "users_dashboard"
+         end
       end
 
 
