@@ -7,6 +7,7 @@
       <link rel="icon" href="/assets/logo2.png">
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
    </head>
 
    <body>
@@ -35,6 +36,9 @@
       <% end %>
 
       <%= yield %>
+      <script>
+         new WOW().init();
+      </script>
 
    </body>
 </html>

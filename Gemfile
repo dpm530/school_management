@@ -24,6 +24,8 @@ gem 'mini_racer'
 gem 'font-awesome-sass', '~> 5.8.1'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+gem "animate-rails"
+gem 'wow-rails'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -57,11 +59,13 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'browser_sync_rails'
+
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'

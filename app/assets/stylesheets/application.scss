@@ -1,9 +1,10 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "animate";
 
 
-// calendar
+
 #articles .calendar {
   border-collapse: collapse;
   width: 100%;
@@ -51,7 +52,7 @@
   font-size: 11px;
   padding-left: 20px;
 }
-// calendar end
+
 
 
 #button-panel{
@@ -83,8 +84,31 @@ body {
   overflow-x: hidden;
 }
 
-.navbar{
-   padding: 0rem 1rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div{
+   font-family: 'Montserrat', sans-serif;
+}
+
+p,a{
+   font-family: 'Montserrat', sans-serif;
+}
+
+
+#indexButtons{
+   transition: transform .2s;
+}
+
+#indexButtons:hover{
+   transform: scale(1.2);
+}
+
+#navbar-signedout{
+   padding: 0 1rem;
 }
 
 nav img{
@@ -143,9 +167,6 @@ section {
     margin-left: -13rem;
   }
 }
-
-
-
 
 
 
@@ -261,7 +282,3 @@ section {
   color: white;
   background-color: #3b5998;
 }
-
-
-
-/*----------------------------------------------------------------------------------------------------------------------------*/
