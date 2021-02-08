@@ -22,7 +22,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'mini_racer'
 gem 'font-awesome-sass', '~> 5.8.1'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'mini_magick'
 gem "animate-rails"
 gem 'wow-rails'
